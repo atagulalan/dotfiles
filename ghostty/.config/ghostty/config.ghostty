@@ -1,0 +1,32 @@
+# xavaTheme
+
+foreground = #FAFAFA
+background = #141414
+
+palette = 0=#141414
+palette = 1=#ff6b80
+palette = 2=#4eba65
+palette = 3=#FFD140
+palette = 4=#4782c8
+palette = 5=#b2b9f9
+palette = 6=#79FFFC
+palette = 7=#C2C2C2
+palette = 8=#2D3136
+palette = 9=#ff6b80
+palette = 10=#4eba65
+palette = 11=#FFD140
+palette = 12=#4782c8
+palette = 13=#b2b9f9
+palette = 14=#79FFFC
+palette = 15=#E0E0E0
+
+# font size
+font-size = 16
+
+# title bar shadow kapatma (window shadow)
+window-padding-x = 12
+window-padding-y = 10
+gtk-toolbar-style=flat
+font-family=Victor Mono
+font-style=Bold
+font-feature=+liga, +calt, +dlig

@@ -1,0 +1,48 @@
+@import 'colors.css';
+
+@define-color window_bg #141414;
+@define-color view_bg #141414;
+@define-color view_fg #c8c8c8;
+
+@define-color headerbar_bg #141414;
+@define-color headerbar_fg #dcdcdc;
+
+@define-color sidebar_bg #272727;
+@define-color sidebar_fg #dcdcdc;
+
+window {
+  background-color: @window_bg;
+  color: @view_fg;
+  box-shadow: none;
+}
+
+.view,
+textview,
+treeview {
+  background-color: @view_bg;
+  color: @view_fg;
+}
+
+headerbar {
+  background-color: @headerbar_bg;
+  color: @headerbar_fg;
+}
+
+sidebar,
+stacksidebar {
+  background-color: @sidebar_bg;
+  color: @sidebar_fg;
+}
+
+window:backdrop {
+  background-color: #141414;
+  color: #888888;
+}
+
+headerbar:backdrop {
+  background-color: #141414;
+}
+
+sidebar:backdrop {
+  background-color: #141414;
+}

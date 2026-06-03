@@ -1,0 +1,21 @@
+@import 'colors.css';
+
+:root {
+  --window-bg-color: #141414;
+
+  --view-bg-color: #141414;
+  --view-fg-color: #c8c8c8;
+
+  --headerbar-bg-color: #141414;
+  --headerbar-fg-color: #dcdcdc;
+  --headerbar-backdrop-color: #141414;
+
+  --sidebar-bg-color: #141414;
+  --sidebar-fg-color: #dcdcdc;
+
+  --sidebar-backdrop-color: #141414;
+}
+
+window {
+  box-shadow: none;
+}
