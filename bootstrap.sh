@@ -100,6 +100,12 @@ if [[ ${XDG_CURRENT_DESKTOP:-} == *GNOME* ]] && command -v dconf &>/dev/null; th
     fi
 fi
 
+if [[ -d etc/coolercontrol ]]; then
+    echo
+    read -rp "/etc konfigleri yüklensin mi (coolercontrol, sudo ister)? [Y/n] " e
+    [[ ! $e =~ ^[nN] ]] && ./etc/restore.sh
+fi
+
 if [[ -f zen/profile-name.txt ]]; then
     echo
     read -rp "Zen Browser profili geri yüklensin mi (eklentiler, ayarlar)? [Y/n] " z

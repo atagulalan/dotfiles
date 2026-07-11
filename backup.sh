@@ -12,6 +12,8 @@ if [[ -f $HOME/.config/zen/profiles.ini ]]; then
 else
     echo "Zen kurulu degil, atlandi."
 fi
+echo
+./etc/backup.sh --no-push
 
 echo
 if ! git status --porcelain | grep -q .; then
