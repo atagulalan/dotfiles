@@ -1,0 +1,88 @@
+# Curated package list for install-packages.sh
+# Format: [Group] headers, one package per line, '#' for comments.
+# Base system, drivers, kernels, and desktop-environment packages are
+# intentionally excluded — the CachyOS installer handles those.
+# AUR packages are fine here too; the installer uses paru for everything.
+
+[CLI essentials]
+btop
+fastfetch
+glances
+duf
+vim
+ripgrep
+plocate
+pv
+stow
+just
+dos2unix
+wget
+zip
+unzip
+unrar
+yt-dlp
+
+[Development]
+git
+github-cli
+docker
+docker-buildx
+docker-compose
+meld
+ghex
+d-spy
+gnome-builder
+
+[Terminals]
+ghostty
+
+[Internet & Communication]
+zen-browser-bin
+discord
+qbittorrent
+qbittorrent-nox
+stremio
+syncplay
+
+[Media]
+haruna
+showtime
+decibels
+vlc-plugins-all
+calibre
+spotify-launcher
+obs-studio-browser
+obs-vkcapture
+obs-gnome-screencast
+
+[Gaming]
+steam
+gamescope
+mangohud
+
+[Streaming & Remote]
+sunshine
+
+[Hardware & RGB]
+openrgb
+coolercontrol
+keyd
+via-bin
+evtest
+
+[AI & Editors]
+obsidian
+cursor-ai-bin
+antigravity-ide
+llmfit-bin
+
+[Desktop extras]
+angrysearch
+nautilus-open-any-terminal
+gnome-tweaks
+dconf-editor
+gnome-boxes
+
+[Network & VPN]
+dnscrypt-proxy
+ufw
