@@ -78,6 +78,19 @@ if [[ -n $nvmver ]] && command -v fish &>/dev/null; then
         echo "nvm install basarisiz; sonra elle: fish -c 'nvm install $nvmver'"
 fi
 
+# oh-my-fish: prompt temasi + bass, ayarlari stow'lanan ~/.config/omf'tan okur.
+if [[ ! -d $HOME/.local/share/omf ]] && command -v fish &>/dev/null; then
+    echo
+    echo "==> oh-my-fish kuruluyor"
+    omftmp=$(mktemp)
+    curl -fsSL https://raw.githubusercontent.com/oh-my-fish/oh-my-fish/master/bin/install -o "$omftmp"
+    fish "$omftmp" --noninteractive --yes || echo "omf kurulumu basarisiz; elle: fish $omftmp --noninteractive"
+    rm -f "$omftmp"
+    fish -c "omf install" || true
+    # omf installer conf.d/omf.fish'i korumasiz surumle ezebilir; geri al
+    git -C "$DIR" checkout -- fish/.config/fish/conf.d/omf.fish 2>/dev/null || true
+fi
+
 if [[ ${XDG_CURRENT_DESKTOP:-} == *GNOME* ]] && command -v dconf &>/dev/null; then
     echo
     read -rp "GNOME kurulumu: eklentiler + dconf ayarları + arkaplan? [Y/n] " g
