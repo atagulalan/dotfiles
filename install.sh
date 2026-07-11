@@ -1,29 +1,28 @@
 #!/usr/bin/env bash
+# Extras that stow can't handle: bin scripts, desktop entries, mimeapps copy.
+# Configs themselves are symlinked by stow (see bootstrap.sh).
 
 set -e
 
-echo "Linking fish scripts..."
+DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
+echo "Linking bin scripts..."
 mkdir -p ~/.local/bin
-ln -sf ~/dotfiles/fish/comfyui.fish ~/.local/bin/comfyui.fish
-chmod +x ~/.local/bin/comfyui.fish
-ln -sf ~/dotfiles/fish/comfyui-stop.fish ~/.local/bin/comfyui-stop.fish
-chmod +x ~/.local/bin/comfyui-stop.fish
-
-echo "Linking fish functions..."
-
-mkdir -p ~/.config/fish/functions
-ln -sf ~/dotfiles/fish/functions/comfyui.fish ~/.config/fish/functions/comfyui.fish
-ln -sf ~/dotfiles/fish/functions/comfyui-stop.fish ~/.config/fish/functions/comfyui-stop.fish
+for f in "$DIR"/bin/*; do
+    chmod +x "$f"
+    ln -sf "$f" ~/.local/bin/"$(basename "$f")"
+done
 
 echo "Installing desktop entries..."
-
 mkdir -p ~/.local/share/applications
-ln -sf ~/dotfiles/desktop/comfyui.desktop ~/.local/share/applications/comfyui.desktop
-ln -sf ~/dotfiles/desktop/comfyui-stop.desktop ~/.local/share/applications/comfyui-stop.desktop
+for f in "$DIR"/desktop/*.desktop; do
+    ln -sf "$f" ~/.local/share/applications/"$(basename "$f")"
+done
 
+# mimeapps.list is copied, not symlinked: apps rewrite it and would
+# otherwise clobber the repo copy through the symlink.
 echo "Copying mimeapps.list..."
-
-cp ~/dotfiles/mimeapps/.config/mimeapps.list ~/.config/mimeapps.list
+mkdir -p ~/.config
+cp "$DIR"/mimeapps/.config/mimeapps.list ~/.config/mimeapps.list
 
 echo "Done."
