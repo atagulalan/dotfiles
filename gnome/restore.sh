@@ -15,4 +15,22 @@ sed "s|/home/xava|$HOME|g" "$SCRIPT_DIR/dconf.ini" | dconf load /org/gnome/
 echo "Arkaplan kopyalanıyor..."
 cp "$SCRIPT_DIR/../backgrounds/gnome-background.png" "$HOME/.config/background"
 
+# xdg-user-dirs-update dosyayı yeniden yazabildiği için kopya (symlink değil).
+if [[ -f $SCRIPT_DIR/user-dirs.dirs ]]; then
+    echo "XDG kullanıcı dizinleri uygulanıyor..."
+    cp "$SCRIPT_DIR/user-dirs.dirs" "$HOME/.config/user-dirs.dirs"
+    while IFS='=' read -r key val; do
+        [[ $key == XDG_*_DIR ]] || continue
+        dir=$(eval echo "$val")
+        [[ $dir != "$HOME" ]] && mkdir -p "$dir"
+    done < <(grep -E '^XDG_' "$SCRIPT_DIR/user-dirs.dirs")
+fi
+
+# Nautilus/GTK kenar çubuğu bu bookmark listesinden gelir.
+if [[ -f $SCRIPT_DIR/gtk-bookmarks ]]; then
+    echo "Kenar çubuğu bookmark'ları uygulanıyor..."
+    mkdir -p "$HOME/.config/gtk-3.0"
+    sed "s|/home/xava|$HOME|g" "$SCRIPT_DIR/gtk-bookmarks" >"$HOME/.config/gtk-3.0/bookmarks"
+fi
+
 echo "Tamamlandı."
