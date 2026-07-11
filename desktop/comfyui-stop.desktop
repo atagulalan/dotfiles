@@ -1,0 +1,8 @@
+[Desktop Entry]
+Name=ComfyUI Durdur
+Comment=Stop ComfyUI
+Exec=fish /home/xava/.local/bin/comfyui-stop.fish
+Icon=utilities-terminal
+Terminal=false
+Type=Application
+Categories=Development;

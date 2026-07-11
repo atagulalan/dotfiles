@@ -13,7 +13,6 @@
 window {
   background-color: @window_bg;
   color: @view_fg;
-  box-shadow: none;
 }
 
 .view,

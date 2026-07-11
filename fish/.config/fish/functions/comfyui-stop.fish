@@ -1,0 +1,1 @@
+/home/xava/dotfiles/fish/functions/comfyui-stop.fish
