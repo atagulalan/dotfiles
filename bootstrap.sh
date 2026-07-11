@@ -54,8 +54,8 @@ for d in */; do
     fi
 done
 echo "Packages: ${packages[*]}"
-read -rp "Existing configs will be REPLACED by repo versions. Continue? [y/N] " ok
-if [[ $ok =~ ^[yY] ]]; then
+read -rp "Existing configs will be REPLACED by repo versions. Continue? [Y/n] " ok
+if [[ ! $ok =~ ^[nN] ]]; then
     # --adopt pulls pre-existing target files into the repo so stow can link;
     # git restore then discards them, so the committed configs win.
     stow --adopt "${packages[@]}"
@@ -70,8 +70,11 @@ echo "==> Running extras (bin scripts, desktop entries, mimeapps)"
 
 if [[ ${XDG_CURRENT_DESKTOP:-} == *GNOME* ]] && command -v dconf &>/dev/null; then
     echo
-    read -rp "Load GNOME dconf settings (keybindings, extensions, etc.)? [y/N] " g
-    [[ $g =~ ^[yY] ]] && ./gnome/restore.sh
+    read -rp "GNOME kurulumu: eklentiler + dconf ayarları + arkaplan? [Y/n] " g
+    if [[ ! $g =~ ^[nN] ]]; then
+        ./gnome/install-extensions.sh
+        ./gnome/restore.sh
+    fi
 fi
 
 echo
