@@ -32,6 +32,11 @@ mkdir -p "$DEST"
 for item in "${INCLUDE[@]}"; do
     [[ -e "$SRC/$item" ]] && cp -a "$SRC/$item" "$DEST/"
 done
+
+# Kimlik/sync metadata'sini ayikla (e-posta, cihaz adi, hesap uid/GUID'leri):
+# giris bilgisi degildir ama public repoda isi yok. Sync'e her makinede
+# elle giris yapilir.
+sed -i '/identity\.fxaccounts\|services\.sync/d' "$DEST/prefs.js"
 printf '%s\n' "$rel" >"$SCRIPT_DIR/profile-name.txt"
 # Zen varsayilan profili [InstallXXXX] bolumunden secer; kimligi sakla
 # (ayni paket ayni yola kuruldugundan kimlik makineler arasi aynidir).
