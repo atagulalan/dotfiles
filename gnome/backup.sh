@@ -50,7 +50,7 @@ echo
 git status --short gnome/ backgrounds/
 
 if [[ ${1:-} == "--no-push" ]]; then
-    echo "(--no-push: commit atlanmadi, dosyalar hazir)"
+    echo "(--no-push: commit atlandi, dosyalar hazir)"
     exit 0
 fi
 

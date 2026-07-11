@@ -77,6 +77,14 @@ if [[ ${XDG_CURRENT_DESKTOP:-} == *GNOME* ]] && command -v dconf &>/dev/null; th
     fi
 fi
 
+if [[ -f zen/profile-name.txt ]]; then
+    echo
+    read -rp "Zen Browser profili geri yüklensin mi (eklentiler, ayarlar)? [Y/n] " z
+    if [[ ! $z =~ ^[nN] ]]; then
+        ./zen/restore.sh || echo "Zen geri yükleme başarısız (Zen açık olabilir), sonra tekrar: ./zen/restore.sh"
+    fi
+fi
+
 echo
 echo "==> Bootstrap tamamlandı."
 read -rp "Değişikliklerin aktifleşmesi için oturum kapatılsın mı? [Y/n] " lo
