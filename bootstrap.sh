@@ -2,10 +2,13 @@
 # Fresh-machine bootstrap for a new CachyOS install.
 # Clones the repo, installs packages interactively, stows configs, runs extras.
 #
-# One-liner:
-#   bash <(curl -fsSL https://raw.githubusercontent.com/atagulalan/dotfiles/main/bootstrap.sh)
+# One-liner (fish/bash uyumlu):
+#   curl -fsSL https://raw.githubusercontent.com/atagulalan/dotfiles/main/bootstrap.sh | bash
 
 set -euo pipefail
+
+# When piped (curl | bash), stdin is the pipe; reattach prompts to the terminal.
+[[ -t 0 ]] || exec </dev/tty
 
 REPO="https://github.com/atagulalan/dotfiles.git"
 DIR="$HOME/dotfiles"
