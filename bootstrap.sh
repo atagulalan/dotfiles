@@ -78,4 +78,12 @@ if [[ ${XDG_CURRENT_DESKTOP:-} == *GNOME* ]] && command -v dconf &>/dev/null; th
 fi
 
 echo
-echo "==> Bootstrap complete. Log out and back in for everything to take effect."
+echo "==> Bootstrap tamamlandı."
+read -rp "Değişikliklerin aktifleşmesi için oturum kapatılsın mı? [Y/n] " lo
+if [[ ! $lo =~ ^[nN] ]]; then
+    if command -v gnome-session-quit &>/dev/null; then
+        gnome-session-quit --logout --no-prompt
+    else
+        loginctl terminate-session "${XDG_SESSION_ID:-}"
+    fi
+fi
