@@ -10,8 +10,19 @@ cd "$SCRIPT_DIR"
 echo "==> dconf dump aliniyor (/org/gnome/)"
 dconf dump /org/gnome/ >dconf.ini
 
-echo "==> Arkaplan kopyalaniyor"
-cp "$HOME/.config/background" ../backgrounds/gnome-background.png
+# dconf'un referans verdigi $HOME altindaki dosyalari (duvar kagidi vb.) topla.
+echo "==> dconf'taki dosya referanslari kopyalaniyor"
+rm -rf ../backgrounds/wallpaper
+mkdir -p ../backgrounds/wallpaper
+refs=$(grep -o "file:///home/[^'\"]*" dconf.ini | sed 's|^file://||' | sort -u || true)
+for f in $refs; do
+    if [[ -f $f ]]; then
+        cp "$f" ../backgrounds/wallpaper/
+        echo "    + $(basename "$f")"
+    else
+        echo "    ! bulunamadi: $f"
+    fi
+done
 
 echo "==> XDG kullanici dizinleri (user-dirs.dirs)"
 cp "$HOME/.config/user-dirs.dirs" user-dirs.dirs

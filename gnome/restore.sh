@@ -10,10 +10,13 @@ echo "GNOME dconf ayarları yükleniyor..."
 # dconf.ini içindeki mutlak yollar kullanıcı adına bağlı; $HOME'a çevir.
 sed "s|/home/xava|$HOME|g" "$SCRIPT_DIR/dconf.ini" | dconf load /org/gnome/
 
-# GNOME arkaplanı ~/.config/background dosyasından okur (symlink değil kopya:
-# duvar kağıdı değiştirilince GNOME bu dosyanın üzerine yazar).
-echo "Arkaplan kopyalanıyor..."
-cp "$SCRIPT_DIR/../backgrounds/gnome-background.png" "$HOME/.config/background"
+# dconf'un referans verdiği dosyalar (duvar kağıdı vb.) GNOME'un beklediği
+# yere kopyalanır; dconf yolları sed ile bu makinenin $HOME'una çevrildi.
+if compgen -G "$SCRIPT_DIR/../backgrounds/wallpaper/*" >/dev/null; then
+    echo "Duvar kağıdı kopyalanıyor..."
+    mkdir -p "$HOME/.local/share/backgrounds"
+    cp "$SCRIPT_DIR/../backgrounds/wallpaper/"* "$HOME/.local/share/backgrounds/"
+fi
 
 # xdg-user-dirs-update dosyayı yeniden yazabildiği için kopya (symlink değil).
 if [[ -f $SCRIPT_DIR/user-dirs.dirs ]]; then
