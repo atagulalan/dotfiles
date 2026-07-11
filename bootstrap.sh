@@ -68,6 +68,16 @@ echo
 echo "==> Running extras (bin scripts, desktop entries, mimeapps)"
 ./install.sh
 
+# nvm.fish (fisher eklentisi repo'da) varsayilan node surumunu istiyor;
+# kurulu degilse acilista hata veriyor. Stow sonrasi indirip kuralim.
+nvmver=$(grep -oP 'nvm_default_version:\K[0-9.]+' fish/.config/fish/fish_variables 2>/dev/null || true)
+if [[ -n $nvmver ]] && command -v fish &>/dev/null; then
+    echo
+    echo "==> Node $nvmver kuruluyor (nvm.fish)"
+    fish -c "nvm install $nvmver" ||
+        echo "nvm install basarisiz; sonra elle: fish -c 'nvm install $nvmver'"
+fi
+
 if [[ ${XDG_CURRENT_DESKTOP:-} == *GNOME* ]] && command -v dconf &>/dev/null; then
     echo
     read -rp "GNOME kurulumu: eklentiler + dconf ayarları + arkaplan? [Y/n] " g
