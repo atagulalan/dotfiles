@@ -8,7 +8,12 @@ SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
 echo "GNOME dconf ayarları yükleniyor..."
 # dconf.ini içindeki mutlak yollar kullanıcı adına bağlı; $HOME'a çevir.
-sed "s|/home/xava|$HOME|g" "$SCRIPT_DIR/dconf.ini" | dconf load /org/gnome/
+tmpini=$(mktemp)
+sed "s|/home/xava|$HOME|g" "$SCRIPT_DIR/dconf.ini" >"$tmpini"
+# dash-to-panel monitör kimliklerini bu makinenin monitörlerine uyarla.
+python3 "$SCRIPT_DIR/remap-monitors.py" "$tmpini" || echo "(monitör uyarlaması atlandı)"
+dconf load /org/gnome/ <"$tmpini"
+rm -f "$tmpini"
 
 # dconf'un referans verdiği dosyalar (duvar kağıdı vb.) GNOME'un beklediği
 # yere kopyalanır; dconf yolları sed ile bu makinenin $HOME'una çevrildi.
