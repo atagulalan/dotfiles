@@ -90,8 +90,28 @@ if ((${#selected[@]} == 0)); then
     exit 0
 fi
 
-echo "Will install: ${selected[*]}"
+# Pre-flight: drop packages that no longer exist in repos or AUR so one
+# stale name doesn't abort the whole transaction.
+echo "Checking package availability..."
+available=()
+notfound=()
+for pkg in "${selected[@]}"; do
+    if pacman -Si "$pkg" &>/dev/null || paru -Si -a "$pkg" &>/dev/null; then
+        available+=("$pkg")
+    else
+        notfound+=("$pkg")
+    fi
+done
+if ((${#notfound[@]})); then
+    echo "WARNING: not found in repos/AUR, skipping: ${notfound[*]}"
+    echo "         (fix or remove these in packages.txt)"
+fi
+((${#available[@]})) || { echo "Nothing available to install."; exit 1; }
+
+echo "Will install: ${available[*]}"
 read -rp "Proceed? [Y/n] " go
 [[ $go =~ ^[nN] ]] && { echo "Aborted."; exit 0; }
 
-paru -S --needed "${selected[@]}"
+# --noconfirm auto-selects the default provider when several match
+# (e.g. angrysearch vs angrysearch-git); --skipreview skips PKGBUILD review.
+paru -S --needed --noconfirm --skipreview "${available[@]}"

@@ -72,7 +72,7 @@ evtest
 
 [AI & Editors]
 obsidian
-cursor-ai-bin
+cursor-bin
 antigravity-ide
 llmfit-bin
 
