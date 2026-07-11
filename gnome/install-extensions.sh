@@ -12,7 +12,6 @@ UUIDS=(
     no-overview@fthx
     quicksettings-audio-devices-hider@marcinjahn.com
     Rounded_Corners@lennart-k
-    rounded-window-corners@fxgn
     screentospace@dilzhan.dev
     tiling-assistant@leleat-on-github
     user-theme@gnome-shell-extensions.gcampax.github.com
@@ -49,6 +48,21 @@ for uuid in "${UUIDS[@]}"; do
     fi
     rm -f "$tmp"
 done
+
+# Repo'da tasinan ozel eklentiler (fork/custom, EGO listesinde degiller).
+# Kopyalama her calismada yapilir ki repo'daki surum her zaman kazansin.
+EXTSRC="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/extensions"
+DEST="$HOME/.local/share/gnome-shell/extensions"
+if [[ -d $EXTSRC ]]; then
+    mkdir -p "$DEST"
+    for src in "$EXTSRC"/*/; do
+        uuid=$(basename "$src")
+        rm -rf "${DEST:?}/$uuid"
+        cp -a "$src" "$DEST/$uuid"
+        echo "+ $uuid (repo'dan kopyalandi)"
+        ok=$((ok + 1))
+    done
+fi
 
 echo
 echo "$ok kuruldu/mevcut, ${#fail[@]} basarisiz."
