@@ -13,10 +13,12 @@ rel=$(awk -F= '/^\[Install/{f=1;next} /^\[/{f=0} f&&/^Default=/{print $2; exit}'
 SRC="$ZENDIR/$rel"
 [[ -d $SRC ]] || { echo "Zen profili bulunamadi: $SRC" >&2; exit 1; }
 
+# Not: addonStartup.json.lz4 alinmaz — mutlak yol icerir ve Zen onu
+# extensions.json'dan yeniden uretir.
 INCLUDE=(
     prefs.js user.js chrome
     extensions extensions.json extension-preferences.json
-    extension-settings.json addonStartup.json.lz4
+    extension-settings.json
     browser-extension-data extension-store extension-store-menus
     extension-store-userscripts
     containers.json handlers.json search.json.mozlz4
@@ -31,6 +33,9 @@ for item in "${INCLUDE[@]}"; do
     [[ -e "$SRC/$item" ]] && cp -a "$SRC/$item" "$DEST/"
 done
 printf '%s\n' "$rel" >"$SCRIPT_DIR/profile-name.txt"
+# Zen varsayilan profili [InstallXXXX] bolumunden secer; kimligi sakla
+# (ayni paket ayni yola kuruldugundan kimlik makineler arasi aynidir).
+grep -oP '^\[Install\K[0-9A-F]+(?=\])' "$ZENDIR/profiles.ini" >"$SCRIPT_DIR/install-ids.txt" || true
 echo "Zen profili yedeklendi: $rel ($(du -sh "$DEST" | cut -f1))"
 
 cd "$SCRIPT_DIR/.."
