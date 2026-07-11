@@ -7,11 +7,18 @@
 
 set -euo pipefail
 
-# When piped (curl | bash), stdin is the pipe; reattach prompts to the terminal.
-[[ -t 0 ]] || exec </dev/tty
-
 REPO="https://github.com/atagulalan/dotfiles.git"
 DIR="$HOME/dotfiles"
+
+# curl | bash: stdin is the script itself, so interactive prompts would eat
+# the remaining script lines. Clone first, then re-exec from disk with a tty.
+if [[ ! -t 0 ]]; then
+    echo "==> Piped run detected; cloning and re-executing from disk"
+    sudo pacman -S --needed --noconfirm git
+    [[ -d $DIR/.git ]] || git clone "$REPO" "$DIR"
+    git -C "$DIR" pull --ff-only || true
+    exec bash "$DIR/bootstrap.sh" </dev/tty
+fi
 
 echo "==> Installing prerequisites (git, stow, paru)"
 sudo pacman -S --needed --noconfirm git stow paru
@@ -26,8 +33,13 @@ fi
 cd "$DIR"
 
 echo
-echo "==> Installing packages (interactive)"
-./install-packages.sh
+echo "==> Installing packages"
+read -rp "Paketler: [A] hepsini kur / [i] interaktif seç / [s] atla: " mode
+case ${mode:-a} in
+    i | I) ./install-packages.sh ;;
+    s | S) echo "Paket kurulumu atlandı." ;;
+    *) ./install-packages.sh --all ;;
+esac
 
 echo
 echo "==> Stowing configs"

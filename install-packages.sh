@@ -2,13 +2,20 @@
 # Interactive package installer — reads packages.txt and prompts per group.
 # Usage:
 #   ./install-packages.sh          interactive install
+#   ./install-packages.sh --all    install everything missing, no per-group prompts
 #   ./install-packages.sh --list   show groups and installed status only
 set -euo pipefail
 
 cd "$(dirname "$0")"
 LIST_FILE="packages.txt"
 LIST_ONLY=false
-[[ ${1:-} == "--list" ]] && LIST_ONLY=true
+ALL=false
+for arg in "$@"; do
+    case $arg in
+        --list) LIST_ONLY=true ;;
+        --all) ALL=true ;;
+    esac
+done
 
 [[ -f $LIST_FILE ]] || { echo "error: $LIST_FILE not found" >&2; exit 1; }
 
@@ -54,6 +61,11 @@ for group in "${order[@]}"; do
 
     $LIST_ONLY && continue
     ((${#missing[@]})) || { echo "  → nothing to do"; continue; }
+
+    if $ALL; then
+        selected+=("${missing[@]}")
+        continue
+    fi
 
     read -rp "Install ${#missing[@]} missing from '$group'? [a]ll / [p]ick / [S]kip: " ans
     case $ans in
