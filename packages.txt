@@ -74,7 +74,6 @@ evtest
 [AI & Editors]
 obsidian
 cursor-bin
-antigravity-ide
 llmfit-bin
 
 [Desktop extras]
