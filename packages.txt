@@ -5,6 +5,7 @@
 # AUR packages are fine here too; the installer uses paru for everything.
 
 [CLI essentials]
+yay
 btop
 fastfetch
 glances
