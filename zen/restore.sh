@@ -20,6 +20,9 @@ cp -a "$SCRIPT_DIR/profile/." "$DEST/"
 # Mutlak yollari bu makinenin HOME'una cevir (prefs.js + extensions.json vb.
 # eklenti kayitlari xpi'lere tam yolla isaret eder).
 sed -i "s|/home/xava|$HOME|g" "$DEST/prefs.js"
+# Kimlik/sync kalintilari (cihaz adi, GUID'ler) yeni makineye tasinmasin;
+# sync'e giriste Zen taze cihaz kaydi ve kimlikler uretir.
+sed -i '/identity\.fxaccounts\|services\.sync/d' "$DEST/prefs.js"
 find "$DEST" -maxdepth 1 -name '*.json' -exec sed -i "s|/home/xava|$HOME|g" {} +
 # Eski yedeklerden gelmis olabilir; eski yollar icerir, Zen yeniden uretir.
 rm -f "$DEST/addonStartup.json.lz4"
