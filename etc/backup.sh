@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# /etc altindaki uygulama konfiglerini yedekler (simdilik: coolercontrol).
+# /etc ve /opt altindaki uygulama konfiglerini yedekler
+# (coolercontrol, ollama servis override'i, zapret).
 # Gizli dosyalar (.passwd, *.key, *.crt) bilerek alinmaz.
 # Kullanim: ./backup.sh [--no-push]
 set -euo pipefail
@@ -15,6 +16,23 @@ if [[ -d /etc/coolercontrol ]]; then
     echo "coolercontrol yedeklendi (${CC_FILES[*]})"
 else
     echo "coolercontrol kurulu degil, atlandi."
+fi
+
+if [[ -f /etc/systemd/system/ollama.service.d/override.conf ]]; then
+    mkdir -p "$SCRIPT_DIR/ollama"
+    cp /etc/systemd/system/ollama.service.d/override.conf "$SCRIPT_DIR/ollama/"
+    echo "ollama servis override'i yedeklendi"
+else
+    echo "ollama override yok, atlandi."
+fi
+
+# Sadece ana config alinir; hostlist'ler (ziyaret edilen alan adlari) bilerek alinmaz.
+if [[ -f /opt/zapret/config ]]; then
+    mkdir -p "$SCRIPT_DIR/zapret"
+    cp /opt/zapret/config "$SCRIPT_DIR/zapret/"
+    echo "zapret config yedeklendi"
+else
+    echo "zapret kurulu degil, atlandi."
 fi
 
 cd "$SCRIPT_DIR/.."

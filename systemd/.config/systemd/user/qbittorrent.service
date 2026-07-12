@@ -1,0 +1,9 @@
+[Unit]
+Description=qBittorrent-nox
+
+[Service]
+ExecStart=/usr/bin/qbittorrent-nox --profile=%h/Downloads/qbittorrent
+Restart=on-failure
+
+[Install]
+WantedBy=default.target

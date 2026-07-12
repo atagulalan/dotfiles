@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Tum yedekleri alir (GNOME + Zen) ve tek commit ile pushlar.
+# Tum yedekleri alir (GNOME + Zen + etc + paket listesi) ve tek commit ile pushlar.
 # Kullanim: ./backup.sh [--no-push]
 set -euo pipefail
 
@@ -14,6 +14,17 @@ else
 fi
 echo
 ./etc/backup.sh --no-push
+
+echo
+# Referans amacli tam paket listesi; kurulum icin packages.txt kullanilir.
+{
+    echo "# Otomatik uretilir (backup.sh), elle duzenleme. Kurulum listesi: packages.txt"
+    echo "# pacman -Qqe:"
+    pacman -Qqe
+    echo "# --- AUR/yabanci paketler (pacman -Qqm) ---"
+    pacman -Qqm
+} >packages-snapshot.txt
+echo "Paket listesi guncellendi (packages-snapshot.txt)."
 
 echo
 if ! git status --porcelain | grep -q .; then

@@ -18,7 +18,7 @@ oturumu kapatmayı teklif eder.
 | Script | Ne yapar |
 |---|---|
 | `bootstrap.sh` | Sıfır makinede uçtan uca kurulum (yukarıdaki tek komut) |
-| `backup.sh` | **Ana makinede**: GNOME + Zen yedeğini alıp tek commit ile pushlar |
+| `backup.sh` | **Ana makinede**: GNOME + Zen + etc + paket listesi yedeğini alıp tek commit ile pushlar |
 | `install-packages.sh` | `packages.txt`'ten paket kurar (`--all` sormadan, `--list` sadece durum) |
 | `install.sh` | Stow dışı ekstralar: `bin/` scriptleri, desktop entry'leri, mimeapps |
 | `gnome/backup.sh` | dconf dump + duvar kağıdı + user-dirs + kenar çubuğu bookmarks |
@@ -27,6 +27,8 @@ oturumu kapatmayı teklif eder.
 | `gnome/sync-extensions.sh` | Özel (fork) eklentileri lokalden repo'ya senkronlar (`--commit`) |
 | `zen/backup.sh` | Zen profili: eklentiler, ayarlar, zen mod/kısayolları, yer imi yedekleri |
 | `zen/restore.sh` | Zen profilini yeni makineye kurar (Zen kapalıyken) |
+| `etc/backup.sh` | /etc ve /opt konfigleri: coolercontrol, ollama override'ı, zapret config |
+| `etc/restore.sh` | Yukarıdakileri geri yükler (sudo; ollama'da kullanıcı adı/home uyarlanır) |
 
 ## Yapı
 
@@ -34,8 +36,11 @@ oturumu kapatmayı teklif eder.
   `alacritty`, `bash`, `fish`, `ghostty`, `git`, `gtk`, `icons` (monoc,
   WhiteSur-cursors), `themes` (MacTahoe), `fonts` (Victor Mono, PP Fraktion
   Mono), `mpv`, `micro`, `obs-studio`, `openrgb`, `qbittorrent`, `sunshine`,
-  `syncplay` vb. `bootstrap.sh` bunları otomatik algılayıp stow'lar.
+  `syncplay`, `systemd` (kullanıcı servisleri: sunshine, qbittorrent) vb.
+  `bootstrap.sh` bunları otomatik algılayıp stow'lar.
 - `packages.txt` — grup grup küratörlü paket listesi (repo + AUR karışık)
+- `packages-snapshot.txt` — `backup.sh`'ın ürettiği tam paket listesi
+  (`pacman -Qqe` + AUR); kurulum için değil, format sonrası referans için
 - `gnome/` — dconf.ini, user-dirs, bookmarks, `extensions/` altında fork
   eklentiler (ör. rounded-window-corners@fxgn)
 - `zen/profile/` — Zen Browser profil yedeği (beyaz liste)

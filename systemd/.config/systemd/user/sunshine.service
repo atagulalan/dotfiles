@@ -1,0 +1,11 @@
+[Unit]
+Description=Sunshine Game Streaming Server
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/sunshine
+Restart=always
+RestartSec=2
+
+[Install]
+WantedBy=default.target

@@ -100,9 +100,9 @@ if [[ ${XDG_CURRENT_DESKTOP:-} == *GNOME* ]] && command -v dconf &>/dev/null; th
     fi
 fi
 
-if [[ -d etc/coolercontrol ]]; then
+if [[ -d etc/coolercontrol || -d etc/ollama || -d etc/zapret ]]; then
     echo
-    read -rp "/etc konfigleri yüklensin mi (coolercontrol, sudo ister)? [Y/n] " e
+    read -rp "/etc konfigleri yüklensin mi (coolercontrol, ollama, zapret; sudo ister)? [Y/n] " e
     [[ ! $e =~ ^[nN] ]] && ./etc/restore.sh
 fi
 
