@@ -23,7 +23,8 @@ local user_opts = {
     icon_theme = "fluent",                 -- set icon theme. accepts "fluent", "material", or "hugeicons"
     font = "mpv-osd-symbols",              -- font for the OSC (default: mpv-osd-symbols or the one set in mpv.conf)
 
-    idlescreen = true,                     -- show mpv logo when idle
+    idlescreen = true,                     -- show idle screen (text / optional logo)
+    idle_logo = true,                      -- show mpv logo on the idle screen
     window_top_bar = "auto",               -- show OSC window top bar: "auto", "yes", or "no" (borderless/fullscreen)
     showwindowed = true,                   -- show OSC when windowed
     showfullscreen = true,                 -- show OSC when fullscreen
@@ -3389,7 +3390,7 @@ tick = function()
 
         local ass = assdraw.ass_new()
         -- mpv logo
-        if user_opts.idlescreen then
+        if user_opts.idlescreen and user_opts.idle_logo then
             for _, line in ipairs(logo_lines) do
                 ass:new_event()
                 ass:append(line_prefix .. line)
@@ -3397,7 +3398,7 @@ tick = function()
         end
 
         -- Santa hat
-        if is_december and user_opts.idlescreen and not user_opts.greenandgrumpy then
+        if is_december and user_opts.idlescreen and user_opts.idle_logo and not user_opts.greenandgrumpy then
             for _, line in ipairs(santa_hat_lines) do
                 ass:new_event()
                 ass:append(line_prefix .. line)
@@ -3406,7 +3407,11 @@ tick = function()
 
         if user_opts.idlescreen then
             ass:new_event()
-            ass:pos(display_w / 2, icon_y + 65)
+            if user_opts.idle_logo then
+                ass:pos(display_w / 2, icon_y + 65)
+            else
+                ass:pos(display_w / 2, display_h / 2)
+            end
             ass:an(8)
             ass:append(locale.idle)
         end
