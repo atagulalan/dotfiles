@@ -1,0 +1,7 @@
+{
+  "uuid": "reminders@xava.local",
+  "name": "Reminders",
+  "description": "Panelden hızlıca zamanlı hatırlatma oluşturur.",
+  "version": 1,
+  "shell-version": ["48", "49", "50"]
+}

@@ -41,8 +41,10 @@ oturumu kapatmayı teklif eder.
 - `packages.txt` — grup grup küratörlü paket listesi (repo + AUR karışık)
 - `packages-snapshot.txt` — `backup.sh`'ın ürettiği tam paket listesi
   (`pacman -Qqe` + AUR); kurulum için değil, format sonrası referans için
-- `gnome/` — dconf.ini, user-dirs, bookmarks, `extensions/` altında fork
-  eklentiler (ör. rounded-window-corners@fxgn)
+- `gnome/` — dconf.ini, user-dirs, bookmarks, `extensions/` altında özel/
+  fork eklentiler: `codexbar@xava.local`, `dtp-inactive-opacity@xava.local`,
+  `qs-columns@xava.local`, `quick-settings-tray@xava.local`,
+  `reminders@xava.local`, `rounded-window-corners@fxgn`
 - `zen/profile/` — Zen Browser profil yedeği (beyaz liste)
 - `backgrounds/wallpaper/` — dconf'un referans verdiği aktif duvar kağıdı
 - `bin/`, `desktop/` — `install.sh`'ın bağladığı script ve launcher'lar

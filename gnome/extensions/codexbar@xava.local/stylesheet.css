@@ -1,0 +1,62 @@
+.codexbar-panel {
+  spacing: 0;
+  width: 16px;
+  height: 16px;
+  background-image: url("icons/robot-symbolic.svg");
+  background-size: 14px 14px;
+  background-position: center;
+}
+
+/* GNOME Shell ESM modullerini oturum boyunca onbellekte tutabilir. Onceki
+ * surumden kalan panel etiketi varsa CSS yeniden yuklendiginde onu da gizle. */
+.codexbar-panel StLabel {
+  width: 0;
+  min-width: 0;
+  height: 0;
+  font-size: 0;
+  color: transparent;
+}
+
+.codexbar-panel StIcon {
+  width: 0;
+  min-width: 0;
+  height: 0;
+  icon-size: 0;
+  opacity: 0;
+}
+
+.codexbar-account {
+  font-weight: 700;
+  font-size: 1.05em;
+}
+
+.codexbar-usage-row {
+  spacing: 5px;
+  min-width: 280px;
+  padding: 7px 2px;
+}
+
+.codexbar-value {
+  font-weight: 700;
+}
+
+.codexbar-progress-track {
+  height: 7px;
+  border-radius: 4px;
+  background-color: rgba(128, 128, 128, 0.28);
+}
+
+.codexbar-progress-fill {
+  height: 7px;
+  border-radius: 4px;
+  background-color: #26a269;
+}
+
+.codexbar-reset {
+  color: rgba(192, 192, 192, 0.9);
+  font-size: 0.9em;
+}
+
+.codexbar-refreshing {
+  opacity: 0.55;
+}

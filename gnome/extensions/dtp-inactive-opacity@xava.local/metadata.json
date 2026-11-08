@@ -1,0 +1,7 @@
+{
+  "uuid": "dtp-inactive-opacity@xava.local",
+  "name": "DtP Inactive Opacity",
+  "description": "Lowers opacity of inactive (unfocused) Dash to Panel app icons. Disable this extension to undo.",
+  "version": 1,
+  "shell-version": ["48", "49", "50", "51"]
+}

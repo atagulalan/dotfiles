@@ -1,0 +1,47 @@
+.xava-tray {
+	/* Cap at 5×44px icons + 4×12px gaps so the 6th icon cannot widen Quick Settings.
+	   Full wrap-to-width needs a session reload on Wayland (JS is cached). */
+	max-width: 268px;
+	border-radius: 0;
+	padding: 0;
+	background: transparent;
+	border: none;
+	box-shadow: none;
+}
+.xava-tray-heading {
+	font-size: 0;
+	height: 0;
+	margin: 0;
+	padding: 0;
+	opacity: 0;
+}
+.xava-tray-empty {
+	color: #6a6a68;
+}
+.xava-tray-scroll {
+	max-height: 160px;
+	max-width: 268px;
+}
+.xava-tray-rows,
+.xava-tray-row {
+	spacing: 12px;
+	max-width: 268px;
+}
+.xava-tray-icon {
+	border-radius: 0;
+	width: 44px;
+	height: 44px;
+	padding: 0;
+	background-color: #0a0a0a;
+	border: 1px solid #202020;
+	box-shadow: none;
+}
+.xava-tray-icon:hover {
+	background-color: #161616;
+	border: 1px solid #202020;
+	box-shadow: none;
+}
+.xava-tray-icon.needs-attention {
+	border: 1px solid #ff3c05;
+	box-shadow: none;
+}

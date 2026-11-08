@@ -1,0 +1,7 @@
+{
+  "uuid": "qs-columns@xava.local",
+  "name": "Quick Settings 3 Columns",
+  "description": "Sets GNOME Quick Settings grid to 3 columns.",
+  "version": 1,
+  "shell-version": ["48", "49", "50"]
+}

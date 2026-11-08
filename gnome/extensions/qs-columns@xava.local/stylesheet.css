@@ -1,0 +1,243 @@
+/* Lock Quick Settings popup width (3×44px toggles + gaps + padding). */
+.quick-settings {
+	max-width: 358px !important;
+}
+.quick-settings-grid {
+	max-width: 358px !important;
+}
+
+/* Obel popover chrome — wins over Blur My Shell theme overrides */
+.popup-menu-content,
+.candidate-popup-content,
+.quick-settings,
+.datemenu-popover,
+.notification-banner,
+.message,
+.message-list .message,
+.quick-toggle-menu,
+.events-button,
+.world-clocks-button,
+.weather-button,
+.popup-sub-menu,
+.modal-dialog,
+.run-dialog,
+.bms-popup-background-dark .popup-menu-content,
+.bms-popup-surface-dark .popup-menu-content,
+.bms-popup-background-dark .quick-settings,
+.bms-popup-surface-dark .quick-settings,
+.bms-popup-background-transparent .popup-menu-content,
+.bms-popup-surface-transparent .popup-menu-content,
+.bms-popup-background-transparent .quick-settings,
+.bms-popup-surface-transparent .quick-settings,
+.bms-popup-background-dark .modal-dialog,
+.bms-popup-surface-dark .modal-dialog,
+.bms-popup-background-transparent .modal-dialog,
+.bms-popup-surface-transparent .modal-dialog,
+.bms-popup-background-dark .run-dialog,
+.bms-popup-surface-dark .run-dialog {
+	border: 1px solid #202020 !important;
+	border-color: #202020 !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+}
+
+/* Log Out / modal dialogs — black + sharp */
+.modal-dialog,
+.run-dialog,
+.bms-popup-background-dark .modal-dialog,
+.bms-popup-surface-dark .modal-dialog,
+.bms-popup-background-transparent .modal-dialog,
+.bms-popup-surface-transparent .modal-dialog,
+.bms-popup-background-dark .run-dialog,
+.bms-popup-surface-dark .run-dialog {
+	background-color: #000000 !important;
+	background: #000000 !important;
+}
+
+.modal-dialog .modal-dialog-button-box .modal-dialog-button,
+.bms-popup-background-dark .modal-dialog .modal-dialog-button-box .modal-dialog-button,
+.bms-popup-surface-dark .modal-dialog .modal-dialog-button-box .modal-dialog-button,
+.bms-popup-background-transparent .modal-dialog .modal-dialog-button-box .modal-dialog-button {
+	border-radius: 0 !important;
+}
+
+/* Date menu cards — Obel s1 surface (was leftover #3a3a38) */
+.events-button,
+.world-clocks-button,
+.weather-button {
+	background-color: #0a0a0a !important;
+	background: #0a0a0a !important;
+	border: 1px solid #202020 !important;
+	border-color: #202020 !important;
+	border-radius: 0 !important;
+	box-shadow: none !important;
+}
+
+.events-button:hover,
+.world-clocks-button:hover,
+.weather-button:hover {
+	background-color: #161616 !important;
+	background: #161616 !important;
+	border: 1px solid #202020 !important;
+	border-color: #202020 !important;
+}
+
+/* DIAGNOSTIC: 4px red border — remove after check */
+.quick-settings .quick-toggle,
+.quick-settings .icon-button,
+.quick-settings-system-item .icon-button,
+.quick-settings-system-item .power-item,
+.quick-slider .icon-button,
+.quick-toggle-has-menu .quick-toggle,
+.quick-toggle-has-menu .quick-toggle-menu-button {
+	border: 1px solid #202020 !important;
+	box-shadow: none !important;
+}
+
+/* Hide labels so toggles stay icon-only squares */
+.quick-toggle .quick-toggle-title,
+.quick-toggle .quick-toggle-subtitle,
+.quick-toggle StLabel {
+	width: 0 !important;
+	height: 0 !important;
+	min-width: 0 !important;
+	max-width: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	font-size: 0 !important;
+	opacity: 0 !important;
+}
+
+.quick-toggle > StBoxLayout > StBoxLayout {
+	width: 0 !important;
+	height: 0 !important;
+	min-width: 0 !important;
+	max-width: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	opacity: 0 !important;
+}
+
+/* Row height — squares match */
+.quick-settings .quick-toggle,
+.quick-toggle-has-menu .quick-toggle,
+.quick-toggle-has-menu .quick-toggle-menu-button {
+	width: 44px !important;
+	height: auto !important;
+	min-width: 44px !important;
+	max-width: 44px !important;
+	min-height: auto !important;
+	max-height: auto !important;
+	padding: 0 !important;
+	border-radius: 0 !important;
+	aspect-ratio: 1 / 1 !important;
+}
+
+.quick-toggle-has-menu .quick-toggle-menu-button {
+	margin-left: 14px !important;
+	border: none !important;
+	padding-top: 17px !important;
+	padding-bottom: 17px !important;
+}
+
+.quick-toggle-has-menu {
+	height: 46px !important;
+	min-height: 46px !important;
+	max-height: 46px !important;
+	padding: 0 !important;
+	spacing: 6px !important;
+	background: transparent !important;
+	border: none !important;
+	box-shadow: none !important;
+	border-radius: 0 !important;
+	aspect-ratio: 1 / 1 !important;
+}
+
+.quick-toggle-has-menu .quick-toggle-separator {
+	width: 0 !important;
+	min-width: 0 !important;
+	background: transparent !important;
+}
+
+.quick-toggle > StBoxLayout,
+.quick-toggle:ltr > StBoxLayout,
+.quick-toggle:rtl > StBoxLayout {
+	spacing: 0 !important;
+	padding: 12px !important;
+	x-align: center !important;
+	y-align: center !important;
+	x-expand: true !important;
+	y-expand: true !important;
+}
+
+.quick-toggle .quick-toggle-icon,
+.quick-toggle StIcon,
+.quick-toggle-has-menu .quick-toggle-menu-button StIcon,
+.quick-settings .icon-button StIcon,
+.quick-settings-system-item .icon-button StIcon,
+.quick-slider .icon-button StIcon {
+	icon-size: 20px !important;
+	width: 20px !important;
+	height: 20px !important;
+	x-align: center !important;
+	y-align: center !important;
+	x-expand: true !important;
+	y-expand: true !important;
+}
+
+.quick-settings-grid {
+	row-spacing: 8px !important;
+}
+
+/* Active toggles: solid orange fill like WiFi */
+.quick-settings-grid > .quick-toggle:checked,
+.quick-settings .quick-toggle:checked,
+.quick-settings .icon-button.default,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked,
+.bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked,
+.bms-popup-surface-dark .quick-settings-grid > .quick-toggle:checked,
+.bms-popup-surface-transparent .quick-settings-grid > .quick-toggle:checked {
+	background-color: #ff3c05 !important;
+	background: #ff3c05 !important;
+	border: 1px solid #ff3c05 !important;
+	border-color: #ff3c05 !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+/* Active hover — same lift as inactive (brighter fill + brighter border) */
+.quick-settings-grid > .quick-toggle:checked:hover,
+.quick-settings-grid > .quick-toggle:checked:focus,
+.quick-settings .quick-toggle:checked:hover,
+.quick-settings .quick-toggle:checked:focus,
+.quick-settings .icon-button.default:hover,
+.quick-settings .icon-button.default:focus,
+.quick-toggle-has-menu:checked .quick-toggle:hover,
+.quick-toggle-has-menu:checked .quick-toggle:focus,
+.quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover,
+.bms-popup-background-dark .quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle:hover {
+	background-color: #ff5530 !important;
+	background: #ff5530 !important;
+	border: 1px solid #ff8a66 !important;
+	border-color: #ff8a66 !important;
+	box-shadow: none !important;
+	color: #ffffff !important;
+}
+
+.quick-settings-grid > .quick-toggle:checked StIcon,
+.quick-settings-grid > .quick-toggle:checked:hover StIcon,
+.quick-settings .quick-toggle:checked StIcon,
+.quick-settings .quick-toggle:checked:hover StIcon,
+.quick-settings .icon-button.default StIcon,
+.quick-settings .icon-button.default:hover StIcon,
+.quick-toggle-has-menu:checked .quick-toggle StIcon,
+.quick-toggle-has-menu:checked .quick-toggle:hover StIcon,
+.quick-toggle-has-menu:checked:hover .quick-toggle StIcon,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked StIcon,
+.bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked StIcon {
+	color: #ffffff !important;
+}

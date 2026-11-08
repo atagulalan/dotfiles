@@ -1,0 +1,13 @@
+{
+  "uuid": "quick-settings-tray@xava.local",
+  "name": "Quick Settings Tray",
+  "description": "AppIndicator and KStatusNotifierItem icons in a contained System Tray section of Quick Settings.",
+  "gettext-domain": "AppIndicatorExtension",
+  "settings-schema": "org.gnome.shell.extensions.xava-quick-settings-tray",
+  "shell-version": [
+    "48",
+    "49",
+    "50"
+  ],
+  "version": 2
+}
