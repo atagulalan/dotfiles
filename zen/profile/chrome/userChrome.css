@@ -1,0 +1,195 @@
+/* UI font: Space Grotesk */
+* {
+  font-family: "Space Grotesk", sans-serif !important;
+}
+
+.titlebar-button,
+.titlebar-button::before,
+.titlebar-button::after {
+  font-family: revert !important;
+}
+
+/* Sharp corners — kill all Zen / Firefox chrome rounding */
+:root,
+#main-window,
+#zen-main-app-wrapper {
+  --zen-border-radius: 0 !important;
+  --zen-webview-border-radius: 0 !important;
+  --zen-native-inner-radius: 0 !important;
+  --border-radius-medium: 0 !important;
+  --border-radius-circle: 0 !important;
+  --tab-border-radius: 0 !important;
+  --toolbarbutton-border-radius: 0 !important;
+  --button-border-radius: 0 !important;
+  --panel-border-radius: 0 !important;
+  --arrowpanel-menuitem-border-radius: 0 !important;
+  --urlbar-icon-border-radius: 0 !important;
+  --urlbar-inner-border-radius: 0 !important;
+  --sr-border-radius: 0 !important;
+}
+
+*,
+*::before,
+*::after {
+  border-radius: 0 !important;
+  border-top-left-radius: 0 !important;
+  border-top-right-radius: 0 !important;
+  border-bottom-left-radius: 0 !important;
+  border-bottom-right-radius: 0 !important;
+  border-start-start-radius: 0 !important;
+  border-start-end-radius: 0 !important;
+  border-end-start-radius: 0 !important;
+  border-end-end-radius: 0 !important;
+}
+
+/* Compact mode: full-height sidebar (keep hover, drop floating gaps) */
+:root[zen-compact-mode="true"]:not([customizing]):not([inDOMFullscreen="true"]) {
+  #navigator-toolbox:not([animate="true"]) {
+    --zen-compact-float: 0px !important;
+    top: 0 !important;
+    bottom: 0 !important;
+    height: 100% !important;
+    margin-top: 0 !important;
+    padding-block: 0 !important;
+  }
+
+  #navigator-toolbox:not([animate="true"]) #titlebar {
+    border-radius: 0 !important;
+    height: 100% !important;
+  }
+
+  #navigator-toolbox .zen-toolbar-background,
+  #navigator-toolbox .zen-toolbar-background::before,
+  #navigator-toolbox .zen-toolbar-background::after {
+    border-radius: 0 !important;
+  }
+}
+
+/* Borders: sidebar (all sides), active tab, urlbar, essentials */
+#navigator-toolbox #titlebar {
+  border: 1px solid #202020 !important;
+  box-sizing: border-box !important;
+}
+
+/* Compact floating panel uses this bg — keep a single outline there */
+:root[zen-compact-mode="true"] #navigator-toolbox .zen-toolbar-background {
+  outline: 1px solid #202020 !important;
+  outline-offset: -1px !important;
+}
+
+/* Inactive tab hover border */
+#tabbrowser-tabs .tabbrowser-tab:not([selected]):not([visuallyselected]):hover > .tab-stack > .tab-background {
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+  outline: 1px solid #202020 !important;
+  outline-offset: -1px !important;
+  box-shadow: inset 0 0 0 1px #202020 !important;
+}
+
+/* Folder hover border */
+zen-folder > .tab-group-label-container:hover::before {
+  border: 1px solid #202020 !important;
+  box-shadow: inset 0 0 0 1px #202020 !important;
+  outline: 1px solid #202020 !important;
+  outline-offset: -1px !important;
+}
+
+/* Active tab — soft white ring */
+#tabbrowser-tabs .tabbrowser-tab:is([selected="true"], [visuallyselected="true"], [selected], [visuallyselected]) > .tab-stack > .tab-background {
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  outline: 1px solid rgba(255, 255, 255, 0.08) !important;
+  outline-offset: -1px !important;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.08) !important;
+}
+
+#urlbar .urlbar-background,
+#urlbar-background,
+.urlbar-background,
+#searchbar {
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+  outline: 1px solid #202020 !important;
+  outline-offset: -1px !important;
+  box-shadow: none !important;
+}
+
+/* Essentials: #0a0a0a bg + always bordered */
+#zen-essentials .tabbrowser-tab[zen-essential="true"] > .tab-stack > .tab-background,
+#zen-essentials .tabbrowser-tab[zen-essential="true"]:hover > .tab-stack > .tab-background,
+#zen-essentials .tabbrowser-tab[zen-essential="true"]:not([visuallyselected], [multiselected="true"]) > .tab-stack > .tab-background,
+.tabbrowser-tab[zen-essential="true"] > .tab-stack > .tab-background {
+  background: #0a0a0a !important;
+  background-color: #0a0a0a !important;
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Pure black (OLED) Zen Browser theme */
+
+:root,
+#main-window,
+#browser,
+#zen-main-app-wrapper {
+  --zen-branding-dark: #000000 !important;
+  --zen-branding-bg: #000000 !important;
+  --zen-primary-color: #000000 !important;
+
+  --zen-main-browser-background: #000000 !important;
+  --zen-main-browser-background-toolbar: #000000 !important;
+  --zen-themed-toolbar-bg: #000000 !important;
+  --zen-themed-toolbar-bg-transparent: #000000 !important;
+
+  --zen-colors-primary: #000000 !important;
+  --zen-colors-secondary: #0a0a0a !important;
+  --zen-colors-tertiary: #000000 !important;
+  --zen-colors-border: #1a1a1a !important;
+  --zen-colors-hover-bg: #111111 !important;
+  --zen-colors-input-bg: #0a0a0a !important;
+
+  --zen-dialog-background: #000000 !important;
+  --zen-urlbar-background: #0a0a0a !important;
+
+  --lwt-accent-color: #000000 !important;
+  --lwt-accent-color-inactive: #000000 !important;
+  --toolbar-bgcolor: #000000 !important;
+  --tabpanel-background-color: #000000 !important;
+}
+
+#main-window,
+#zen-main-app-wrapper,
+#navigator-toolbox,
+#nav-bar,
+#PersonalToolbar,
+#TabsToolbar,
+#titlebar,
+#sidebar-box,
+#zen-sidebar,
+#browser,
+.browser-toolbar,
+toolbox#navigator-toolbox {
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+#tabbrowser-tabpanels,
+.browserSidebarContainer,
+browser[type="content"] {
+  background-color: #000000 !important;
+}
+
+/* Panels / context menus: black surface only — outer chrome stays transparent */
+menupopup,
+panel {
+  --arrowpanel-background: #000000 !important;
+  --panel-background: #000000 !important;
+  background-color: transparent !important;
+}
+
+#urlbar[breakout-extend],
+.zen-browser-generic-background {
+  --arrowpanel-background: #000000 !important;
+  background-color: #000000 !important;
+}

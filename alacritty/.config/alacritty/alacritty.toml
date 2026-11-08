@@ -25,47 +25,47 @@ multiplier = 3
 draw_bold_text_with_bright_colors = true
 
 [colors.primary]
-background = "0x141414"
-foreground = "0xf0f0f0"
+background = "0x000000"
+foreground = "0xf1f1ef"
 
 [colors.normal]
-black = "0x2D3136"
-red = "0xff6b80"
-green = "0x4eba65"
-yellow = "0xFFD140"
-blue = "0x4782c8"
-magenta = "0xb2b9f9"
-cyan = "0x79FFFC"
-white = "0xC2C2C2"
+black = "0x0a0a0a"
+red = "0xff3c05"
+green = "0x8a8a88"
+yellow = "0xbdbdbb"
+blue = "0x6a6a68"
+magenta = "0x82827f"
+cyan = "0x8a8a88"
+white = "0xf1f1ef"
 
 [colors.bright]
-black = "0x2D3136"
-red = "0xff6b80"
-green = "0x4eba65"
-yellow = "0xFFD140"
-blue = "0x4782c8"
-magenta = "0xb2b9f9"
-cyan = "0x79FFFC"
-white = "0xC2C2C2"
+black = "0x161616"
+red = "0xff3c05"
+green = "0xbdbdbb"
+yellow = "0xe9e8e3"
+blue = "0x8a8a88"
+magenta = "0xbdbdbb"
+cyan = "0xf1f1ef"
+white = "0xffffff"
 
 [font]
 size = 16
 
 [font.normal]
-family = "Victor Mono"
+family = "Obel Mono Masked"
 style = "Bold"
 
 [font.bold]
-family = "Victor Mono"
-style = "Heavy"
+family = "Obel Mono Masked"
+style = "ExtraBold"
 
 [font.italic]
-family = "Victor Mono"
+family = "Obel Mono Masked"
 style = "Italic"
 
 [font.bold_italic]
-family = "Victor Mono"
-style = "Heavy Italic"
+family = "Obel Mono Masked"
+style = "Bold Italic"
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"

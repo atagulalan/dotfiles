@@ -1,17 +1,247 @@
-@import 'colors.css';
+@import "colors.css";
 
 :root {
-  --window-bg-color: #141414;
+	/* Obel surfaces: bg / surface1 / surface2 */
+	--window-bg-color: #000000;
+	--view-bg-color: #000000;
+	--view-fg-color: #f1f1ef;
 
-  --view-bg-color: #141414;
-  --view-fg-color: #c8c8c8;
+	--headerbar-bg-color: #000000;
+	--headerbar-fg-color: #f1f1ef;
+	--headerbar-backdrop-color: #000000;
+	--headerbar-shade-color: #000000;
+	--headerbar-border-color: #000000;
+	--headerbar-darker-shade-color: #000000;
 
-  --headerbar-bg-color: #141414;
-  --headerbar-fg-color: #dcdcdc;
-  --headerbar-backdrop-color: #141414;
+	--toolbar-bg-color: #000000;
+	--toolbar-fg-color: #f1f1ef;
+	--toolbar-border-color: #000000;
+	--toolbar-shade-color: #000000;
 
-  --sidebar-bg-color: #141414;
-  --sidebar-fg-color: #dcdcdc;
+	--sidebar-bg-color: #000000;
+	--sidebar-fg-color: #f1f1ef;
+	--sidebar-backdrop-color: #000000;
+	--sidebar-border-color: #202020;
+	--sidebar-shade-color: #000000;
 
-  --sidebar-backdrop-color: #141414;
+	--dialog-bg-color: #0a0a0a;
+	--dialog-fg-color: #f1f1ef;
+	--popover-bg-color: #0a0a0a;
+	--popover-fg-color: #f1f1ef;
+	--card-bg-color: #0a0a0a;
+	--card-fg-color: #f1f1ef;
+
+	--border-color: #202020;
+	--shade-color: #000000;
+
+	/* Remap Adwaita's named orange → Obel Mono */
+	--accent-orange: #ff3c05;
+	--accent-bg-color: #ff3c05;
+	--accent-fg-color: #ffffff;
+	--accent-color: oklab(
+		from var(--accent-bg-color) var(--standalone-color-oklab)
+	);
+}
+
+/* Force opaque black chrome (Loupe / libadwaita toolbars).
+   Do NOT paint .background — popovers use popover.background and need a
+   transparent outer surface so shadows/corners don't become a black box. */
+window,
+.window {
+	background-color: #000000;
+	color: #f1f1ef;
+}
+
+popover.background,
+.background.menu {
+	background-color: transparent;
+}
+
+/* Context / app menus — border on contents (outer popover stays transparent) */
+popover > contents,
+popover.menu > contents {
+	border: 1px solid #202020;
+}
+
+headerbar,
+.titlebar,
+.windowhandle,
+.top-bar,
+.bottom-bar,
+.toolbar,
+toolbarview > .top-bar,
+toolbarview > .bottom-bar,
+.osd toolbar,
+.osd headerbar {
+	background-color: #000000;
+	background-image: none;
+	background: #000000;
+	color: #f1f1ef;
+	box-shadow: none;
+	border-color: #000000;
+	border-bottom-color: #000000;
+	border-top-color: #000000;
+	opacity: 1;
+}
+
+headerbar:backdrop,
+.titlebar:backdrop,
+.top-bar:backdrop,
+.toolbar:backdrop {
+	background-color: #000000;
+	background: #000000;
+	color: #8a8a88;
+}
+
+/* Loupe-specific: keep bars solid over images */
+.image-view,
+.viewer,
+picture {
+	background-color: #000000;
+}
+
+/* Sharp corners — kill Adwaita/libadwaita rounding */
+* {
+	border-radius: 0;
+}
+
+/* Switches + sliders stay round (pill / circular thumbs) */
+switch {
+	border-radius: 14px;
+}
+
+switch > slider {
+	border-radius: 50%;
+}
+
+scale > trough,
+scale > trough > fill,
+scale > trough > highlight,
+progressbar > trough,
+progressbar > trough > progress {
+	border-radius: 99px;
+}
+
+/* Full circles — kill Adwaita's marks soft-diamond (rotate + one flat corner) */
+scale > trough > slider,
+scale.horizontal.marks-before > trough > slider,
+scale.horizontal.marks-after > trough > slider,
+scale.vertical.marks-before > trough > slider,
+scale.vertical.marks-after > trough > slider,
+scale.marks-before:not(.marks-after) > trough > slider,
+scale.marks-after:not(.marks-before) > trough > slider {
+	border-radius: 100%;
+	border-top-left-radius: 100%;
+	border-top-right-radius: 100%;
+	border-bottom-left-radius: 100%;
+	border-bottom-right-radius: 100%;
+	transform: none;
+}
+
+/* Preferences / Tweaks style groups */
+list.boxed-list {
+	border: 1px solid #202020;
+	border-radius: 0;
+}
+
+/* List row hover — keep 1px border always so hover doesn't shift layout */
+list row,
+list.boxed-list row {
+	border: 1px solid transparent;
+}
+
+list row:hover,
+list.boxed-list row:hover {
+	background-color: #161616;
+	border-color: #202020;
+}
+
+/* Cards */
+.card {
+	border: 1px solid #202020;
+}
+
+/* Entries / search */
+entry,
+searchentry {
+	border: 1px solid #202020;
+}
+
+/* Dropdowns (closed) */
+dropdown > button,
+button.combo {
+	border: 1px solid #202020;
+}
+
+/* Dialogs */
+window.dialog,
+window.messagedialog,
+window.aboutdialog,
+.dialog {
+	border: 1px solid #202020;
+}
+
+/* Tooltips */
+tooltip > box {
+	border: 1px solid #202020;
+}
+
+/* Toasts */
+toast,
+.toast {
+	border: 1px solid #202020;
+}
+
+/* Floating bars / OSD overlays */
+.floating-bar,
+.osd:not(toolbar):not(headerbar) {
+	border: 1px solid #202020;
+}
+
+/* Window controls — idle clear; hover/active get chip + border */
+windowcontrols {
+	border-spacing: 0;
+}
+
+windowcontrols > button {
+	margin: 0;
+}
+
+windowcontrols > button,
+windowcontrols > button:backdrop {
+	background-color: transparent;
+	background-image: none;
+	box-shadow: none;
+	border: none;
+}
+
+windowcontrols > button > image,
+windowcontrols > button:backdrop > image {
+	background-color: transparent;
+	background-image: none;
+	box-shadow: none;
+	border: 1px solid transparent;
+	transition: background 150ms ease, border-color 150ms ease;
+}
+
+windowcontrols > button:hover > image {
+	background-color: #161616;
+	border: 1px solid #202020;
+	box-shadow: none;
+}
+
+windowcontrols > button:active > image {
+	background-color: #202020;
+	border: 1px solid #303030;
+	box-shadow: none;
+}
+
+windowcontrols > button.close:hover > image {
+	background-color: color-mix(in srgb, #ff3c05 25%, #161616);
+	border-color: #ff3c05;
+}
+
+windowcontrols > button.close:active > image {
+	background-color: color-mix(in srgb, #ff3c05 40%, #161616);
+	border-color: #ff3c05;
 }

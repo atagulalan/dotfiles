@@ -1,4 +1,3 @@
-export PATH="/home/xava/.nvm/versions/node/v24.15.0/bin:$PATH"
 #
 # ~/.bashrc
 #
@@ -16,3 +15,9 @@ PS1='[\u@\h \W]\$ '
 export PATH="$PATH:/home/xava/.lmstudio/bin"
 # End of LM Studio CLI section
 
+
+# baykus android sdk
+export ANDROID_HOME="$HOME/Android/Sdk"
+export ANDROID_SDK_ROOT="$ANDROID_HOME"
+export PATH="$ANDROID_HOME/cmdline-tools/latest/bin:$ANDROID_HOME/platform-tools:$ANDROID_HOME/emulator:$PATH"
+. "$HOME/.cargo/env"

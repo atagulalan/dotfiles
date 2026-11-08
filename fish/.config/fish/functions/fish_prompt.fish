@@ -6,15 +6,15 @@
 
 function fish_prompt
   set -l last_command_status $status
-  set -l cwd (set_color FF8C00)(prompt_pwd)(set_color normal)
+  set -l cwd (set_color ff3c05)(prompt_pwd)(set_color normal)
 
   if test "$theme_short_path" = 'yes'
-    set cwd (set_color FF8C00)(basename (prompt_pwd))(set_color normal)
+    set cwd (set_color ff3c05)(basename (prompt_pwd))(set_color normal)
   else
-    set cwd (set_color FF8C00)(prompt_pwd)(set_color normal)
+    set cwd (set_color ff3c05)(prompt_pwd)(set_color normal)
   end
 
-  set -l fish     "⋊"
+  set -l fish     "✳"
   set -l ahead    "↑"
   set -l behind   "↓"
   set -l diverged "⥄"
@@ -23,7 +23,7 @@ function fish_prompt
   set -l none     "◦"
 
   set -l normal_color     (set_color normal)
-  set -l success_color    (set_color FF8C00)
+  set -l success_color    (set_color ff3c05)
   set -l error_color      (set_color $fish_color_error 2> /dev/null; or set_color red --bold)
   set -l directory_color  (set_color $fish_color_quote 2> /dev/null; or set_color brown)
   set -l repository_color (set_color $fish_color_cwd 2> /dev/null; or set_color green)

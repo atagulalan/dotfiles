@@ -953,7 +953,7 @@ StEntry StIcon {
 
 StEntry StIcon.capslock-warning {
   icon-size: 16px !important;
-  warning-color: #E9873A;
+  warning-color: #ff3c05;
   padding: 0 0;
 }
 
@@ -1658,7 +1658,7 @@ StEntry StLabel.hint-text {
 }
 
 .login-dialog-message-warning {
-  color: #E9873A;
+  color: #ff3c05;
 }
 
 .login-dialog-not-listed-button:focus .login-dialog-not-listed-label, .login-dialog-not-listed-button:hover .login-dialog-not-listed-label {
@@ -1987,7 +1987,7 @@ StEntry StLabel.hint-text {
 .caps-lock-warning-label {
   text-align: center;
   padding-bottom: 8px;
-  color: #E9873A;
+  color: #ff3c05;
 }
 
 /* Workspace animation */
@@ -2329,7 +2329,7 @@ StEntry StLabel.hint-text {
 }
 
 #panel .panel-button.screen-sharing-indicator {
-  box-shadow: inset 0 0 0 1000px #E9873A !important;
+  box-shadow: inset 0 0 0 1000px #ff3c05 !important;
 }
 
 #panel .panel-button.screen-sharing-indicator:hover {
@@ -2414,7 +2414,7 @@ StEntry StLabel.hint-text {
 #panel .screencast-indicator,
 #panel .remote-access-indicator,
 #panel .privacy-indicator {
-  color: #E9873A;
+  color: #ff3c05;
 }
 
 /* Popovers/Menus */
@@ -3419,7 +3419,7 @@ StWidget.focused .app-grid-running-dot {
 
 .end-session-dialog .end-session-dialog-battery-warning,
 .end-session-dialog .dialog-list-title {
-  color: #E9873A;
+  color: #ff3c05;
 }
 
 .message-dialog-content {
@@ -3527,7 +3527,7 @@ StWidget.focused .app-grid-running-dot {
 }
 
 .polkit-dialog-user-layout .polkit-dialog-user-root-label {
-  color: #E9873A;
+  color: #ff3c05;
 }
 
 .audio-device-selection-dialog .modal-dialog-content-box {

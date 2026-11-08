@@ -20,7 +20,7 @@ local utils = require "mp.utils"
 local user_opts = {
     -- Language and display
     language = "en",                       -- set language (for available options, see: https://github.com/Samillion/ModernZ/blob/main/docs/TRANSLATIONS.md)
-    icon_theme = "fluent",                 -- set icon theme. accepts "fluent" or "material"
+    icon_theme = "fluent",                 -- set icon theme. accepts "fluent", "material", or "hugeicons"
     font = "mpv-osd-symbols",              -- font for the OSC (default: mpv-osd-symbols or the one set in mpv.conf)
 
     idlescreen = true,                     -- show mpv logo when idle
@@ -371,6 +371,52 @@ local icon_theme = {
 
         zoom_in = '\243\176\155\173',
         zoom_out = '\243\176\155\172',
+    },
+    ["hugeicons"] = {
+        iconfont = "Hugeicons Stroke Sharp",
+        window = {
+            maximize = "\243\178\130\180",
+            unmaximize = "\243\178\132\169",
+            minimize = "\243\178\132\185",
+            close = "\243\177\162\188",
+        },
+        audio = "\243\178\135\160",
+        subtitle = "\243\177\167\175",
+        playlist = "\243\178\141\137",
+        menu = "\243\178\131\153",
+        volume_mute = "\243\178\166\132",
+        volume_quiet = "\243\178\166\131",
+        volume_low = "\243\178\166\130",
+        volume_high = "\243\178\166\129",
+
+        play = "\243\178\141\136",
+        pause = "\243\178\139\151",
+        replay = "\243\178\145\167",
+        previous = "\243\178\142\162",
+        next = "\243\178\136\141",
+        rewind = "\243\177\154\166",
+        forward = "\243\177\180\178",
+        jump = {
+            [5] = {"\243\177\182\137", "\243\177\182\142"},
+            [10] = {"\243\177\182\133", "\243\177\182\138"},
+            [30] = {"\243\177\182\135", "\243\177\182\140"},
+            default = {"\243\177\154\166", "\243\177\154\166"}, -- second icon is mirrored in layout()
+        },
+
+        fullscreen = "\243\177\181\131",
+        fullscreen_exit = "\243\177\152\171",
+        info = "\243\177\186\180",
+        ontop_on = "\243\178\140\172",
+        ontop_off = "\243\178\140\171",
+        screenshot = "\243\177\162\164",
+        loop_off = "\243\178\145\166",
+        loop_on = "\243\178\145\164",
+        speed = "\243\177\172\147",
+        download = "\243\177\174\180",
+        downloading = "\243\177\191\134",
+
+        zoom_in = "\243\178\169\152",
+        zoom_out = "\243\178\169\153",
     },
 }
 

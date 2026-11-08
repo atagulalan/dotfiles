@@ -1,14 +1,22 @@
 @import 'colors.css';
 
-@define-color window_bg #141414;
-@define-color view_bg #141414;
-@define-color view_fg #c8c8c8;
+@define-color window_bg #000000;
+@define-color view_bg #000000;
+@define-color view_fg #f1f1ef;
 
-@define-color headerbar_bg #141414;
-@define-color headerbar_fg #dcdcdc;
+@define-color headerbar_bg #000000;
+@define-color headerbar_fg #f1f1ef;
 
-@define-color sidebar_bg #272727;
-@define-color sidebar_fg #dcdcdc;
+@define-color sidebar_bg #000000;
+@define-color sidebar_fg #f1f1ef;
+
+/* Remap Adwaita's named orange → Obel Mono */
+@define-color accent_bg_color #ff3c05;
+@define-color accent_fg_color #ffffff;
+@define-color accent_color #ff3c05;
+@define-color theme_selected_bg_color #ff3c05;
+@define-color theme_selected_fg_color #ffffff;
+@define-color theme_hovering_selected_bg_color #ff3c05;
 
 window {
   background-color: @window_bg;
@@ -22,9 +30,14 @@ treeview {
   color: @view_fg;
 }
 
-headerbar {
-  background-color: @headerbar_bg;
+headerbar,
+.titlebar,
+.titlebar .background {
+  background-color: #000000;
+  background-image: none;
   color: @headerbar_fg;
+  box-shadow: none;
+  border-bottom-color: #000000;
 }
 
 sidebar,
@@ -34,14 +47,142 @@ stacksidebar {
 }
 
 window:backdrop {
-  background-color: #141414;
-  color: #888888;
+  background-color: #000000;
+  color: #8a8a88;
 }
 
 headerbar:backdrop {
-  background-color: #141414;
+  background-color: #000000;
 }
 
 sidebar:backdrop {
-  background-color: #141414;
+  background-color: #000000;
+}
+
+/* Sharp corners — kill Adwaita/GTK rounding */
+* {
+  border-radius: 0;
+}
+
+/* Switches + sliders stay round (pill / circular thumbs) */
+switch {
+  border-radius: 14px;
+}
+
+switch slider {
+  border-radius: 50%;
+}
+
+scale trough,
+scale highlight,
+scale fill,
+progressbar trough,
+progressbar progress {
+  border-radius: 99px;
+}
+
+/* Full circles — kill Adwaita's marks soft-diamond (rotate + one flat corner) */
+scale slider,
+scale.horizontal.marks-before slider,
+scale.horizontal.marks-after slider,
+scale.vertical.marks-before slider,
+scale.vertical.marks-after slider,
+scale.marks-before:not(.marks-after) slider,
+scale.marks-after:not(.marks-before) slider {
+  border-radius: 100%;
+  border-top-left-radius: 100%;
+  border-top-right-radius: 100%;
+  border-bottom-left-radius: 100%;
+  border-bottom-right-radius: 100%;
+  -gtk-icon-transform: none;
+  transform: none;
+}
+
+/* Obel borders — match gtk-4.0 */
+.card,
+list.boxed-list {
+  border: 1px solid #202020;
+  border-radius: 0;
+}
+
+/* List row hover — keep 1px border always so hover doesn't shift layout */
+list row,
+list.boxed-list row,
+row {
+  border: 1px solid transparent;
+}
+
+list row:hover,
+list.boxed-list row:hover,
+row:hover {
+  background-color: #161616;
+  border-color: #202020;
+}
+
+entry,
+.search-entry,
+entry.search {
+  border: 1px solid #202020;
+}
+
+combobox > box > button.combo,
+button.combo {
+  border: 1px solid #202020;
+}
+
+dialog,
+messagedialog {
+  border: 1px solid #202020;
+}
+
+tooltip,
+.tooltip {
+  border: 1px solid #202020;
+}
+
+.floating-bar,
+.osd {
+  border: 1px solid #202020;
+}
+
+/* Window controls — idle clear; hover/active get chip + border */
+headerbar button.titlebutton,
+.titlebar button.titlebutton {
+  margin: 0;
+}
+
+headerbar button.titlebutton,
+headerbar button.titlebutton:backdrop,
+.titlebar button.titlebutton,
+.titlebar button.titlebutton:backdrop {
+  background-color: transparent;
+  box-shadow: none;
+  border: 1px solid transparent;
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+headerbar button.titlebutton:hover,
+.titlebar button.titlebutton:hover {
+  background-color: #161616;
+  border: 1px solid #202020;
+  box-shadow: none;
+}
+
+headerbar button.titlebutton:active,
+.titlebar button.titlebutton:active {
+  background-color: #202020;
+  border: 1px solid #303030;
+  box-shadow: none;
+}
+
+headerbar button.titlebutton.close:hover,
+.titlebar button.titlebutton.close:hover {
+  background-color: alpha(#ff3c05, 0.25);
+  border-color: #ff3c05;
+}
+
+headerbar button.titlebutton.close:active,
+.titlebar button.titlebutton.close:active {
+  background-color: alpha(#ff3c05, 0.4);
+  border-color: #ff3c05;
 }

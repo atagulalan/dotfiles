@@ -1,32 +1,36 @@
-# xavaTheme
+# Typographic Systems / Obel
+# https://typographic.systems/obel-mono
 
-foreground = #FAFAFA
-background = #141414
+foreground = #f1f1ef
+background = #000000
+cursor-color = #ff3c05
+cursor-text = #000000
+selection-foreground = #000000
+selection-background = #ff3c05
 
-palette = 0=#141414
-palette = 1=#ff6b80
-palette = 2=#4eba65
-palette = 3=#FFD140
-palette = 4=#4782c8
-palette = 5=#b2b9f9
-palette = 6=#79FFFC
-palette = 7=#C2C2C2
-palette = 8=#2D3136
-palette = 9=#ff6b80
-palette = 10=#4eba65
-palette = 11=#FFD140
-palette = 12=#4782c8
-palette = 13=#b2b9f9
-palette = 14=#79FFFC
-palette = 15=#E0E0E0
-
-# font size
-font-size = 16
+# bg #000 · surface1 #0a0a0a · muted #6a6a68 (ANSI 8 / brblack — must stay readable on #000)
+# note: do NOT put near-black in palette 8; fish autosuggest + comments use it
+palette = 0=#0a0a0a
+palette = 1=#ff3c05
+palette = 2=#8a8a88
+palette = 3=#bdbdbb
+palette = 4=#6a6a68
+palette = 5=#82827f
+palette = 6=#8a8a88
+palette = 7=#f1f1ef
+palette = 8=#6a6a68
+palette = 9=#ff3c05
+palette = 10=#bdbdbb
+palette = 11=#e9e8e3
+palette = 12=#8a8a88
+palette = 13=#bdbdbb
+palette = 14=#f1f1ef
+palette = 15=#ffffff
 
 # title bar shadow kapatma (window shadow)
 window-padding-x = 12
 window-padding-y = 10
 gtk-toolbar-style=flat
-font-family=Victor Mono
-font-style=Bold
-font-feature=+liga, +calt, +dlig
+font-family = "Obel Mono"
+font-feature = ss01
+font-size = 16

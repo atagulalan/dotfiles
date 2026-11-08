@@ -24,3 +24,4 @@ set -gx PATH $PATH $HOME/.lmstudio/bin
 
 # opencode
 fish_add_path $HOME/.opencode/bin
+mise activate fish | source

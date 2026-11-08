@@ -1,0 +1,19 @@
+/* Zen new tab / home — pure black */
+@-moz-document url("about:newtab"),
+  url("about:home"),
+  url("about:privatebrowsing"),
+  url-prefix("about:newtab"),
+  url-prefix("about:home") {
+  :root,
+  html,
+  body,
+  body.activity-stream,
+  #root,
+  main,
+  .outer-wrapper {
+    --newtab-background-color: #000000 !important;
+    --newtab-background-color-secondary: #0a0a0a !important;
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+}

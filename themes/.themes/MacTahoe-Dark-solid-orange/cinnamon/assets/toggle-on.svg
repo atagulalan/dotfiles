@@ -8,7 +8,7 @@
    <stop stop-color="#ffffff" stop-opacity="0" offset="1"/>
   </linearGradient>
  </defs>
- <rect width="40" height="24" rx="12" ry="12" fill="#E9873A"/>
+ <rect width="40" height="24" rx="12" ry="12" fill="#ff3c05"/>
  <rect width="40" height="24" rx="12" ry="12" fill="url(#linearGradient862)" opacity=".3"/>
  <rect y="-.038" width="40" height="24" opacity="0" stroke-width=".87706"/>
  <circle cx="28" cy="12.5" r="11.5" fill="#000000" filter="url(#filter1034)" opacity=".1"/>

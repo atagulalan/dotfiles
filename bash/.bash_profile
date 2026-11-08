@@ -10,3 +10,4 @@
 export PATH="$PATH:/home/xava/.lmstudio/bin"
 # End of LM Studio CLI section
 
+. "$HOME/.cargo/env"
