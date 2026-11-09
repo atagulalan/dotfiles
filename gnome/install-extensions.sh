@@ -16,7 +16,6 @@ UUIDS=(
     tiling-assistant@leleat-on-github
     user-theme@gnome-shell-extensions.gcampax.github.com
     vicinae@dagimg-dot
-    Vitals@CoreCoding.com
 )
 
 ver=$(gnome-shell --version | grep -oE '[0-9]+' | head -1)

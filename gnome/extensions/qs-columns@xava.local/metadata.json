@@ -1,7 +1,7 @@
 {
   "uuid": "qs-columns@xava.local",
   "name": "Quick Settings 3 Columns",
-  "description": "Sets GNOME Quick Settings grid to 3 columns.",
+  "description": "Sets GNOME Quick Settings grid to 3 columns and draws slider tracks with square ends.",
   "version": 1,
   "shell-version": ["48", "49", "50"]
 }

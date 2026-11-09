@@ -189,23 +189,27 @@
 	row-spacing: 8px !important;
 }
 
-/* Active toggles: solid orange fill like WiFi */
+/* Active toggles: same dark tile as inactive, orange icon only */
 .quick-settings-grid > .quick-toggle:checked,
 .quick-settings .quick-toggle:checked,
 .quick-settings .icon-button.default,
+.quick-toggle-has-menu:checked .quick-toggle,
+.quick-toggle-has-menu:checked .quick-toggle:checked,
 .bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked,
 .bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked,
 .bms-popup-surface-dark .quick-settings-grid > .quick-toggle:checked,
-.bms-popup-surface-transparent .quick-settings-grid > .quick-toggle:checked {
-	background-color: #ff3c05 !important;
-	background: #ff3c05 !important;
+.bms-popup-surface-transparent .quick-settings-grid > .quick-toggle:checked,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle {
+	background-color: #0a0a0a !important;
+	background: #0a0a0a !important;
 	border: 1px solid #ff3c05 !important;
 	border-color: #ff3c05 !important;
 	box-shadow: none !important;
-	color: #ffffff !important;
+	color: #ff3c05 !important;
 }
 
-/* Active hover — same lift as inactive (brighter fill + brighter border) */
+/* Active hover — minimize-style lift, orange border + icon */
 .quick-settings-grid > .quick-toggle:checked:hover,
 .quick-settings-grid > .quick-toggle:checked:focus,
 .quick-settings .quick-toggle:checked:hover,
@@ -220,12 +224,12 @@
 .bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover,
 .bms-popup-background-transparent .quick-toggle-has-menu:checked:hover .quick-toggle,
 .bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle:hover {
-	background-color: #ff5530 !important;
-	background: #ff5530 !important;
-	border: 1px solid #ff8a66 !important;
-	border-color: #ff8a66 !important;
+	background-color: #161616 !important;
+	background: #161616 !important;
+	border: 1px solid #ff3c05 !important;
+	border-color: #ff3c05 !important;
 	box-shadow: none !important;
-	color: #ffffff !important;
+	color: #ff3c05 !important;
 }
 
 .quick-settings-grid > .quick-toggle:checked StIcon,
@@ -238,6 +242,8 @@
 .quick-toggle-has-menu:checked .quick-toggle:hover StIcon,
 .quick-toggle-has-menu:checked:hover .quick-toggle StIcon,
 .bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked StIcon,
-.bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked StIcon {
-	color: #ffffff !important;
+.bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked StIcon,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle StIcon,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle StIcon {
+	color: #ff3c05 !important;
 }
