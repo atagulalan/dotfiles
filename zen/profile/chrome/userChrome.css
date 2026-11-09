@@ -9,6 +9,48 @@
   font-family: revert !important;
 }
 
+/* Window controls — match GTK4 Obel: black chrome, idle clear, hover chip */
+.titlebar-buttonbox-container,
+.titlebar-buttonbox,
+#zen-appcontent-navbar-container .titlebar-buttonbox-container {
+  background-color: #000000 !important;
+  background-image: none !important;
+}
+
+.titlebar-button {
+  background-color: transparent !important;
+  background-image: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+.titlebar-button > .toolbarbutton-icon {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+  transition: background-color 150ms ease, border-color 150ms ease !important;
+}
+
+.titlebar-button:hover > .toolbarbutton-icon {
+  background-color: #161616 !important;
+  border: 1px solid #202020 !important;
+}
+
+.titlebar-button:hover:active > .toolbarbutton-icon {
+  background-color: #202020 !important;
+  border: 1px solid #303030 !important;
+}
+
+.titlebar-close:hover > .toolbarbutton-icon {
+  background-color: color-mix(in srgb, #ff3c05 25%, #161616) !important;
+  border-color: #ff3c05 !important;
+}
+
+.titlebar-close:hover:active > .toolbarbutton-icon {
+  background-color: color-mix(in srgb, #ff3c05 40%, #161616) !important;
+  border-color: #ff3c05 !important;
+}
+
 /* Sharp corners — kill all Zen / Firefox chrome rounding */
 :root,
 #main-window,
@@ -107,11 +149,20 @@ zen-folder > .tab-group-label-container:hover::before {
 #urlbar-background,
 .urlbar-background,
 #searchbar {
-  border: 1px solid #202020 !important;
-  border-color: #202020 !important;
-  outline: 1px solid #202020 !important;
-  outline-offset: -1px !important;
+  border: 2px solid #ff3c05 !important;
+  border-color: #ff3c05 !important;
+  outline: none !important;
   box-shadow: none !important;
+}
+
+/* Urlbar left search glass → orange */
+#urlbar #identity-icon,
+#identity-box[pageproxystate="invalid"] #identity-icon,
+:root[zen-has-empty-tab="true"] #identity-icon {
+  fill: #ff3c05 !important;
+  fill-opacity: 1 !important;
+  color: #ff3c05 !important;
+  -moz-context-properties: fill, fill-opacity !important;
 }
 
 /* Essentials: #0a0a0a bg + always bordered */

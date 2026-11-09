@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gresources>
+  <gresource prefix="/org/gnome/Decibels">
+    <file>js/application.js</file>
+    <file>js/drag-overlay.js</file>
+    <file>js/empty.js</file>
+    <file>js/error.js</file>
+    <file>js/header.js</file>
+    <file>js/main.js</file>
+    <file>js/mpris.js</file>
+    <file>js/playback-rate-button.js</file>
+    <file>js/player.js</file>
+    <file>js/stream.js</file>
+    <file>js/volume-button.js</file>
+    <file>js/waveform-bar-chart.js</file>
+    <file>js/waveform-generator.js</file>
+    <file>js/waveform-scale.js</file>
+    <file>js/window.js</file>
+  </gresource>
+</gresources>

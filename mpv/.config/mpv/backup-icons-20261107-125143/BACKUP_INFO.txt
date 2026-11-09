@@ -1,0 +1,9 @@
+backup_created: 2026-11-07T12:51:43+03:00
+source: /home/xava/.config/mpv/fonts
+modernz_icon_theme:
+icon_theme=fluent
+total 3484
+drwxr-xr-x 2 xava xava    4096 Oca  1  2026 .
+drwxr-xr-x 6 xava xava    4096 Kas  7 12:51 ..
+-rwxr-xr-x 1 xava xava 2247660 Tem 18  2025 fluent-system-icons.ttf
+-rwxr-xr-x 1 xava xava 1307660 Tem 18  2025 material-design-icons.ttf

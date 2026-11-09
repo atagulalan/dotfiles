@@ -4178,3 +4178,226 @@ stage {
   border: 1px solid #202020 !important;
   border-color: #202020 !important;
 }
+
+/* === Obel: modal / end-session dialogs — black + sharp === */
+.modal-dialog,
+.end-session-dialog,
+.run-dialog,
+.prompt-dialog,
+.bms-popup-background-dark .modal-dialog,
+.bms-popup-surface-dark .modal-dialog,
+.bms-popup-background-transparent .modal-dialog,
+.bms-popup-surface-transparent .modal-dialog,
+.bms-popup-background-dark .run-dialog,
+.bms-popup-surface-dark .run-dialog,
+.bms-popup-background-transparent .run-dialog,
+.bms-popup-surface-transparent .run-dialog {
+  background-color: #000000 !important;
+  background: #000000 !important;
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+}
+
+.modal-dialog .modal-dialog-button-box .modal-dialog-button,
+.bms-popup-background-dark .modal-dialog .modal-dialog-button-box .modal-dialog-button,
+.bms-popup-surface-dark .modal-dialog .modal-dialog-button-box .modal-dialog-button,
+.bms-popup-background-transparent .modal-dialog .modal-dialog-button-box .modal-dialog-button,
+.bms-popup-surface-transparent .modal-dialog .modal-dialog-button-box .modal-dialog-button {
+  border-radius: 0 !important;
+}
+
+.end-session-dialog .end-session-dialog-battery-warning,
+.end-session-dialog .dialog-list-title {
+  border-radius: 0 !important;
+}
+
+.prompt-dialog .prompt-dialog-password-entry,
+.prompt-dialog StEntry,
+.run-dialog .run-dialog-entry,
+StEntry {
+  border-radius: 0 !important;
+}
+
+/* === Obel: notification close — idle clear; hover like GTK close === */
+.message .message-header .message-close-button,
+.notification-banner .message-close-button {
+  background-color: transparent !important;
+  background: none !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 6px !important;
+}
+
+.message .message-header .message-close-button:hover,
+.notification-banner .message-close-button:hover {
+  background-color: st-mix(#ff3c05, #161616, 25%) !important;
+  border: 1px solid #ff3c05 !important;
+  box-shadow: none !important;
+}
+
+.message .message-header .message-close-button:active,
+.message .message-header .message-close-button:hover:active,
+.notification-banner .message-close-button:active,
+.notification-banner .message-close-button:hover:active {
+  background-color: st-mix(#ff3c05, #161616, 40%) !important;
+  border: 1px solid #ff3c05 !important;
+  box-shadow: none !important;
+}
+
+.message .message-header .message-close-button:focus,
+.notification-banner .message-close-button:focus {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+.message .message-header .message-close-button:focus:hover,
+.notification-banner .message-close-button:focus:hover {
+  background-color: st-mix(#ff3c05, #161616, 25%) !important;
+  border: 1px solid #ff3c05 !important;
+  box-shadow: none !important;
+}
+
+/* === Obel: notification expand — idle clear; hover like GTK minimize === */
+.message .message-header .message-expand-button,
+.message-notification-group .message-collapse-button,
+.notification-banner .message-expand-button {
+  background-color: transparent !important;
+  background: none !important;
+  border: 1px solid transparent !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 6px !important;
+}
+
+.message .message-header .message-expand-button:hover,
+.message-notification-group .message-collapse-button:hover,
+.notification-banner .message-expand-button:hover,
+.message .message-header .message-expand-button:focus:hover,
+.message-notification-group .message-collapse-button:focus:hover,
+.notification-banner .message-expand-button:focus:hover {
+  background-color: #161616 !important;
+  border: 1px solid #202020 !important;
+  box-shadow: none !important;
+}
+
+.message .message-header .message-expand-button:active,
+.message .message-header .message-expand-button:hover:active,
+.message-notification-group .message-collapse-button:active,
+.message-notification-group .message-collapse-button:hover:active,
+.notification-banner .message-expand-button:active,
+.notification-banner .message-expand-button:hover:active {
+  background-color: #202020 !important;
+  border: 1px solid #303030 !important;
+  box-shadow: none !important;
+}
+
+.message .message-header .message-expand-button:focus,
+.message-notification-group .message-collapse-button:focus,
+.notification-banner .message-expand-button:focus {
+  background-color: transparent !important;
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+/* === Obel: popup menu item hover — match GTK minimize hover === */
+.popup-menu-item,
+.popup-menu-item:hover,
+.popup-menu-item:selected,
+.popup-menu-item:checked,
+.popup-menu-item:active,
+.quick-toggle-menu .popup-menu-item,
+.popup-sub-menu .popup-menu-item,
+.popup-sub-menu .popup-menu-item:last-child {
+  border-radius: 0 !important;
+}
+
+.popup-menu-item,
+.popup-sub-menu .popup-menu-item,
+.quick-toggle-menu .popup-menu-item {
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+.popup-menu-item:hover,
+.popup-menu-item:selected,
+.popup-menu-item:checked,
+.popup-sub-menu .popup-menu-item:hover,
+.popup-sub-menu .popup-menu-item:selected,
+.popup-sub-menu .popup-menu-item:checked,
+.quick-toggle-menu .popup-menu-item:hover,
+.quick-toggle-menu .popup-menu-item:selected,
+.quick-toggle-menu .popup-menu-item:checked {
+  background-color: #161616 !important;
+  background: #161616 !important;
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+  box-shadow: none !important;
+}
+
+.popup-menu-item:active,
+.popup-menu-item:active:hover,
+.popup-sub-menu .popup-menu-item:active,
+.popup-sub-menu .popup-menu-item:active:hover,
+.quick-toggle-menu .popup-menu-item:active,
+.quick-toggle-menu .popup-menu-item:active:hover {
+  background-color: #202020 !important;
+  background: #202020 !important;
+  border: 1px solid #303030 !important;
+  border-color: #303030 !important;
+  box-shadow: none !important;
+}
+
+/* === Obel: notification action buttons — match GTK minimize hover === */
+.notification-button,
+.message .message-action-bin .button,
+.message .message-action-bin StButton,
+.message-list-controls .message-list-clear-button {
+  border-radius: 0 !important;
+  background-color: #161616 !important;
+  background: #161616 !important;
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+}
+
+.notification-button:hover,
+.message .message-action-bin .button:hover,
+.message .message-action-bin StButton:hover,
+.message-list-controls .message-list-clear-button:hover,
+.notification-button:focus:hover,
+.message .message-action-bin .button:focus:hover,
+.message .message-action-bin StButton:focus:hover,
+.message-list-controls .message-list-clear-button:focus:hover {
+  background-color: #202020 !important;
+  background: #202020 !important;
+  border: 1px solid #303030 !important;
+  box-shadow: none !important;
+}
+
+.notification-button:active,
+.notification-button:hover:active,
+.message .message-action-bin .button:active,
+.message .message-action-bin .button:hover:active,
+.message .message-action-bin StButton:active,
+.message .message-action-bin StButton:hover:active,
+.message-list-controls .message-list-clear-button:active,
+.message-list-controls .message-list-clear-button:hover:active {
+  background-color: #202020 !important;
+  background: #202020 !important;
+  border: 1px solid #303030 !important;
+  box-shadow: none !important;
+}
+
+.notification-button:focus,
+.message .message-action-bin .button:focus,
+.message .message-action-bin StButton:focus,
+.message-list-controls .message-list-clear-button:focus {
+  background-color: #161616 !important;
+  border: 1px solid #202020 !important;
+  box-shadow: none !important;
+}
