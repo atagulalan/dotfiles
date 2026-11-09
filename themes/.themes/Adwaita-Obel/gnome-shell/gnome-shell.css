@@ -191,51 +191,51 @@ stage {
 #LookingGlassExtensions .lg-extension, #LookingGlassWindows .lg-window, .calendar, .datemenu-today-button, .quick-toggle-menu, .message, .events-button,
 .world-clocks-button,
 .weather-button {
-  border-radius: 12px;
+  border-radius: 0;
   padding: 0.818em;
   margin: 4px;
-  background-color: #3a3a38;
-  box-shadow: 0 1px 2px 0 transparent;
-  border: 1px solid transparent; }
+  background-color: #0a0a0a;
+  box-shadow: none;
+  border: 1px solid #202020; }
 
 .quick-toggle-menu, .message, .events-button,
 .world-clocks-button,
 .weather-button {
   color: #ffffff;
-  background-color: #3a3a38; }
+  background-color: #0a0a0a; }
   .quick-toggle-menu:hover, .message:hover, .events-button:hover,
   .world-clocks-button:hover,
   .weather-button:hover {
     color: #ffffff;
-    background-color: st-lighten(#3a3a38, 4%); }
+    background-color: #161616; }
   .quick-toggle-menu:active, .message:active, .events-button:active,
   .world-clocks-button:active,
   .weather-button:active {
     color: #ffffff;
-    background-color: st-lighten(#3a3a38, 9%); }
+    background-color: #161616; }
     .quick-toggle-menu:active:hover, .message:active:hover, .events-button:active:hover,
     .world-clocks-button:active:hover,
     .weather-button:active:hover {
-      background-color: st-lighten(st-lighten(#3a3a38, 9%), 4%); }
+      background-color: #161616; }
     .quick-toggle-menu:active:focus, .message:active:focus, .events-button:active:focus,
     .world-clocks-button:active:focus,
     .weather-button:active:focus {
-      background-color: st-mix(st-mix(#ff3c05, #ffffff, 60%), st-lighten(#3a3a38, 9%), 5%); }
+      background-color: st-mix(st-mix(#ff3c05, #ffffff, 60%), #161616, 5%); }
   .quick-toggle-menu:focus, .message:focus, .events-button:focus,
   .world-clocks-button:focus,
   .weather-button:focus {
     color: #ffffff;
     box-shadow: inset 0 0 0 2px #ff3c05 !important;
-    background-color: st-mix(st-mix(#ff3c05, #ffffff, 60%), #3a3a38, 5%); }
+    background-color: st-mix(st-mix(#ff3c05, #ffffff, 60%), #0a0a0a, 5%); }
     .quick-toggle-menu:focus:hover, .message:focus:hover, .events-button:focus:hover,
     .world-clocks-button:focus:hover,
     .weather-button:focus:hover {
-      background-color: st-mix(st-mix(#ff3c05, #ffffff, 60%), st-lighten(#3a3a38, 4%), 5%); }
+      background-color: st-mix(st-mix(#ff3c05, #ffffff, 60%), #161616, 5%); }
   .quick-toggle-menu:insensitive, .message:insensitive, .events-button:insensitive,
   .world-clocks-button:insensitive,
   .weather-button:insensitive {
     color: st-transparentize(#ffffff, 0.5);
-    background-color: st-darken(#3a3a38, 3%); }
+    background-color: #0a0a0a; }
 
 .calendar, .datemenu-today-button {
   border: 1px solid transparent !important;
@@ -334,7 +334,7 @@ StEntry {
 .modal-dialog .modal-dialog-button-box .modal-dialog-button {
   font-weight: bold;
   padding: 12px;
-  border-radius: 12px;
+  border-radius: 0;
   color: #ffffff;
   background-color: rgba(255, 255, 255, 0.1); }
   .modal-dialog .modal-dialog-button-box .modal-dialog-button:focus {
@@ -928,7 +928,7 @@ StScrollBar {
 .popup-menu-content, .candidate-popup-content {
   padding: 6px;
   background-color: #161616;
-  border-radius: 20px;
+  border-radius: 0;
   border: 1px solid #262626;
   box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2); }
 
@@ -936,7 +936,7 @@ StScrollBar {
   background-color: transparent;
   border-color: transparent;
   box-shadow: none;
-  border-radius: 12px; }
+  border-radius: 0; }
   .popup-menu-item:insensitive {
     background-color: transparent !important; }
   .popup-menu-item:active {
@@ -953,7 +953,7 @@ StScrollBar {
     color: st-transparentize(#ffffff, 0.5);
     background-color: #262626; }
   .popup-menu-item:checked {
-    border-radius: 12px 12px 0 0 !important; }
+    border-radius: 0 !important; }
   .popup-menu-item .toggle-switch:ltr {
     margin-left: 4px; }
   .popup-menu-item .toggle-switch:rtl {
@@ -975,7 +975,7 @@ StScrollBar {
   icon-size: 1.091em; }
 
 .popup-sub-menu {
-  border-radius: 0 0 13px 13px;
+  border-radius: 0;
   margin-bottom: 6px;
   border: 1px solid transparent;
   background-color: #3a3a38; }
@@ -1001,12 +1001,12 @@ StScrollBar {
       color: st-transparentize(#ffffff, 0.5);
       background-color: #3a3a38; }
     .popup-sub-menu .popup-menu-item:last-child {
-      border-radius: 0 0 12px 12px;
+      border-radius: 0;
       border-bottom-width: 0; }
   .popup-sub-menu .popup-menu-section .popup-menu-item:last-child:hover, .popup-sub-menu .popup-menu-section .popup-menu-item:last-child:focus {
     border-radius: 0; }
   .popup-sub-menu .popup-menu-section:last-child .popup-menu-item:last-child {
-    border-radius: 0 0 12px 12px; }
+    border-radius: 0; }
 
 .popup-menu-ornament {
   icon-size: 1.091em !important;
@@ -1380,11 +1380,12 @@ StScrollBar {
 
 /* Modal Dialogs */
 .modal-dialog {
-  background-color: #161616;
-  border-radius: 18px;
+  background-color: #000000;
+  border-radius: 0;
   padding: 24px;
   spacing: 18px;
-  box-shadow: 0 12px 8px 12px rgba(0, 0, 0, 0.03); }
+  box-shadow: none;
+  border: 1px solid #202020; }
   .modal-dialog .modal-dialog-content-box {
     padding-top: 12px;
     spacing: 18px;
@@ -1415,7 +1416,7 @@ StScrollBar {
     color: #cd9309;
     background-color: rgba(205, 147, 9, 0.1);
     padding: 9px;
-    border-radius: 8px;
+    border-radius: 0;
     margin: 4px 0; }
 
 /* Message Dialog */
@@ -2042,7 +2043,7 @@ StScrollBar {
 
 .quick-settings {
   padding: 18px;
-  border-radius: 36px; }
+  border-radius: 0; }
   .quick-settings .icon-button, .quick-settings .login-dialog-button.a11y-button, .quick-settings .login-dialog-button.cancel-button, .quick-settings .login-dialog-button.switch-user-button, .quick-settings .login-dialog-button.login-dialog-session-list-button, .quick-settings .calendar .calendar-month-header .pager-button, .calendar .calendar-month-header .quick-settings .pager-button, .quick-settings .message-notification-group .message-collapse-button, .message-notification-group .quick-settings .message-collapse-button, .quick-settings .message .message-header .message-expand-button, .message .message-header .quick-settings .message-expand-button,
   .quick-settings .message .message-header .message-close-button,
   .message .message-header .quick-settings .message-close-button, .quick-settings .screenshot-ui-show-pointer-button, .quick-settings .button {
@@ -2053,7 +2054,7 @@ StScrollBar {
   spacing-columns: 12px; }
 
 .quick-toggle, .quick-toggle-has-menu {
-  border-radius: 999px;
+  border-radius: 0;
   min-width: 12em;
   max-width: 12em;
   min-height: 3.273em; }
@@ -2080,24 +2081,24 @@ StScrollBar {
   min-width: auto;
   max-width: auto; }
   .quick-toggle-has-menu .quick-toggle:ltr {
-    border-radius: 999px 0 0 999px; }
+    border-radius: 0; }
     .quick-toggle-has-menu .quick-toggle:ltr > StBoxLayout {
       padding-right: 0.6135em; }
   .quick-toggle-has-menu .quick-toggle:rtl {
-    border-radius: 0 999px 999px 0; }
+    border-radius: 0; }
     .quick-toggle-has-menu .quick-toggle:rtl > StBoxLayout {
       padding-left: 0.6135em; }
   .quick-toggle-has-menu .quick-toggle:ltr:last-child {
-    border-radius: 999px; }
+    border-radius: 0; }
   .quick-toggle-has-menu .quick-toggle:rtl:last-child {
-    border-radius: 999px; }
+    border-radius: 0; }
 
 .quick-toggle-has-menu .quick-toggle-menu-button {
   padding: 0.409em 0.71575em; }
   .quick-toggle-has-menu .quick-toggle-menu-button:ltr {
-    border-radius: 0 999px 999px 0; }
+    border-radius: 0; }
   .quick-toggle-has-menu .quick-toggle-menu-button:rtl {
-    border-radius: 999px 0 0 999px; }
+    border-radius: 0; }
 
 .quick-toggle-has-menu .quick-toggle-separator {
   width: 1px; }
@@ -2160,7 +2161,7 @@ StScrollBar {
 
 .quick-slider .slider-bin {
   padding: 6px;
-  border-radius: 999px; }
+  border-radius: 0; }
   .quick-slider .slider-bin:focus {
     color: #ffffff;
     box-shadow: inset 0 0 0 2px #ff3c05 !important;
@@ -2169,7 +2170,7 @@ StScrollBar {
       background-color: st-mix(st-mix(#ff3c05, #ffffff, 60%), st-lighten(#0a0a0a, 4%), 5%); }
 
 .quick-toggle-menu {
-  border-radius: 24px;
+  border-radius: 0;
   margin: 12px 0 0; }
   .quick-toggle-menu:insensitive {
     color: #ffffff;
@@ -2183,7 +2184,7 @@ StScrollBar {
     padding-bottom: 12px; }
     .quick-toggle-menu .header .icon {
       icon-size: 1.6365em;
-      border-radius: 999px;
+      border-radius: 0;
       padding: 9px;
       background-color: #161616; }
       .quick-toggle-menu .header .icon.active {
@@ -3342,18 +3343,82 @@ StScrollBar {
   border: 1px solid #202020 !important;
   border-color: #202020 !important;
   box-shadow: none !important;
+  border-radius: 0 !important;
   color: #f1f1ef !important;
 }
 
 .quick-toggle-menu,
 .message,
 .events-button,
+.world-clocks-button,
+.weather-button,
 .popup-sub-menu {
   background-color: #0a0a0a !important;
   background: #0a0a0a !important;
   border: 1px solid #202020 !important;
   border-color: #202020 !important;
+  border-radius: 0 !important;
   color: #f1f1ef !important;
+}
+
+.events-button:hover,
+.world-clocks-button:hover,
+.weather-button:hover {
+  background-color: #161616 !important;
+  background: #161616 !important;
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+}
+
+/* square menu item hover / selection — match GTK minimize hover */
+.popup-menu-item,
+.popup-menu-item:hover,
+.popup-menu-item:selected,
+.popup-menu-item:checked,
+.popup-menu-item:active,
+.quick-toggle-menu .popup-menu-item,
+.popup-sub-menu .popup-menu-item,
+.popup-sub-menu .popup-menu-item:last-child {
+  border-radius: 0 !important;
+}
+
+.popup-menu-item,
+.popup-sub-menu .popup-menu-item,
+.quick-toggle-menu .popup-menu-item {
+  border: 1px solid transparent !important;
+  box-shadow: none !important;
+}
+
+.popup-menu-item:hover,
+.popup-menu-item:selected,
+.popup-menu-item:checked,
+.popup-menu-item:focus,
+.popup-sub-menu .popup-menu-item:focus,
+.quick-toggle-menu .popup-menu-item:focus,
+.popup-sub-menu .popup-menu-item:hover,
+.popup-sub-menu .popup-menu-item:selected,
+.popup-sub-menu .popup-menu-item:checked,
+.quick-toggle-menu .popup-menu-item:hover,
+.quick-toggle-menu .popup-menu-item:selected,
+.quick-toggle-menu .popup-menu-item:checked {
+  background-color: #161616 !important;
+  background: #161616 !important;
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+  box-shadow: none !important;
+}
+
+.popup-menu-item:active,
+.popup-menu-item:active:hover,
+.popup-sub-menu .popup-menu-item:active,
+.popup-sub-menu .popup-menu-item:active:hover,
+.quick-toggle-menu .popup-menu-item:active,
+.quick-toggle-menu .popup-menu-item:active:hover {
+  background-color: #202020 !important;
+  background: #202020 !important;
+  border: 1px solid #303030 !important;
+  border-color: #303030 !important;
+  box-shadow: none !important;
 }
 
 .quick-toggle:not(:checked),
@@ -3405,6 +3470,64 @@ StScrollBar {
   background-color: #0a0a0a !important;
   border: 1px solid #202020 !important;
   border-color: #202020 !important;
+  border-radius: 0 !important;
+}
+
+/* square notification action buttons — match GTK minimize hover */
+.notification-button,
+.message .message-action-bin .button,
+.message .message-action-bin StButton,
+.message-list-controls .message-list-clear-button {
+  border-radius: 0 !important;
+  background-color: #161616 !important;
+  background: #161616 !important;
+  border: 1px solid #202020 !important;
+  border-color: #202020 !important;
+  box-shadow: none !important;
+  color: #ffffff !important;
+}
+
+.notification-button:hover,
+.message .message-action-bin .button:hover,
+.message .message-action-bin StButton:hover,
+.message-list-controls .message-list-clear-button:hover,
+.notification-button:focus:hover,
+.message .message-action-bin .button:focus:hover,
+.message .message-action-bin StButton:focus:hover,
+.message-list-controls .message-list-clear-button:focus:hover {
+  background-color: #202020 !important;
+  background: #202020 !important;
+  border: 1px solid #303030 !important;
+  box-shadow: none !important;
+}
+
+.notification-button:active,
+.notification-button:hover:active,
+.message .message-action-bin .button:active,
+.message .message-action-bin .button:hover:active,
+.message .message-action-bin StButton:active,
+.message .message-action-bin StButton:hover:active,
+.message-list-controls .message-list-clear-button:active,
+.message-list-controls .message-list-clear-button:hover:active {
+  background-color: #202020 !important;
+  background: #202020 !important;
+  border: 1px solid #303030 !important;
+  box-shadow: none !important;
+}
+
+.notification-button:focus,
+.message .message-action-bin .button:focus,
+.message .message-action-bin StButton:focus,
+.message-list-controls .message-list-clear-button:focus {
+  background-color: #161616 !important;
+  border: 1px solid #202020 !important;
+  box-shadow: none !important;
+}
+
+.message .message-header .message-close-button,
+.message .message-header .message-expand-button,
+.message-notification-group .message-collapse-button {
+  border-radius: 0 !important;
 }
 
 .bms-popup-background-dark .quick-settings,
@@ -3425,7 +3548,7 @@ StScrollBar {
   background: #0a0a0a !important;
 }
 
-/* === Obel accent: active = real 1px orange border === */
+/* === Obel accent: active = solid orange fill (like WiFi) === */
 .quick-toggle:checked,
 .quick-toggle:checked:hover,
 .quick-toggle:checked:active,
@@ -3433,9 +3556,9 @@ StScrollBar {
 .keyboard-brightness-level .button:checked,
 .button.default,
 .icon-button.default {
-  background-color: #161616 !important;
-  background: #161616 !important;
-  color: #f1f1ef !important;
+  background-color: #ff3c05 !important;
+  background: #ff3c05 !important;
+  color: #ffffff !important;
   border: 1px solid #ff3c05 !important;
   border-color: #ff3c05 !important;
   box-shadow: none;
@@ -3444,7 +3567,7 @@ StScrollBar {
 .quick-toggle:checked StIcon,
 .quick-toggle:checked .quick-toggle-subtitle,
 .quick-settings .icon-button.default StIcon {
-  color: #ff3c05 !important;
+  color: #ffffff !important;
 }
 
 /* Split toggles: solid orange fill when on */
@@ -3456,18 +3579,28 @@ StScrollBar {
 }
 
 .quick-toggle-has-menu:checked .quick-toggle,
-.quick-toggle-has-menu:checked .quick-toggle:hover,
-.quick-toggle-has-menu:checked .quick-toggle:active,
-.quick-toggle-has-menu:checked .quick-toggle:focus {
+.quick-toggle-has-menu:checked .quick-toggle:active {
   background-color: #ff3c05 !important;
   background: #ff3c05 !important;
   box-shadow: none;
-  border: none !important;
-  border-color: transparent !important;
+  border: 1px solid #ff3c05 !important;
+  border-color: #ff3c05 !important;
+  color: #ffffff !important;
+}
+.quick-toggle-has-menu:checked .quick-toggle:hover,
+.quick-toggle-has-menu:checked .quick-toggle:focus,
+.quick-toggle-has-menu:checked:hover .quick-toggle {
+  background-color: #ff5530 !important;
+  background: #ff5530 !important;
+  box-shadow: none;
+  border: 1px solid #ff8a66 !important;
+  border-color: #ff8a66 !important;
   color: #ffffff !important;
 }
 
-.quick-toggle-has-menu:checked .quick-toggle StIcon {
+.quick-toggle-has-menu:checked .quick-toggle StIcon,
+.quick-toggle-has-menu:checked .quick-toggle:hover StIcon,
+.quick-toggle-has-menu:checked:hover .quick-toggle StIcon {
   color: #ffffff !important;
 }
 
@@ -3541,7 +3674,7 @@ stage {
   font-feature-settings: normal !important;
 }
 
-/* === Obel: sizes (44px circles) === */
+/* === Obel: sizes (44px squares) === */
 .quick-toggle .quick-toggle-title,
 .quick-toggle .quick-toggle-subtitle,
 .quick-toggle StLabel {
@@ -3557,7 +3690,7 @@ stage {
   width: 44px !important; height: 44px !important;
   min-width: 44px !important; max-width: 44px !important;
   min-height: 44px !important; max-height: 44px !important;
-  padding: 0 !important; border-radius: 99px !important;
+  padding: 0 !important; border-radius: 0 !important;
 }
 .quick-toggle-has-menu {
   width: auto !important; min-width: 0 !important; max-width: none !important;
@@ -3574,7 +3707,7 @@ stage {
   width: 44px !important; height: 44px !important;
   min-width: 44px !important; max-width: 44px !important;
   min-height: 44px !important; max-height: 44px !important;
-  padding: 0 !important; border-radius: 99px !important;
+  padding: 0 !important; border-radius: 0 !important;
 }
 .quick-toggle-has-menu .quick-toggle-separator {
   width: 0 !important; min-width: 0 !important; background: transparent !important;
@@ -3597,7 +3730,7 @@ stage {
   width: 44px !important; height: 44px !important;
   min-width: 44px !important; max-width: 44px !important;
   min-height: 44px !important; max-height: 44px !important;
-  padding: 0 !important; border-radius: 99px !important;
+  padding: 0 !important; border-radius: 0 !important;
 }
 .quick-settings .icon-button StIcon,
 .quick-settings-system-item .icon-button StIcon,
@@ -3615,7 +3748,7 @@ stage {
   margin: 0 !important; padding: 0 !important;
 }
 .soltros-tray-icon {
-  width: 44px !important; height: 44px !important; padding: 0 !important; border-radius: 99px !important;
+  width: 44px !important; height: 44px !important; padding: 0 !important; border-radius: 0 !important;
 }
 
 
@@ -3653,27 +3786,31 @@ stage {
   box-shadow: none;
 }
 
-/* checked non-split only (grid child) — orange RING, not fill */
+/* checked non-split only (grid child) — solid orange fill like WiFi */
 .quick-settings-grid > .quick-toggle:checked,
 .quick-settings .icon-button.default,
 .quick-settings .button.default {
-  background-color: #0a0a0a !important;
-  background: #0a0a0a !important;
-  border: none !important;
+  background-color: #ff3c05 !important;
+  background: #ff3c05 !important;
+  border: 1px solid #ff3c05 !important;
+  border-color: #ff3c05 !important;
   box-shadow: none;
+  color: #ffffff !important;
 }
 .quick-settings-grid > .quick-toggle:checked StIcon,
 .quick-settings .icon-button.default StIcon {
-  color: #ff3c05 !important;
+  color: #ffffff !important;
 }
 .quick-settings-grid > .quick-toggle:checked:hover,
 .quick-settings-grid > .quick-toggle:checked:focus,
 .quick-settings .icon-button.default:hover,
 .quick-settings .icon-button.default:focus {
-  background-color: #161616 !important;
-  background: #161616 !important;
-  border: none !important;
+  background-color: #ff5530 !important;
+  background: #ff5530 !important;
+  border: 1px solid #ff5530 !important;
+  border-color: #ff5530 !important;
   box-shadow: none;
+  color: #ffffff !important;
 }
 .quick-settings-grid > .quick-toggle:checked:hover StIcon,
 .quick-settings-grid > .quick-toggle:checked:focus StIcon,
@@ -3783,21 +3920,23 @@ stage {
 .bms-popup-surface-dark .quick-settings-grid > .quick-toggle:checked,
 .bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked,
 .bms-popup-surface-transparent .quick-settings-grid > .quick-toggle:checked {
-  background-color: #0a0a0a !important;
-  background: #0a0a0a !important;
+  background-color: #ff3c05 !important;
+  background: #ff3c05 !important;
   border: 1px solid #ff3c05 !important;
   border-color: #ff3c05 !important;
-  color: #f1f1ef !important;
+  color: #ffffff !important;
   box-shadow: none;
 }
 .bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked StIcon,
 .bms-popup-surface-dark .quick-settings-grid > .quick-toggle:checked StIcon {
-  color: #ff3c05 !important;
+  color: #ffffff !important;
 }
 .bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover,
 .bms-popup-surface-dark .quick-settings-grid > .quick-toggle:checked:hover {
-  background-color: #161616 !important;
-  border-color: #ff8a66 !important;
+  background-color: #ff5530 !important;
+  background: #ff5530 !important;
+  border-color: #ff5530 !important;
+  color: #ffffff !important;
 }
 .bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover StIcon,
 .bms-popup-surface-dark .quick-settings-grid > .quick-toggle:checked:hover StIcon {
@@ -3876,22 +4015,19 @@ stage {
 /* === Obel: wifi fill nuke === */
 .quick-toggle-has-menu:checked .quick-toggle,
 .quick-toggle-has-menu:checked .quick-toggle:checked,
-.quick-toggle-has-menu:checked .quick-toggle:hover,
-.quick-toggle-has-menu:checked .quick-toggle:focus,
 .bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle,
 .bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:checked,
 .bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle,
 .bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle:checked {
   background-color: #ff3c05 !important;
   background: #ff3c05 !important;
-  border: none !important;
+  border: 1px solid #ff3c05 !important;
+  border-color: #ff3c05 !important;
   box-shadow: none;
   color: #ffffff !important;
 }
 .quick-toggle-has-menu:checked .quick-toggle StIcon,
 .quick-toggle-has-menu:checked .quick-toggle:checked StIcon,
-.quick-toggle-has-menu:checked .quick-toggle:hover StIcon,
-.quick-toggle-has-menu:checked:hover .quick-toggle StIcon,
 .bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle StIcon,
 .bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:checked StIcon,
 .bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle StIcon,
@@ -3900,10 +4036,21 @@ stage {
 }
 .quick-toggle-has-menu:checked:hover .quick-toggle,
 .quick-toggle-has-menu:checked .quick-toggle:hover,
+.quick-toggle-has-menu:checked .quick-toggle:focus,
 .bms-popup-background-dark .quick-toggle-has-menu:checked:hover .quick-toggle,
-.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover {
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle:hover {
   background-color: #ff5530 !important;
   background: #ff5530 !important;
+  border: 1px solid #ff8a66 !important;
+  border-color: #ff8a66 !important;
+  color: #ffffff !important;
+}
+.quick-toggle-has-menu:checked .quick-toggle:hover StIcon,
+.quick-toggle-has-menu:checked:hover .quick-toggle StIcon,
+.bms-popup-background-dark .quick-toggle-has-menu:checked:hover .quick-toggle StIcon,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover StIcon {
   color: #ffffff !important;
 }
 
@@ -3966,7 +4113,7 @@ stage {
   min-height: 44px !important;
   max-height: 44px !important;
   padding: 0 !important;
-  border-radius: 99px !important;
+  border-radius: 0 !important;
   background-color: #0a0a0a !important;
   background: #0a0a0a !important;
   border: 1px solid #3a3a38 !important;
@@ -4091,26 +4238,41 @@ stage {
   box-shadow: none;
 }
 
-/* non-split active: real orange border */
+/* non-split active: solid orange fill like WiFi */
 .quick-settings-grid > .quick-toggle:checked,
-.quick-settings-grid > .quick-toggle:checked:hover,
 .quick-settings .icon-button.default,
-.quick-settings .icon-button.default:hover,
 .bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked,
-.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover,
 .bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked {
-  background-color: #0a0a0a !important;
-  background: #0a0a0a !important;
+  background-color: #ff3c05 !important;
+  background: #ff3c05 !important;
   border: 1px solid #ff3c05 !important;
   border-color: #ff3c05 !important;
   box-shadow: none;
+  color: #ffffff !important;
+}
+.quick-settings-grid > .quick-toggle:checked:hover,
+.quick-settings .icon-button.default:hover,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover {
+  background-color: #ff5530 !important;
+  background: #ff5530 !important;
+  border: 1px solid #ff8a66 !important;
+  border-color: #ff8a66 !important;
+  box-shadow: none;
+  color: #ffffff !important;
+}
+.quick-settings-grid > .quick-toggle:checked StIcon,
+.quick-settings-grid > .quick-toggle:checked:hover StIcon,
+.quick-settings .icon-button.default StIcon,
+.quick-settings .icon-button.default:hover StIcon,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked StIcon,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover StIcon,
+.bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked StIcon {
+  color: #ffffff !important;
 }
 
 /* split active: orange fill + real orange border */
 .quick-toggle-has-menu:checked .quick-toggle,
 .quick-toggle-has-menu:checked .quick-toggle:checked,
-.quick-toggle-has-menu:checked .quick-toggle:hover,
-.quick-toggle-has-menu:checked:hover .quick-toggle,
 .bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle,
 .bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:checked,
 .bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle,
@@ -4119,6 +4281,19 @@ stage {
   background: #ff3c05 !important;
   border: 1px solid #ff3c05 !important;
   border-color: #ff3c05 !important;
+  box-shadow: none;
+  color: #ffffff !important;
+}
+.quick-toggle-has-menu:checked .quick-toggle:hover,
+.quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover,
+.bms-popup-background-dark .quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle:hover,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked:hover .quick-toggle {
+  background-color: #ff5530 !important;
+  background: #ff5530 !important;
+  border: 1px solid #ff8a66 !important;
+  border-color: #ff8a66 !important;
   box-shadow: none;
   color: #ffffff !important;
 }
@@ -4177,6 +4352,45 @@ stage {
   box-shadow: none !important;
   border: 1px solid #202020 !important;
   border-color: #202020 !important;
+}
+
+.events-button,
+.world-clocks-button,
+.weather-button {
+  background-color: #0a0a0a !important;
+  background: #0a0a0a !important;
+  border-radius: 0 !important;
+}
+
+/* dtp-inactive-opacity-css */
+/* Icon + label, siblings — same opacity, no nesting multiply. */
+#dashtopanelTaskbar .overview-tile .overview-icon,
+#dashtopanelScrollview .overview-tile .overview-icon,
+.dashtopanelMainPanel .overview-tile .overview-icon,
+#dashtopanelTaskbar .overview-tile .overview-label,
+#dashtopanelScrollview .overview-tile .overview-label,
+.dashtopanelMainPanel .overview-tile .overview-label {
+	opacity: 0.6;
+}
+#dashtopanelTaskbar .overview-tile.focused .overview-icon,
+#dashtopanelTaskbar .overview-tile:hover .overview-icon,
+#dashtopanelTaskbar .overview-tile:focus .overview-icon,
+#dashtopanelScrollview .overview-tile.focused .overview-icon,
+#dashtopanelScrollview .overview-tile:hover .overview-icon,
+#dashtopanelScrollview .overview-tile:focus .overview-icon,
+.dashtopanelMainPanel .overview-tile.focused .overview-icon,
+.dashtopanelMainPanel .overview-tile:hover .overview-icon,
+.dashtopanelMainPanel .overview-tile:focus .overview-icon,
+#dashtopanelTaskbar .overview-tile.focused .overview-label,
+#dashtopanelTaskbar .overview-tile:hover .overview-label,
+#dashtopanelTaskbar .overview-tile:focus .overview-label,
+#dashtopanelScrollview .overview-tile.focused .overview-label,
+#dashtopanelScrollview .overview-tile:hover .overview-label,
+#dashtopanelScrollview .overview-tile:focus .overview-label,
+.dashtopanelMainPanel .overview-tile.focused .overview-label,
+.dashtopanelMainPanel .overview-tile:hover .overview-label,
+.dashtopanelMainPanel .overview-tile:focus .overview-label {
+	opacity: 1.0;
 }
 
 /* === Obel: modal / end-session dialogs — black + sharp === */
@@ -4303,101 +4517,193 @@ StEntry {
   box-shadow: none !important;
 }
 
-/* === Obel: popup menu item hover — match GTK minimize hover === */
-.popup-menu-item,
-.popup-menu-item:hover,
-.popup-menu-item:selected,
-.popup-menu-item:checked,
-.popup-menu-item:active,
-.quick-toggle-menu .popup-menu-item,
-.popup-sub-menu .popup-menu-item,
-.popup-sub-menu .popup-menu-item:last-child {
+/* === Obel: square panel-button hover (no pill radius) === */
+#panel .panel-button,
+#panel .panel-button.clock-display,
+#panel .panel-button.clock-display .clock,
+#panel .panel-button.screen-recording-indicator,
+#panel .panel-button.screen-sharing-indicator,
+#panel:overview .panel-button,
+#panel:overview .panel-button.clock-display,
+#panel:overview .panel-button.clock-display .clock,
+#panel.unlock-screen .panel-button,
+#panel.login-screen .panel-button,
+#panel.unlock-screen .panel-button.clock-display,
+#panel.login-screen .panel-button.clock-display,
+#panel.unlock-screen .panel-button.clock-display .clock,
+#panel.login-screen .panel-button.clock-display .clock {
   border-radius: 0 !important;
 }
 
-.popup-menu-item,
-.popup-sub-menu .popup-menu-item,
-.quick-toggle-menu .popup-menu-item {
-  border: 1px solid transparent !important;
-  box-shadow: none !important;
+/* === Obel: panel buttons (QS + clock) — dim idle; full + orange edge on hover/click ===
+   St often ignores CSS opacity on panel-button; dim via color instead.
+   Multi box-shadow is broken in St, so hover/active uses a single inset edge. */
+#panel .panel-button,
+.dashtopanelMainPanel .panel-button {
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
-.popup-menu-item:hover,
-.popup-menu-item:selected,
-.popup-menu-item:checked,
-.popup-sub-menu .popup-menu-item:hover,
-.popup-sub-menu .popup-menu-item:selected,
-.popup-sub-menu .popup-menu-item:checked,
-.quick-toggle-menu .popup-menu-item:hover,
-.quick-toggle-menu .popup-menu-item:selected,
-.quick-toggle-menu .popup-menu-item:checked {
-  background-color: #161616 !important;
-  background: #161616 !important;
-  border: 1px solid #202020 !important;
-  border-color: #202020 !important;
-  box-shadow: none !important;
+#panel .panel-button .system-status-icon,
+#panel .panel-button StIcon,
+.dashtopanelMainPanel .panel-button .system-status-icon,
+.dashtopanelMainPanel .panel-button StIcon {
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
-.popup-menu-item:active,
-.popup-menu-item:active:hover,
-.popup-sub-menu .popup-menu-item:active,
-.popup-sub-menu .popup-menu-item:active:hover,
-.quick-toggle-menu .popup-menu-item:active,
-.quick-toggle-menu .popup-menu-item:active:hover {
-  background-color: #202020 !important;
-  background: #202020 !important;
-  border: 1px solid #303030 !important;
-  border-color: #303030 !important;
-  box-shadow: none !important;
+#panel .panel-button:hover,
+#panel .panel-button:focus,
+.dashtopanelMainPanel .panel-button:hover,
+.dashtopanelMainPanel .panel-button:focus {
+  color: #ffffff !important;
+  /* Kill stock Adwaita hover fill; color-only hover */
+  box-shadow: inset 0 0 0 100px transparent !important;
 }
 
-/* === Obel: notification action buttons — match GTK minimize hover === */
-.notification-button,
-.message .message-action-bin .button,
-.message .message-action-bin StButton,
-.message-list-controls .message-list-clear-button {
-  border-radius: 0 !important;
-  background-color: #161616 !important;
-  background: #161616 !important;
-  border: 1px solid #202020 !important;
-  border-color: #202020 !important;
-  box-shadow: none !important;
+#panel .panel-button:active,
+#panel .panel-button:checked,
+.dashtopanelMainPanel .panel-button:active,
+.dashtopanelMainPanel .panel-button:checked {
+  color: #ffffff !important;
+  box-shadow: inset 0 -1px 0 0 #ff3c05 !important;
+}
+
+#panel .panel-button:hover .system-status-icon,
+#panel .panel-button:focus .system-status-icon,
+#panel .panel-button:active .system-status-icon,
+#panel .panel-button:checked .system-status-icon,
+#panel .panel-button:hover StIcon,
+#panel .panel-button:focus StIcon,
+#panel .panel-button:active StIcon,
+#panel .panel-button:checked StIcon,
+.dashtopanelMainPanel .panel-button:hover .system-status-icon,
+.dashtopanelMainPanel .panel-button:focus .system-status-icon,
+.dashtopanelMainPanel .panel-button:active .system-status-icon,
+.dashtopanelMainPanel .panel-button:checked .system-status-icon,
+.dashtopanelMainPanel .panel-button:hover StIcon,
+.dashtopanelMainPanel .panel-button:focus StIcon,
+.dashtopanelMainPanel .panel-button:active StIcon,
+.dashtopanelMainPanel .panel-button:checked StIcon {
   color: #ffffff !important;
 }
 
-.notification-button:hover,
-.message .message-action-bin .button:hover,
-.message .message-action-bin StButton:hover,
-.message-list-controls .message-list-clear-button:hover,
-.notification-button:focus:hover,
-.message .message-action-bin .button:focus:hover,
-.message .message-action-bin StButton:focus:hover,
-.message-list-controls .message-list-clear-button:focus:hover {
-  background-color: #202020 !important;
-  background: #202020 !important;
-  border: 1px solid #303030 !important;
+#panel .panel-button.clock-display,
+.dashtopanelMainPanel .panel-button.clock-display {
+  background: none !important;
   box-shadow: none !important;
+  border: none !important;
 }
 
-.notification-button:active,
-.notification-button:hover:active,
-.message .message-action-bin .button:active,
-.message .message-action-bin .button:hover:active,
-.message .message-action-bin StButton:active,
-.message .message-action-bin StButton:hover:active,
-.message-list-controls .message-list-clear-button:active,
-.message-list-controls .message-list-clear-button:hover:active {
-  background-color: #202020 !important;
-  background: #202020 !important;
-  border: 1px solid #303030 !important;
+#panel .panel-button.clock-display .clock,
+.dashtopanelMainPanel .panel-button.clock-display .clock {
+  border-radius: 0 !important;
   box-shadow: none !important;
+  color: rgba(255, 255, 255, 0.45) !important;
 }
 
-.notification-button:focus,
-.message .message-action-bin .button:focus,
-.message .message-action-bin StButton:focus,
-.message-list-controls .message-list-clear-button:focus {
+#panel .panel-button.clock-display:hover .clock,
+#panel .panel-button.clock-display:focus .clock,
+.dashtopanelMainPanel .panel-button.clock-display:hover .clock,
+.dashtopanelMainPanel .panel-button.clock-display:focus .clock {
+  color: #ffffff !important;
+  box-shadow: inset 0 0 0 100px transparent !important;
+}
+
+#panel .panel-button.clock-display:active .clock,
+#panel .panel-button.clock-display:checked .clock,
+.dashtopanelMainPanel .panel-button.clock-display:active .clock,
+.dashtopanelMainPanel .panel-button.clock-display:checked .clock {
+  color: #ffffff !important;
+  box-shadow: inset 0 -1px 0 0 #ff3c05 !important;
+}
+
+/* === Obel: checked quick tiles — dark surface, orange icon only === */
+.quick-toggle:checked,
+.quick-toggle:checked:hover,
+.quick-toggle:checked:active,
+.quick-toggle:focus:checked,
+.quick-settings-grid > .quick-toggle:checked,
+.quick-settings-grid > .quick-toggle:checked:hover,
+.quick-settings-grid > .quick-toggle:checked:focus,
+.quick-settings .icon-button.default,
+.quick-settings .icon-button.default:hover,
+.quick-settings .icon-button.default:focus,
+.quick-settings .button.default,
+.keyboard-brightness-level .button:checked,
+.button.default,
+.icon-button.default,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked,
+.bms-popup-surface-dark .quick-settings-grid > .quick-toggle:checked,
+.bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked,
+.bms-popup-surface-transparent .quick-settings-grid > .quick-toggle:checked,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover,
+.bms-popup-surface-dark .quick-settings-grid > .quick-toggle:checked:hover,
+.quick-toggle-has-menu:checked .quick-toggle,
+.quick-toggle-has-menu:checked .quick-toggle:checked,
+.quick-toggle-has-menu:checked .quick-toggle:hover,
+.quick-toggle-has-menu:checked .quick-toggle:focus,
+.quick-toggle-has-menu:checked .quick-toggle:active,
+.quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:checked,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover,
+.bms-popup-background-dark .quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle:checked,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle:hover,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked:hover .quick-toggle {
+  background-color: #0a0a0a !important;
+  background: #0a0a0a !important;
+  border: 1px solid #ff3c05 !important;
+  border-color: #ff3c05 !important;
+  box-shadow: none !important;
+  color: #ff3c05 !important;
+}
+
+.quick-toggle:checked:hover,
+.quick-toggle:focus:checked:hover,
+.quick-settings-grid > .quick-toggle:checked:hover,
+.quick-settings-grid > .quick-toggle:checked:focus,
+.quick-settings .icon-button.default:hover,
+.quick-settings .icon-button.default:focus,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover,
+.quick-toggle-has-menu:checked .quick-toggle:hover,
+.quick-toggle-has-menu:checked .quick-toggle:focus,
+.quick-toggle-has-menu:checked:hover .quick-toggle,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover,
+.bms-popup-background-dark .quick-toggle-has-menu:checked:hover .quick-toggle {
   background-color: #161616 !important;
-  border: 1px solid #202020 !important;
-  box-shadow: none !important;
+  background: #161616 !important;
+  border: 1px solid #ff3c05 !important;
+  border-color: #ff3c05 !important;
+  color: #ff3c05 !important;
+}
+
+.quick-toggle:checked StIcon,
+.quick-toggle:checked:hover StIcon,
+.quick-toggle:checked:focus StIcon,
+.quick-toggle:checked .quick-toggle-subtitle,
+.quick-settings-grid > .quick-toggle:checked StIcon,
+.quick-settings-grid > .quick-toggle:checked:hover StIcon,
+.quick-settings .icon-button.default StIcon,
+.quick-settings .icon-button.default:hover StIcon,
+.icon-button.default StIcon,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked StIcon,
+.bms-popup-background-dark .quick-settings-grid > .quick-toggle:checked:hover StIcon,
+.bms-popup-background-transparent .quick-settings-grid > .quick-toggle:checked StIcon,
+.quick-toggle-has-menu:checked .quick-toggle StIcon,
+.quick-toggle-has-menu:checked .quick-toggle:hover StIcon,
+.quick-toggle-has-menu:checked .quick-toggle:focus StIcon,
+.quick-toggle-has-menu:checked:hover .quick-toggle StIcon,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle StIcon,
+.bms-popup-background-dark .quick-toggle-has-menu:checked .quick-toggle:hover StIcon,
+.bms-popup-background-transparent .quick-toggle-has-menu:checked .quick-toggle StIcon {
+  color: #ff3c05 !important;
+}
+
+/* Keep split separator visible when checked (no full orange bar) */
+.quick-toggle-has-menu:checked .quick-toggle-separator,
+.quick-toggle-has-menu:checked:hover .quick-toggle-separator {
+  background-color: #3a3a38 !important;
+  background: #3a3a38 !important;
+  width: 1px !important;
 }
