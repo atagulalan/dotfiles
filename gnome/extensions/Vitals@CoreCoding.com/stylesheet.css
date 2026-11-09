@@ -20,6 +20,48 @@
 .xava-vitals .popup-menu-item:selected,
 .xava-vitals .popup-menu-item:focus {
 	background-color: #161616;
+	border: 1px solid #202020;
+}
+/* Pinned-sensor summary grid */
+.xava-vitals-summary {
+	padding: 0 0 8px 0;
+}
+.xava-vitals-tile {
+	background-color: #0a0a0a;
+	border: 1px solid #202020;
+	border-radius: 0;
+	padding: 8px 10px;
+	spacing: 8px;
+}
+.xava-vitals-tile-icon {
+	icon-size: 16px;
+}
+.xava-vitals-tile-value {
+	font-feature-settings: "tnum";
+}
+.xava-vitals-hint {
+	color: rgba(255, 255, 255, 0.45);
+	padding: 4px 12px 8px 12px;
+}
+.xava-vitals-expander {
+	border-radius: 0;
+	border: 1px solid transparent;
+	padding: 8px 12px;
+	background-color: transparent;
+	color: #f1f1ef;
+}
+.xava-vitals-expander:hover,
+.xava-vitals-expander:focus,
+.xava-vitals-expander:checked {
+	background-color: #161616;
+	border: 1px solid #202020;
+}
+.xava-vitals-expander:active {
+	background-color: #202020;
+	border: 1px solid #303030;
+}
+.xava-vitals-expander .popup-menu-arrow {
+	icon-size: 16px;
 }
 .vitals-panel-item{spacing: 0;}
 .vitals-panel-menu{spacing: 11px; padding: 3px; }

@@ -6,7 +6,6 @@ import St from 'gi://St';
 
 import * as PopupMenu from 'resource:///org/gnome/shell/ui/popupMenu.js';
 import * as Main from 'resource:///org/gnome/shell/ui/main.js';
-import * as Util from 'resource:///org/gnome/shell/misc/util.js';
 import {QuickSettingsItem} from 'resource:///org/gnome/shell/ui/quickSettings.js';
 
 import * as Sensors from './sensors.js';
@@ -45,6 +44,7 @@ var VitalsSection = GObject.registerClass({
         this._sensorMenuItems = {};
         this._hotLabels = {};
         this._hotItems = {};
+        this._summaryTiles = {};
         this._groups = {};
         this._widths = {};
         this._numGpus = 1;
@@ -67,6 +67,47 @@ var VitalsSection = GObject.registerClass({
         });
         this.set_child(root);
 
+        // Pinned sensors as a compact 2-column grid
+        this._summaryGrid = new St.Widget({
+            style_class: 'xava-vitals-summary',
+            x_expand: true,
+            layout_manager: new Clutter.GridLayout({
+                column_homogeneous: true,
+                column_spacing: 8,
+                row_spacing: 8,
+            }),
+        });
+        root.add_child(this._summaryGrid);
+
+        this._summaryHint = new St.Label({
+            style_class: 'xava-vitals-hint',
+            text: _('Click a sensor to pin it here'),
+            x_expand: true,
+        });
+        root.add_child(this._summaryHint);
+
+        // "All sensors" expander; the full accordion stays collapsed by default
+        this._expanderArrow = new St.Icon({
+            style_class: 'popup-menu-arrow',
+            icon_name: 'pan-end-symbolic',
+            y_align: Clutter.ActorAlign.CENTER,
+        });
+        const expanderBox = new St.BoxLayout({x_expand: true});
+        expanderBox.add_child(new St.Label({
+            text: _('All sensors'),
+            x_expand: true,
+            y_align: Clutter.ActorAlign.CENTER,
+        }));
+        expanderBox.add_child(this._expanderArrow);
+        this._expander = new St.Button({
+            style_class: 'xava-vitals-expander',
+            x_expand: true,
+            can_focus: true,
+            child: expanderBox,
+        });
+        this._expander.connect('clicked', () => this._setExpanded(!this._expanded));
+        root.add_child(this._expander);
+
         this._scroll = new St.ScrollView({
             style_class: 'xava-vitals-scroll',
             x_expand: true,
@@ -75,9 +116,11 @@ var VitalsSection = GObject.registerClass({
         });
         this._scroll.set_child(this.menu.actor);
         root.add_child(this._scroll);
+        this._setExpanded(false);
 
         this._connectSettingsSignals();
         this._initializeMenu();
+        this._rebuildSummary();
         this._querySensors();
         this._initializeTimer();
 
@@ -86,6 +129,8 @@ var VitalsSection = GObject.registerClass({
             if (isOpen) {
                 this._initializeTimer();
                 this._querySensors();
+            } else {
+                this._setExpanded(false);
             }
         });
 
@@ -101,6 +146,68 @@ var VitalsSection = GObject.registerClass({
         Main.panel.statusArea.quickSettings.menu.close();
     }
 
+    _setExpanded(expanded) {
+        this._expanded = expanded;
+        this._scroll.visible = expanded;
+        this._expanderArrow.icon_name = expanded ? 'pan-down-symbolic' : 'pan-end-symbolic';
+        if (expanded)
+            this._expander.add_style_pseudo_class('checked');
+        else
+            this._expander.remove_style_pseudo_class('checked');
+    }
+
+    _pinnedKeys() {
+        return this._settings.get_strv('hot-sensors').filter(k => k !== '_default_icon_');
+    }
+
+    _rebuildSummary() {
+        this._summaryGrid.destroy_all_children();
+        this._summaryTiles = {};
+
+        const keys = this._pinnedKeys();
+        const layout = this._summaryGrid.layout_manager;
+        keys.forEach((key, i) => {
+            const row = this._sensorMenuItems[key];
+            const tile = new St.BoxLayout({
+                style_class: 'xava-vitals-tile',
+                x_expand: true,
+            });
+            const icon = new St.Icon({
+                style_class: 'xava-vitals-tile-icon',
+                gicon: row?.gicon ?? null,
+                y_align: Clutter.ActorAlign.CENTER,
+            });
+            const value = new St.Label({
+                style_class: 'xava-vitals-tile-value',
+                text: row?.value ?? '\u2026',
+                x_expand: true,
+                y_align: Clutter.ActorAlign.CENTER,
+            });
+            if (row)
+                value.style = row.valueStyle;
+            tile.add_child(icon);
+            tile.add_child(value);
+            layout.attach(tile, i % 2, Math.floor(i / 2), 1, 1);
+            this._summaryTiles[key] = {icon, value};
+        });
+
+        const empty = keys.length === 0;
+        this._summaryGrid.visible = !empty;
+        this._summaryHint.visible = empty;
+    }
+
+    _updateSummaryTile(key, value, style, gicon) {
+        const tile = this._summaryTiles[key];
+        if (!tile)
+            return;
+        if (value !== undefined) {
+            tile.value.text = value;
+            tile.value.style = style || null;
+        }
+        if (gicon)
+            tile.icon.gicon = gicon;
+    }
+
     _connectSettingsSignals() {
         this._settings.connectObject(
             'changed::update-time', this._initializeTimer.bind(this),
@@ -114,6 +221,8 @@ var VitalsSection = GObject.registerClass({
 
         for (let setting of settings)
             this._settings.connectObject('changed::' + setting, this._redrawMenu.bind(this), this);
+
+        this._settings.connectObject('changed::hot-sensors', this._rebuildSummary.bind(this), this);
 
         for (let setting of SensorCatalog.colorSettingsKeys())
             this._settings.connectObject('changed::' + setting, this._thresholdColorsChanged.bind(this), this);
@@ -141,66 +250,14 @@ var VitalsSection = GObject.registerClass({
 
         for (let i = 1; i <= this._numGpus; i++)
             this._initializeMenuGroup('gpu#' + i, 'gpu', (this._numGpus > 1 ? ' ' + i : ''));
-
-        // add separator
-        this.menu.addMenuItem(new PopupMenu.PopupSeparatorMenuItem());
-
-        let item = new PopupMenu.PopupBaseMenuItem({
-            reactive: false,
-            style_class: 'vitals-menu-button-container'
-        });
-
-        let customButtonBox = new St.BoxLayout({
-            style_class: 'vitals-button-box',
-            clip_to_allocation: true,
-            x_align: Clutter.ActorAlign.CENTER,
-            y_align: Clutter.ActorAlign.CENTER,
-            reactive: true,
-            x_expand: true
-        });
-
-        // custom round refresh button
-        let refreshButton = this._createRoundButton('view-refresh-symbolic', _('Refresh'));
-        refreshButton.connect('clicked', (_self) => {
-            // soft reset: clear history without rediscovering hardware (rediscover races
-            // _queryGpu when DRM indices are briefly empty and disables the group header)
-            this._sensors.resetHistory(false);
-            this._values.resetHistory(this._numGpus);
-
-            // make sure timer fires at next full interval
-            this._initializeTimer();
-
-            // refresh sensors now
-            this._querySensors();
-        });
-        customButtonBox.add_child(refreshButton);
-
-        // custom round monitor button
-        let monitorButton = this._createRoundButton('org.gnome.SystemMonitor-symbolic', _('System Monitor'));
-        monitorButton.connect('clicked', (_self) => {
-            this._closeQuickSettings();
-            Util.spawn(this._settings.get_string('monitor-cmd').split(" "));
-        });
-        customButtonBox.add_child(monitorButton);
-
-        // custom round preferences button
-        let prefsButton = this._createRoundButton('preferences-system-symbolic', _('Preferences'));
-        prefsButton.connect('clicked', (_self) => {
-            this._closeQuickSettings();
-            this._extensionObject.openPreferences();
-        });
-        customButtonBox.add_child(prefsButton);
-
-        // now add the buttons to the top bar
-        item.actor.add_child(customButtonBox);
-
-        // add buttons
-        this.menu.addMenuItem(item);
     }
 
     _initializeMenuGroup(groupName, optionName, menuSuffix = '', position = -1) {
         this._groups[groupName] = new PopupMenu.PopupSubMenuMenuItem(_(this._ucFirst(groupName) + menuSuffix), true);
         this._groups[groupName].icon.gicon = Gio.icon_new_for_string(this._sensorIconPath(groupName));
+        // Each PopupSubMenu wraps its rows in its own St.ScrollView, which eats
+        // wheel events even when it can't scroll; let them reach our outer scroll.
+        this._groups[groupName].menu.actor.enable_mouse_scrolling = false;
 
         // hide menu items that user has requested to not include
         if (!this._settings.get_boolean('show-' + optionName))
@@ -214,18 +271,6 @@ var VitalsSection = GObject.registerClass({
 
         if (position == -1) this.menu.addMenuItem(this._groups[groupName]);
         else this.menu.addMenuItem(this._groups[groupName], position);
-    }
-
-    _createRoundButton(iconName) {
-        let button = new St.Button({
-            style_class: 'button vitals-button-action'
-        });
-
-        button.child = new St.Icon({
-            icon_name: iconName
-        });
-
-        return button;
     }
 
     _removeMissingHotSensors(hotSensors) {
@@ -318,6 +363,7 @@ var VitalsSection = GObject.registerClass({
             // update sensor value in the group
             item.value = value;
             item.valueStyle = style;
+            this._updateSummaryTile(key, value, style);
         } else if (type.includes('-group')) {
             // update text next to group header
             let group = type.split('-')[0];
@@ -332,6 +378,7 @@ var VitalsSection = GObject.registerClass({
             let sensor = { 'label': label, 'value': value, 'type': type }
             this._appendMenuItem(sensor, key);
             this._sensorMenuItems[key].valueStyle = style;
+            this._updateSummaryTile(key, value, style, this._sensorMenuItems[key].gicon);
         }
     }
 
@@ -480,6 +527,7 @@ var VitalsSection = GObject.registerClass({
                     // change icon in dropdown
                     let menuRow = this._sensorMenuItems[item.key];
                     if (menuRow) menuRow.gicon = flagGIcon;
+                    this._updateSummaryTile(item.key, undefined, null, flagGIcon);
                 }
 
                 this._updateDisplay(_(item.label), item.value, item.type, item.key, item.style);
@@ -509,6 +557,7 @@ var VitalsSection = GObject.registerClass({
 
         this._hotLabels = {};
         this._hotItems = {};
+        this._summaryTiles = {};
         this._sensorMenuItems = {};
 
         this.menu?.destroy();
