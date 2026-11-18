@@ -15,10 +15,6 @@ end
 # OpenClaw Completion
 test -f "$HOME/.openclaw/completions/openclaw.fish"; and source "$HOME/.openclaw/completions/openclaw.fish"
 
-# bun
-set --export BUN_INSTALL "$HOME/.bun"
-set --export PATH $BUN_INSTALL/bin $PATH
-
 # LM Studio CLI (lms)
 set -gx PATH $PATH $HOME/.lmstudio/bin
 
