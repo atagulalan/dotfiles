@@ -54,6 +54,7 @@ packages=()
 for d in */; do
     d=${d%/}
     [[ $d == mimeapps ]] && continue
+    [[ $d == monochi ]] && continue  # private submodule, not a stow package
     if find "$d" -maxdepth 1 -name ".*" -print -quit | grep -q .; then
         packages+=("$d")
     fi
@@ -72,6 +73,16 @@ fi
 echo
 echo "==> Running extras (bin scripts, desktop entries, mimeapps)"
 ./install.sh
+
+echo
+echo "==> monochi ikon temasi (private submodule)"
+# Erisim yoksa (gh auth login yapilmamis vb.) atlanir; tema monoc/Adwaita'ya duser.
+if git submodule update --init monochi 2>/dev/null; then
+    ./monochi/install.sh
+else
+    echo "monochi klonlanamadi (private repo). 'gh auth login' sonrasi:"
+    echo "  git -C ~/dotfiles submodule update --init monochi && ~/dotfiles/monochi/install.sh"
+fi
 
 # Node surum yonetimi mise ile: projelerdeki .nvmrc / .node-version dosyalarini
 # okusun. Global node pacman'den (nodejs) gelir.

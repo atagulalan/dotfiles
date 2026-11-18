@@ -38,6 +38,10 @@ oturumu kapatmayı teklif eder.
   Mono), `mpv`, `micro`, `obs-studio`, `openrgb`, `qbittorrent`, `sunshine`,
   `syncplay`, `systemd` (kullanıcı servisleri: sunshine, qbittorrent) vb.
   `bootstrap.sh` bunları otomatik algılayıp stow'lar.
+- `monochi/` — **private** submodule (atagulalan/monochi): Hugeicons Pro
+  ikon teması, scraper ve build. Stow'lanmaz; `bootstrap.sh` erişim varsa
+  klonlayıp `monochi/install.sh` ile `~/.icons/monochi`'yi linkler. Pro
+  ikonları içerdiği için bu public repoya hiçbir dosyası kopyalanmamalı.
 - `packages.txt` — grup grup küratörlü paket listesi (repo + AUR karışık)
 - `packages-snapshot.txt` — `backup.sh`'ın ürettiği tam paket listesi
   (`pacman -Qqe` + AUR); kurulum için değil, format sonrası referans için

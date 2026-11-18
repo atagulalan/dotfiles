@@ -130,7 +130,7 @@ class Settings {
 
     _apply_icon_style() {
         let iconTheme = Gtk.IconTheme.get_for_display(Gdk.Display.get_default());
-        let styles = ['original', 'gnome'];
+        let styles = ['original', 'gnome', 'monochi'];
         let dir = styles[this._settings.get_int('icon-style')] || 'original';
         let vitalsPath = `${this._extensionObject.path}/icons/${dir}`;
         let iconsRoot = `${this._extensionObject.path}/icons/`;

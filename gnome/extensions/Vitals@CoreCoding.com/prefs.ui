@@ -533,6 +533,7 @@
                 <items>
                   <item translatable="yes">Original</item>
                   <item translatable="yes">GNOME</item>
+                  <item translatable="yes">Monochi</item>
                 </items>
               </object>
             </child>

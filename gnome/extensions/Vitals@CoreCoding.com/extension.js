@@ -39,7 +39,7 @@ var VitalsSection = GObject.registerClass({
 
         // list with the prefixes for the according themes, the index of each
         // item must match the index on the combo box
-        this._sensorsIconPathPrefix = ['/icons/original/', '/icons/gnome/'];
+        this._sensorsIconPathPrefix = ['/icons/original/', '/icons/gnome/', '/icons/monochi/'];
 
         this._sensorMenuItems = {};
         this._hotLabels = {};
@@ -447,7 +447,7 @@ var VitalsSection = GObject.registerClass({
         }
 
         const iconPathPrefixIndex = this._settings.get_int('icon-style');
-        if (sensorKey === 'memory' && iconPathPrefixIndex === 1 && key.startsWith('_memory_swap_'))
+        if (sensorKey === 'memory' && iconPathPrefixIndex >= 1 && key.startsWith('_memory_swap_'))
             icon = 'icon-swap';
         return this._extensionObject.path + this._sensorsIconPathPrefix[iconPathPrefixIndex] + icons[icon];
     }
