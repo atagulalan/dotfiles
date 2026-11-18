@@ -3,6 +3,11 @@
   "name": "CodexBar Usage",
   "description": "Codex kullanim limitlerini GNOME ust panelinde gosterir.",
   "version": 1,
-  "shell-version": ["48", "49", "50"],
+  "shell-version": [
+    "48",
+    "49",
+    "50",
+    "51"
+  ],
   "url": "https://github.com/steipete/CodexBar"
 }
