@@ -68,14 +68,13 @@ echo
 echo "==> Running extras (bin scripts, desktop entries, mimeapps)"
 ./install.sh
 
-# nvm.fish (fisher eklentisi repo'da) varsayilan node surumunu istiyor;
-# kurulu degilse acilista hata veriyor. Stow sonrasi indirip kuralim.
-nvmver=$(grep -oP 'nvm_default_version:\K[0-9.]+' fish/.config/fish/fish_variables 2>/dev/null || true)
-if [[ -n $nvmver ]] && command -v fish &>/dev/null; then
+# Node surum yonetimi mise ile: projelerdeki .nvmrc / .node-version dosyalarini
+# okusun. Global node pacman'den (nodejs) gelir.
+if command -v mise &>/dev/null; then
     echo
-    echo "==> Node $nvmver kuruluyor (nvm.fish)"
-    fish -c "nvm install $nvmver" ||
-        echo "nvm install basarisiz; sonra elle: fish -c 'nvm install $nvmver'"
+    echo "==> mise: .nvmrc/.node-version okuma aciliyor"
+    mise settings add idiomatic_version_file_enable_tools node ||
+        echo "mise ayari basarisiz; elle: mise settings add idiomatic_version_file_enable_tools node"
 fi
 
 # oh-my-fish: prompt temasi + bass, ayarlari stow'lanan ~/.config/omf'tan okur.
