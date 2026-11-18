@@ -1,0 +1,503 @@
+/* Bakım: etiketlerin anlamı ve bozulunca izlenecek yol → sites/BAKIM.md */
+/* Obel — Google ana sayfa + arama sonuçları (Google'da koyu tema açık olmalı).
+   Sadece /, /search, /webhp — Maps, Gmail, Drive vb. etkilenmez.
+   Google sınıf adları karışık ve sık değişiyor; kırılırsa burası ilk şüpheli. */
+@-moz-document regexp("https://www\\.google\\.com(\\.tr)?/(search|webhp)?([?#].*)?") {
+  /* ETKİ: Sayfa zemini ve ana kapsayıcılar siyah.
+     KANCA: KALICI id'ler (#main #rcnt #searchform #fbar…) + KIRILGAN .sfbg .L3eUgb.
+     KIRILIRSA: Zemin griyse İncele ile en dıştaki gri kapsayıcının id'sini listeye ekle. */
+  html, body, #main, #cnt, #rcnt, .sfbg, .minidiv .sfbg, #searchform,
+  #fbar, #footcnt, .appbar, #appbar, #top_nav, #hdtb, #botstuff, .L3eUgb {
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+
+  /* ETKİ: Arama kutusu: #0a0a0a + turuncu çerçeve; öneri listesi koyu.
+     KANCA: KIRILGAN .RNNXgb (kutu) .aajZCb/.UUbT9/.erkvQe (öneri) + KALICI textarea[name=q].
+     KIRILIRSA: textarea[name=q]'dan yukarı çık, kenarlığı olan ilk katmanın sınıfını .RNNXgb yerine yaz. */
+  /* Arama kutusu */
+  .RNNXgb, .A8SBwf .RNNXgb, form[role="search"] .RNNXgb {
+    background: #0a0a0a !important;
+    border: 1px solid #ff3c05 !important;
+    box-shadow: none !important;
+  }
+  /* öneri listesi açılınca arama kutusuyla tek parça turuncu çerçeve (üst kenar kutuya
+     bitişik olduğu için yok) */
+  html body :is(.aajZCb, .UUbT9, .erkvQe):not(#_) {
+    background: #0a0a0a !important;
+    border: 1px solid #ff3c05 !important;
+    border-top: none !important;
+    box-shadow: none !important;
+  }
+  html body :is(.aajZCb, .UUbT9, .erkvQe):not(#_) * { border-color: transparent !important; }
+  textarea[name="q"], input[name="q"] { color: #f1f1ef !important; caret-color: #ff3c05 !important; }
+
+  /* ETKİ: google.com ana sayfadaki 'Google'da Ara / Kendimi Şanslı' butonları.
+     KANCA: KIRILGAN .FPdoLc .gNO89b .RNmpXc.
+     KIRILIRSA: Butonu İncele → yeni sınıfı yaz; ya da input[type=submit][name=btnK] kullan. */
+  /* Ana sayfa butonları */
+  .FPdoLc input[type="submit"], .gNO89b, .RNmpXc {
+    background: #161616 !important;
+    border: 1px solid #1a1a1a !important;
+    color: #f1f1ef !important;
+  }
+
+  /* ETKİ: Sonuç başlıkları turuncu, ziyaret edilmiş koyu turuncu, hover altı çizili; site adresi (cite) gri.
+     KANCA: KALICI #search #rso #rcnt + h3 / [role=heading] + cite.
+     KIRILIRSA: Başlık mavi kalırsa başlık öğesi h3 ya da role=heading değildir → İncele, etiketini ekle. */
+  /* Sonuçlar */
+  /* Başlıklar: h3 (normal sonuçlar) + role=heading (Haberler, kartlar) */
+  :is(#search, #rso, #rcnt) a :is(h3, [role="heading"]),
+  :is(#search, #rso, #rcnt) a :is(h3, [role="heading"]) * { color: #ff3c05 !important; }
+  :is(#search, #rso, #rcnt) a:visited :is(h3, [role="heading"]),
+  :is(#search, #rso, #rcnt) a:visited :is(h3, [role="heading"]) * { color: #a8300a !important; }
+  :is(#search, #rso, #rcnt) a:hover :is(h3, [role="heading"]) { text-decoration: underline !important; }
+  cite { color: #bdbdbb !important; }
+
+  /* ETKİ: Metin içi linkler (ipucu, Vikipedi, 'daha fazla bilgi') turuncu. İçinde h3/img/cite/div olan blok linkler (kartlar) hariç.
+     KANCA: KALICI id kapsamları + a:not(:has(...)).
+     KIRILIRSA: Kart yazıları turuncu olursa :has() hariç listesine o kartın iç etiketini ekle. */
+  /* Diğer mavi linkler (ipucu, "daha fazla bilgi", Vikipedi vb.) */
+  :is(#taw, #rcnt, #center_col, #rhs, #botstuff, #fbar) a:not(:has(h3, img, cite, div)):not([role="button"]),
+  :is(#taw, #rcnt, #center_col, #rhs, #botstuff, #fbar) a:not(:has(h3, img, cite, div)):not([role="button"]) :is(b, em, span:not(:has(*))) {
+    color: #ff3c05 !important;
+  }
+  :is(#taw, #rcnt, #center_col, #rhs, #botstuff, #fbar) a:not(:has(h3, img, cite)):visited {
+    color: #a8300a !important;
+  }
+
+  /* ETKİ: Aktif sekme (Tümü/Görseller…) turuncu yazı + alt çizgi (eski yapı).
+     KANCA: KALICI #hdtb [aria-current] + KIRILGAN .YmvwI.
+     KIRILIRSA: Aşağıdaki 'Aktif sekme' blokları asıl iş görüyor; bu yedek. */
+  /* Seçili sekme alt çizgisi */
+  #hdtb [aria-current="page"], [selected] > .YmvwI, .YmvwI[aria-current] {
+    color: #ff3c05 !important;
+    border-bottom-color: #ff3c05 !important;
+  }
+
+  /* ETKİ: AI Modu sol rayı için ilk tahmin kuralı (Ayarlar butonu içeren nav).
+     KANCA: KALICI role/aria-label ('ayar'/'setting').
+     KIRILIRSA: Aşağıdaki .aim-lhs-panel-container ve [data-lhsb] blokları asıl iş görüyor. */
+  /* Sol sidebar (G logosu / menü / yeni sohbet / ayarlar rayı) — tahmini
+     seçiciler: ayarlar butonu içeren nav/aside/navigation */
+  :is(nav, aside, [role="navigation"], [role="complementary"]):has(:is([aria-label*="ayar" i], [aria-label*="setting" i])) {
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+  :is(nav, aside, [role="navigation"], [role="complementary"]):has(:is([aria-label*="ayar" i], [aria-label*="setting" i])) * {
+    background-color: transparent !important;
+  }
+
+  /* ETKİ: Google Çeviri kutusu: dil seçiciler, kaynak/hedef alanlar köşeli + gri kenarlık, odakta turuncu.
+     KANCA: KALICI #tw-main #tw-sl #tw-tl #tw-source #tw-target (yıllardır aynı).
+     KIRILIRSA: Kutu bozulursa #tw-main hâlâ var mı bak; id'ler değiştiyse İncele ile yenilerini yaz. */
+  /* Çeviri kutusu (tw-* id/sınıfları) */
+  #tw-main #tw-sl, #tw-main #tw-tl, #tw-main .tw-lang-selector {
+    background: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    color: #f1f1ef !important;
+    box-shadow: none !important;
+  }
+  #tw-main #tw-sl:hover, #tw-main #tw-tl:hover, #tw-main .tw-lang-selector:hover {
+    border-color: #ff3c05 !important;
+  }
+  #tw-main :is(#tw-sl, #tw-tl, .tw-lang-selector) * { color: #f1f1ef !important; }
+  #tw-main :is(#tw-sl, #tw-tl, .tw-lang-selector) svg,
+  #tw-main :is(#tw-sl, #tw-tl, .tw-lang-selector) svg * { fill: #ff3c05 !important; }
+
+  #tw-main #tw-source, #tw-main #tw-target {
+    border: 1px solid #333333 !important;
+    box-shadow: none !important;
+  }
+  #tw-main #tw-source { background: #000000 !important; }
+  #tw-main #tw-source:focus-within { border-color: #ff3c05 !important; }
+  #tw-main #tw-target, #tw-main #tw-target *:not(img) {
+    background-color: #0a0a0a !important;
+  }
+  #tw-main #tw-target-text, #tw-main .tw-ta { color: #f1f1ef !important; }
+  #tw-main textarea { caret-color: #ff3c05 !important; }
+  #tw-main [role="button"], #tw-main .tw-menu-btn { color: #bdbdbb !important; }
+  #tw-main [role="button"]:hover { color: #ff3c05 !important; }
+  /* ikonları yazı rengine boya — AMA fill="none" olan görünmez boyut karelerini (kopyala
+     ikonundaki <rect>, logodaki son <path>) ve çok renkli Google logosunu (#md3enc) boyama;
+     yoksa ikon dolu kareye dönüşüyor */
+  #tw-main [role="button"]:not(#md3enc) svg *:not([fill="none"]),
+  #tw-main #tw-swap svg *:not([fill="none"]) { fill: currentColor !important; }
+
+  /* ETKİ: Çeviri kutusu çerçeveleri — genel "kenarlık şeffaf" kurallarını yenmek için
+           yüksek özgüllük (html body …:not(#_)).
+     KANCA: KALICI #tw-main #tw-sl #tw-tl #tw-source #tw-target.
+     KIRILIRSA: Çerçeve kaybolursa yeni eklenen genel bir border kuralı ezmiştir → onun
+                :not() listesine #tw-main ekle. */
+  html body #tw-main:not(#_) :is(#tw-sl, #tw-tl, .tw-lang-selector, #tw-source, #tw-target) {
+    border: 1px solid #333333 !important;
+  }
+  /* iki alan da aynı yüzey; kaynak tarafındaki iç kutu/textarea zeminsiz ve çerçevesiz */
+  html body #tw-main:not(#_) :is(#tw-source, #tw-target) {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+  }
+  html body #tw-main:not(#_) #tw-source *:not(img, svg, svg *) {
+    background-color: transparent !important;
+    border-color: transparent !important;
+    box-shadow: none !important;
+  }
+  html body #tw-main:not(#_) :is(#tw-sl, #tw-tl, .tw-lang-selector):hover,
+  html body #tw-main:not(#_) #tw-source:focus-within {
+    border-color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Google'ın kendi tüm kenarlıkları silik gri #202020 (bizim kutular #333 kalır).
+     KANCA: GENEL — id kapsamı içinde her öğe.
+     KIRILIRSA: Kırılmaz; fazla silik/parlak bir kenarlık varsa renk buradan. */
+  /* Sonuç alanındaki tüm kenarlık/ayraç renkleri tek tip gri (#333).
+     Kenarlığı olmayan öğelerde etkisiz; aktif sekme ve çeviri kutusu hariç. */
+  :is(#rcnt, #rhs, #center_col, #botstuff, #appbar) *:not([aria-current], #tw-main *, #tw-main) {
+    border-color: #202020 !important;
+  }
+  hr, [role="separator"] { background-color: #333333 !important; border-color: #333333 !important; }
+
+  /* ETKİ: Sayfa altı (konum, Yardım/Gizlilik/Şartlar, 'kişiselleştirme olmadan dene') gri, hover turuncu.
+     KANCA: KALICI footer #footcnt #fbar + URL a[href*=pws=0].
+     KIRILIRSA: Alt bilgi renklenmezse footer'ın id'sini İncele ile kontrol et. */
+  /* Alt bilgi (konum, Yardım/Gizlilik/Şartlar, kişiselleştirme satırı):
+     hepsi sakin gri, üzerine gelince turuncu. :not(#_) özgüllük için. */
+  html body :is(footer, #footcnt, #fbar):not(#_),
+  html body :is(footer, #footcnt, #fbar):not(#_) *,
+  html body :is(#botstuff, #rcnt):not(#_) :is(a[href*="pws=0"], a[href*="pws=0"] *) {
+    color: #6a6a68 !important;
+  }
+  html body :is(footer, #footcnt, #fbar):not(#_) :is(a, [role="link"], [role="button"], button):hover,
+  html body :is(footer, #footcnt, #fbar):not(#_) :is(a, [role="link"], [role="button"], button):hover *,
+  html body :is(#botstuff, #rcnt):not(#_) a[href*="pws=0"]:hover {
+    color: #ff3c05 !important;
+  }
+  html body :is(footer, #footcnt, #fbar):not(#_) b { color: #bdbdbb !important; }
+  html body :is(footer, #footcnt, #fbar):not(#_) * { border-color: #1a1a1a !important; }
+
+  /* ETKİ: Aktif sekme yazısı turuncu.
+     KANCA: KALICI [aria-current=page], [role=navigation] [aria-selected=true].
+     KIRILIRSA: Google aria-current'ı kaldırırsa aktif sekmenin yeni işaretini (selected/aria-selected) bul. */
+  /* Aktif sekme (Tümü / Görseller / …): turuncu yazı */
+  [aria-current="page"], [aria-current="page"] *,
+  [role="navigation"] [aria-selected="true"], [role="navigation"] [aria-selected="true"] * {
+    color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Aktif sekme alt çizgisi turuncu (border / pseudo / boş div hangisiyse).
+     KANCA: KALICI aria-current + GENEL :empty.
+     KIRILIRSA: Çizgi beyazsa çizgiyi İncele: border mı, ::after mı, boş div mi → ona göre ekle. */
+  /* Aktif sekmenin alt çizgisi: border, pseudo-element ya da boş çocuk div olabilir */
+  [aria-current="page"], [aria-current="page"] *,
+  [role="navigation"] [aria-selected="true"], [role="navigation"] [aria-selected="true"] *,
+  [selected] > .YmvwI, .YmvwI[aria-current] {
+    border-color: #ff3c05 !important;
+    text-decoration-color: #ff3c05 !important;
+  }
+  [aria-current="page"]::before, [aria-current="page"]::after,
+  [aria-current="page"] :empty:not(img, svg, svg *, input),
+  :has(> [aria-current="page"]) > :empty:not(img, svg, input),
+  [role="navigation"] [aria-selected="true"] :empty:not(img, svg, svg *, input) {
+    background-color: #ff3c05 !important;
+    border-color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Görsel küçük resimlerine içten %12 beyaz çerçeve.
+     KANCA: KALICI img[src*=encrypted-tbn] / data:image.
+     KIRILIRSA: Çerçeve çıkmazsa küçük resmin src kalıbını kontrol et. */
+  /* Görsel küçük resimlerine içten düşük opaklıkta beyaz kenarlık (YouTube'daki gibi) */
+  img[src*="encrypted-tbn"], img[src^="data:image/jpeg"], img[src^="data:image/png"][height]:not([height="16"]):not([height="18"]):not([height="20"]) {
+    outline: 1px solid rgba(255, 255, 255, 0.12) !important;
+    outline-offset: -1px !important;
+  }
+
+  /* ETKİ: AI Modu sol menüsü (açık hâl): siyah, popup/tooltip koyu yüzey, hover turuncu, animasyon yok.
+     KANCA: ORTA .aim-lhs-panel-container + KIRILGAN .PpHF4 (ayarlar popup) .LGKDTe (tooltip).
+     KIRILIRSA: Menü griyse kapsayıcıyı İncele; popup şeffaf görünürse yeni popup sınıfını hariç listesine yaz. */
+  /* AI Modu sol menüsü (kullanıcının DOM'undan: .aim-lhs-panel-container) —
+     siyah zemin, sağda tek gri kenarlık; açılır menü/tooltip koyu yüzey */
+  .aim-lhs-panel-container, .aim-lhs-panel-container * {
+    transition: none !important;
+    animation-duration: 0s !important;
+  }
+  .aim-lhs-panel-container {
+    background: #000000 !important;
+  }
+  .aim-lhs-panel-container *:not(svg, svg *, .PpHF4, .PpHF4 *, .LGKDTe, .LGKDTe *, [role="dialog"], [role="dialog"] *) {
+    background-color: transparent !important;
+    border-color: #1a1a1a !important;
+    box-shadow: none !important;
+  }
+  .aim-lhs-panel-container [role="navigation"] {
+    border-right: none !important;
+  }
+  .aim-lhs-panel-container :is(.PpHF4, .LGKDTe, [role="dialog"]) {
+    background: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    box-shadow: none !important;
+  }
+  .aim-lhs-panel-container :is(.PpHF4, .LGKDTe, [role="dialog"]) * { background-color: transparent !important; }
+  .aim-lhs-panel-container :is(button, [role="button"], a):hover,
+  .aim-lhs-panel-container :is(button, [role="button"], a):hover * {
+    color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Bilgi paneli linklerinin noktalı alt çizgisi koyu turuncu.
+     KANCA: KALICI data-attrid (kc:/ hw:/ ss:/).
+     KIRILIRSA: — */
+  :is([data-attrid^="kc:/"], [data-attrid^="hw:/"], [data-attrid^="ss:/"]) a {
+    text-decoration-color: #a8300a !important;
+  }
+
+  /* ETKİ: ANA KURAL: sayfadaki tüm zemin renkleri şeffaf → Google'ın gri/lacivert kutuları siyaha döner. Arama kutusu, çeviri, popup/menü/diyalog hariç. Pseudo-element'lere ETKİ ETMEZ.
+     KANCA: GENEL body * (sınıfsız).
+     KIRILIRSA: Bir yer hâlâ griyse gri büyük ihtimalle ::before/::after'da → o katmanı ayrıca boya (bkz. #bres, .b3puKe). Bir popup şeffaf kaldıysa hariç listesine ekle. */
+  /* Sonuç alanında tüm gri zeminler şeffaf → siyah sayfa görünür.
+     Popup/menü/diyaloglar hariç: onlar koyu yüzey + gri kenarlık alır. */
+  /* (kapsam tüm body: yükleme iskeletleri ve AI Modu paneli #main dışında render oluyor) */
+  body *:not(img, svg, svg *, video, canvas, input, textarea,
+    #searchform, #searchform *, form[role="search"], form[role="search"] *, #tw-main *,
+    .PpHF4, .PpHF4 *, .LGKDTe, .LGKDTe *, [aria-current] *, [aria-current]::after,
+    [role="dialog"], [role="dialog"] *, [role="menu"], [role="menu"] *,
+    [role="listbox"], [role="listbox"] *, g-menu, g-menu *, [role="tooltip"], [role="tooltip"] *) {
+    background-color: transparent !important;
+  }
+  /* Yükleme iskeleti (boş, animasyonlu gradyan çubuklar): görünmesin.
+     Inline background-image taşıyan küçük resim div'leri hariç. */
+  body :empty:not(img, svg, svg *, video, canvas, input, textarea, br, hr,
+    [style*="background-image"], [aria-current] *, #searchform *, form[role="search"] *, #tw-main *) {
+    background-image: none !important;
+    animation: none !important;
+  }
+
+  :is(#main, #rcnt, #rhs, #botstuff) :is([role="dialog"], [role="menu"], [role="listbox"], g-menu, [role="tooltip"]) {
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+  }
+  :is(#main, #rcnt, #rhs, #botstuff) :is([role="dialog"], [role="menu"], [role="listbox"], g-menu, [role="tooltip"]) * {
+    background-color: transparent !important;
+  }
+
+  /* ETKİ: AI Modu yan barı yüklenirken: ray siyah, kayan iskelet çubukları gizli, buton ikonları gri/turuncu.
+     KANCA: KALICI [jsname=lz2xLb] [data-lhsb=rail] + KIRILGAN .i3B4Gc .hb8k2.
+     KIRILIRSA: Yükleme sırasında gri görünürse rayı İncele; data-lhsb hâlâ var mı bak. */
+  /* AI Modu yan barı — yüklenirken render olan ray + iskelet (kullanıcının DOM'undan:
+     [data-lhsb="rail"], kapsayıcı [jsname="lz2xLb"], iskelet çubukları .hb8k2).
+     Pseudo-elementler dahil siyah; iskelet tamamen gizli. */
+  [jsname="lz2xLb"], :has(> [data-lhsb="rail"]),
+  [jsname="lz2xLb"]::before, [jsname="lz2xLb"]::after,
+  [jsname="lz2xLb"] *, [jsname="lz2xLb"] *::before, [jsname="lz2xLb"] *::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  [jsname="lz2xLb"], :has(> [data-lhsb="rail"]) {
+    background-color: #000000 !important;
+  }
+  /* yan barların sağında kenarlık yok */
+  [jsname="lz2xLb"], [jsname="lz2xLb"] *, :has(> [data-lhsb="rail"]),
+  .aim-lhs-panel-container, .aim-lhs-panel-container [role="navigation"] {
+    border-right: none !important;
+  }
+  [jsname="lz2xLb"] .i3B4Gc, [jsname="lz2xLb"] [aria-hidden="true"]:has(.hb8k2) {
+    visibility: hidden !important;
+  }
+  [data-lhsb] :is(button, [role="button"]) { color: #bdbdbb !important; }
+  [data-lhsb] :is(button, [role="button"]):hover { color: #ff3c05 !important; }
+
+  /* ETKİ: Üst kartlar (görsel ızgara, Yaş, Eşi, haber, video): #0a0a0a + #333 çerçeve, hover turuncu; opak olduğu için hover'da genişleyen kart komşusunu örter.
+     KANCA: KALICI [role=group] [data-vdb] (Google kendi JS'inde kullanıyor).
+     KIRILIRSA: Çerçeve kaybolursa kartın en dış katmanında data-vdb var mı bak; yoksa yeni data-* ara. */
+  /* Üst bilgi kartları (Vitrindeki sonuçlar: görsel ızgarası, Yaş, Eşi, haber,
+     video) — kullanıcının DOM'undan: her kart [data-vdb] (Google'ın kendi JS'i bu
+     attribute'u kullanıyor). Opak yüzey + kenarlık; hover'da genişleyen kart
+     komşusunu örter. :not(#_) şeffaflaştırma kuralını yenmek için. */
+  html body [role="group"] [data-vdb]:not(#_) {
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    box-sizing: border-box !important;
+  }
+  html body [role="group"] [data-vdb]:not(#_):hover {
+    border-color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Sağ paneldeki Hakkında satırları (Doğum/Eşi/…): her satır #0a0a0a kutu + #333 çerçeve; etiketler gri.
+     KANCA: KIRILGAN .b3puKe (padding'li dış satır) .w8qArf (etiket) + KALICI data-attrid.
+     KIRILIRSA: Satır griye dönerse: data-attrid=kc:/… öğesinden yukarı çık, padding'i ve gri zemini (çoğu zaman ::before) olan katmanın sınıfını .b3puKe yerine yaz. */
+  /* Hakkında satırları (Doğum / Eşi / …) — kullanıcının DOM'undan:
+     .b3puKe > [data-attrid="kc:/…"] > .Z1hOCe (padding'li asıl kutu).
+     Üst kartlarla aynı: opak yüzey + gri kenarlık, Google'ın padding'i korunur. */
+  /* Gri + padding dış katmanda (.b3puKe, muhtemelen ::before) → kutu orada */
+  html body .b3puKe:not(#_) {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    box-sizing: border-box !important;
+  }
+  html body .b3puKe:not(#_):hover { border-color: #ff3c05 !important; }
+  html body .b3puKe:not(#_)::before, html body .b3puKe:not(#_)::after,
+  html body .b3puKe:not(#_) *, html body .b3puKe:not(#_) *::before, html body .b3puKe:not(#_) *::after {
+    background: transparent !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  html body .b3puKe:not(#_) > [data-attrid] > div:first-child { border: none !important; }
+  /* etiket (Doğum:, Eşi: …) sakin gri */
+  .b3puKe .w8qArf { color: #bdbdbb !important; }
+
+  /* ETKİ: Sayfa altındaki 'diğer aramalar' çipleri: gri pseudo-katman boyanır → #0a0a0a + #333 çerçeve, hover turuncu.
+     KANCA: KALICI #bres + [data-hveid][style*=position] (yapı) — gri kutu ::before/::after'da.
+     KIRILIRSA: Çipler bozulursa: gri kutu hangi öğenin pseudo'su? Styles'ta ::before'u ara; kenarlığı o katmana ver, öğenin kendisine verme (yazıya yapışır). */
+  /* "Kullanıcıların yaptığı diğer aramalar" çipleri — kullanıcının DOM'undan:
+     #bres [data-hveid][style*="position:relative"] (.qR29te) > div > a.
+     Gri kutu sarmalayıcının pseudo-element'i (padding/aralık dahil, kenarlardan
+     taşıyor) → silmek yerine boya: yüzey + kenarlık o katmanda. */
+  html body #bres:not(#_) *:not([data-hveid][style*="position"]) {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  html body #bres:not(#_) [data-hveid][style*="position"]::before,
+  html body #bres:not(#_) [data-hveid][style*="position"]::after,
+  html body #bres:not(#_) [data-hveid][style*="position"] > div > a::before,
+  html body #bres:not(#_) [data-hveid][style*="position"] > div > a::after {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    box-shadow: none !important;
+  }
+  html body #bres:not(#_) [data-hveid][style*="position"]:hover::before,
+  html body #bres:not(#_) [data-hveid][style*="position"]:hover::after,
+  html body #bres:not(#_) [data-hveid][style*="position"] > div > a:hover::before,
+  html body #bres:not(#_) [data-hveid][style*="position"] > div > a:hover::after {
+    border-color: #ff3c05 !important;
+  }
+  html body #bres:not(#_) [data-hveid][style*="position"] { background-color: transparent !important; }
+  html body #bres:not(#_) [data-hveid] > div > a[href*="/search"] :is(span, b) { color: #f1f1ef !important; }
+  html body #bres:not(#_) [data-hveid] > div > a[href*="/search"] svg { color: #6a6a68 !important; fill: #6a6a68 !important; }
+  html body #bres:not(#_) [data-hveid] > div > a[href*="/search"]:hover svg { color: #ff3c05 !important; fill: #ff3c05 !important; }
+
+  /* ETKİ: Görseller sekmesindeki resimli filtre çipleri çerçevesiz; seçili çip ince turuncu çizgi.
+     KANCA: KALICI #hdtb-sc + role=listitem (çerçeve box-shadow inset'ti).
+     KIRILIRSA: Çerçeve geri gelirse box-shadow mı border mı kontrol et. */
+  /* Görseller filtre çipleri (#hdtb-sc) — kullanıcının DOM'undan: çerçeve aslında
+     box-shadow inset (#444746) + benim görsel outline'ım → ikisi de kapalı.
+     Seçili çip: mavi zemin yerine ince turuncu çizgi. */
+  #hdtb-sc [role="listitem"] a > div, #hdtb-sc [role="listitem"] a > div * {
+    box-shadow: none !important;
+    border: none !important;
+  }
+  #hdtb-sc img { outline: none !important; }
+  #hdtb-sc [role="listitem"] a > div[selected] {
+    background-color: #0a0a0a !important;
+    outline: 1px solid #ff3c05 !important;
+    outline-offset: -1px !important;
+  }
+  #hdtb-sc [role="listitem"] a:hover > div { outline: none !important; }
+
+  /* ETKİ: İki özel yatay ayraç çizgisi gizli.
+     KANCA: KIRILGAN .Fgyi2e/.ym1pid ve .K91ENd/.KFFQ0c/.akqY6.
+     KIRILIRSA: Çizgi geri gelirse İncele ile yeni sınıfları yaz (boş div olduğu için başka kanca yok). */
+  /* Yatay ayraç (kullanıcının DOM'undan: .Fgyi2e > .ym1pid boş div) — gizli */
+  /* .K91ENd > div > .KFFQ0c > .akqY6 (boş) — kullanıcının DOM'undan */
+  .KFFQ0c:has(> .akqY6:empty), .KFFQ0c > .akqY6:empty,
+  .Fgyi2e > .ym1pid:empty, .Fgyi2e:has(> .ym1pid:empty) {
+    display: none !important;
+  }
+
+  /* ETKİ: Genel ayraç temizliği: hr, separator, boş div çizgileri, pseudo çizgiler, sağ panelin sol çizgisi, sonuç blokları arası üst/alt çizgiler.
+     KANCA: GENEL + KALICI id'ler.
+     KIRILIRSA: Gerekli bir kutunun üst/alt kenarı kaybolursa son kuralın :not() listesine o kutuyu ekle. */
+  /* Ayraçlar (divider) kapalı: <hr>, separator rolü, boş ayraç div'leri,
+     pseudo-element çizgileri, sağ panelin sol çizgisi. Kendi kutularımız
+     (:not(#_) özgüllüklü border kuralları) etkilenmez. */
+  hr, [role="separator"] { display: none !important; }
+  html body :empty:not(img, svg, svg *, input, textarea, video, canvas, br, [aria-current] *, #tw-main *) {
+    border-color: transparent !important;
+  }
+  html body *:not(#bres *, #tw-main *)::before, html body *:not(#bres *, #tw-main *)::after {
+    border-color: transparent !important;
+  }
+  #rhs, #rhs > *, #center_col, #rcnt > * {
+    border-left-color: transparent !important;
+    border-right-color: transparent !important;
+  }
+  /* sonuç blokları arasındaki yatay çizgiler (üst/alt kenarlıklar) */
+  :is(#rso, #botstuff, #rhs, #center_col) :is(div, g-section-with-header, block-component):not(:has(> a)):not([data-vdb], .b3puKe, [role="dialog"]) {
+    border-top-color: transparent !important;
+    border-bottom-color: transparent !important;
+  }
+
+  /* ETKİ: Sonuç altı alt linkler (sitelinks: "HE-QA", "He Global …"): başlık turuncu,
+           kutu çerçeveleri ve aralarındaki çizgiler yok; organik sonuçlarda Google'ın
+           tüm kenarlıkları şeffaf (kendi kutularımız — [data-vdb] kartlar — hariç).
+     KANCA: KALICI #rso + yapı (a'nın ilk metin satırı) — sınıfsız.
+     KIRILIRSA: Alt link başlığı mavi kalırsa başlığı İncele: a içinde div/span mı, a'nın
+                kendisi mi, yoksa h3 > a mı (başlık dışta)? Seçiciyi ona göre daralt. Çerçeve dönerse box-shadow olabilir. */
+  html body #rso:not(#_) *:not([data-vdb], [data-vdb] *, [role="dialog"], [role="dialog"] *, #tw-main, #tw-main *) {
+    border-color: transparent !important;
+  }
+  html body #rso:not(#_) a:not([data-vdb] *):not(:has(h3, img, cite)) > :first-child,
+  html body #rso:not(#_) a:not([data-vdb] *):not(:has(h3, img, cite)) > :first-child * {
+    color: #ff3c05 !important;
+  }
+  html body #rso:not(#_) a:not([data-vdb] *):not(:has(h3, img, cite)):visited > :first-child,
+  html body #rso:not(#_) a:not([data-vdb] *):not(:has(h3, img, cite)):visited > :first-child * {
+    color: #a8300a !important;
+  }
+  /* alt link başlığı <h3><a>metin</a></h3> yapısında (başlık dışta, link içte) */
+  html body :is(#rso, #rcnt):not(#_) :is(h3, [role="heading"]) a:not([data-vdb] *),
+  html body :is(#rso, #rcnt):not(#_) :is(h3, [role="heading"]) a:not([data-vdb] *) * {
+    color: #ff3c05 !important;
+  }
+  html body :is(#rso, #rcnt):not(#_) :is(h3, [role="heading"]) a:not([data-vdb] *):visited,
+  html body :is(#rso, #rcnt):not(#_) :is(h3, [role="heading"]) a:not([data-vdb] *):visited * {
+    color: #a8300a !important;
+  }
+  html body #rso:not(#_) a:not([data-vdb] *):not(:has(h3, img, cite)):hover > :first-child {
+    text-decoration: underline !important;
+  }
+
+  /* ETKİ: Alışveriş sekmesi (sekme çubuğu + Diğer menüsü) gizli.
+     KANCA: KALICI URL parametresi tbm=shop / udm=28.
+     KIRILIRSA: Google alışveriş için yeni udm numarası verirse onu ekle (sekmenin linkine bak). */
+  /* Alışveriş sekmesini gizle (eski tbm=shop, yeni udm=28) — sekme
+     çubuğunda ve "Diğer" menüsünde */
+  a[href*="tbm=shop"], a[href*="udm=28"],
+  [role="listitem"]:has(> a[href*="tbm=shop"], > a[href*="udm=28"]),
+  [role="menuitem"]:has(a[href*="tbm=shop"], a[href*="udm=28"]),
+  div:has(> a[href*="udm=28"]:only-child) {
+    display: none !important;
+  }
+
+  /* ETKİ: Seçim rengi turuncu; tüm köşeler 0 (spinner/loader hariç); hesap avatarı ve avatar sınıfları yuvarlak.
+     KANCA: GENEL * + KALICI googleusercontent avatar URL'si, aria-label 'Google Hesabı'.
+     KIRILIRSA: Avatar kare kalırsa avatar img'nin src/aria-label'ını kontrol et. Dönen bir şey kare olduysa sınıfını spinner hariç listesine ekle. */
+  ::selection { background: #ff3c05; color: #000000; }
+
+  /* Keskin köşeler — favicon ve avatarlar yuvarlak kalır */
+  /* yükleme spinner'ları (daire border+radius ile çiziliyor) hariç */
+  *:not([class*="spinner" i], [class*="spinner" i] *, [class*="loader" i], [class*="loader" i] *, [role="progressbar"] *, circle) { border-radius: 0 !important; }
+  .gb_A img, img.gbii, [class*="avatar" i],
+  img[src*="googleusercontent.com/a/"], img[src*="googleusercontent.com/a-/"],
+  :is(a, [role="button"]):is([aria-label*="Google Hesab" i], [aria-label*="Google Account" i], [href*="accounts.google.com"]) :is(img, svg) {
+    border-radius: 50% !important;
+  }
+}
+
+/* ETKİ: Sadece Görseller sekmesi — tüm zeminler şeffaf, önizleme/diyalog siyah.
+   KANCA: KALICI URL (udm=2 / tbm=isch) + GENEL body *.
+   KIRILIRSA: Google Görseller'in udm numarası değişirse regexp'i güncelle. */
+/* Google Görseller (udm=2 / tbm=isch): koyu gri (#22242a) zeminler sınıf adıyla
+   yakalanamıyor → sayfadaki tüm zemin renklerini şeffaf yap, siyah body görünsün.
+   Sadece background-color; görseller (img / background-image) etkilenmez. */
+@-moz-document regexp("https://www\\.google\\.com(\\.tr)?/search\\?.*(udm=2|tbm=isch).*") {
+  html, body { background: #000000 !important; }
+  body *:not(img):not(input):not(textarea) {
+    background-color: transparent !important;
+  }
+  /* Önizleme paneli / diyaloglar altındaki sonuçları göstermesin */
+  [role="dialog"], [aria-modal="true"] {
+    background-color: #000000 !important;
+  }
+  .RNNXgb { background-color: #0a0a0a !important; }
+}

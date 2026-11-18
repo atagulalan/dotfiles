@@ -1,0 +1,495 @@
+/* Bakım: etiketlerin anlamı ve bozulunca izlenecek yol → sites/BAKIM.md */
+/* Obel — WhatsApp Web (WhatsApp'ta koyu tema açık olmalı) */
+@-moz-document domain("web.whatsapp.com") {
+  /* ETKİ: WhatsApp renk değişkenleri (klasik + yeni WDS) palete eşlenir.
+     KANCA: KALICI-ORTA --panel-*, --WDS-* değişken adları.
+     KIRILIRSA: Bir yüzey eski renkteyse DevTools > Computed'dan değişken adını bul, ekle. */
+  :root, .dark, body.dark {
+    /* klasik değişkenler */
+    --app-background: #000000 !important;
+    --background-default: #000000 !important;
+    --background-default-hover: #111111 !important;
+    --background-default-active: #161616 !important;
+    --panel-background: #0a0a0a !important;
+    --panel-background-colored: #0a0a0a !important;
+    --panel-background-lighter: #161616 !important;
+    --panel-header-background: #0a0a0a !important;
+    --conversation-panel-background: #000000 !important;
+    --conversation-header-background: #0a0a0a !important;
+    --rich-text-panel-background: #0a0a0a !important;
+    --compose-input-background: #161616 !important;
+    --compose-input-border: #1a1a1a !important;
+    --search-input-background: #161616 !important;
+    --dropdown-background: #0a0a0a !important;
+    --dropdown-background-hover: #161616 !important;
+    --modal-background: #0a0a0a !important;
+    --border-stronger: #1a1a1a !important;
+    --border-list: #1a1a1a !important;
+    --border-panel: #1a1a1a !important;
+    --incoming-background: #161616 !important;
+    --incoming-background-deeper: #1a1a1a !important;
+    --outgoing-background: #000000 !important;
+    --outgoing-background-deeper: #0a0a0a !important;
+    --primary: #f1f1ef !important;
+    --primary-strong: #f1f1ef !important;
+    --secondary: #bdbdbb !important;
+    --secondary-lighter: #6a6a68 !important;
+    --teal: #ff3c05 !important;
+    --teal-lighter: #ff3c05 !important;
+    --icon-high-emphasis: #f1f1ef !important;
+    --unread-marker-background: #ff3c05 !important;
+    --unread-marker-text: #000000 !important;
+    --checkbox-background: #ff3c05 !important;
+    --button-primary-background: #ff3c05 !important;
+    --link: #ff3c05 !important;
+
+    /* yeni WDS değişkenleri */
+    --WDS-surface-default: #000000 !important;
+    --WDS-surface-emphasized: #0a0a0a !important;
+    --WDS-surface-highlight: #161616 !important;
+    --WDS-background-wash-plain: #000000 !important;
+    --WDS-background-wash-inset: #0a0a0a !important;
+    --WDS-content-default: #f1f1ef !important;
+    --WDS-content-deemphasized: #bdbdbb !important;
+    --WDS-content-action-emphasized: #ff3c05 !important;
+    --WDS-accent: #ff3c05 !important;
+    --WDS-accent-emphasized: #ff3c05 !important;
+    --WDS-accent-deemphasized: color-mix(in srgb, #ff3c05 25%, #161616) !important;
+    --WDS-persistent-always-branded: #ff3c05 !important;
+    --WDS-bubble-surface-outgoing: #000000 !important;
+    --WDS-bubble-surface-incoming: #161616 !important;
+    --WDS-divider: #1a1a1a !important;
+  }
+
+  /* ETKİ: Zemin + balon değişkenleri her öğede ezilir (alt öğelerde yeniden tanımlandığı için).
+     KANCA: GENEL :root *.
+     KIRILIRSA: — */
+  /* WhatsApp temayı alt öğelerde yeniden tanımlıyor → arka plan + balon
+     değişkenlerini her öğede ez */
+  :root * {
+    --app-background: #000000 !important;
+    --conversation-panel-background: #000000 !important;
+    --WDS-surface-default: #000000 !important;
+    --WDS-background-wash-plain: #000000 !important;
+    --outgoing-background: #000000 !important;
+    --outgoing-background-deeper: #0a0a0a !important;
+    --outgoing-background-highlight: #161616 !important;
+    --bubble-outgoing: #000000 !important;
+    --WDS-bubble-surface-outgoing: #000000 !important;
+    --WDS-bubble-outgoing: #000000 !important;
+    --WDS-bubble-surface-outgoing-emphasized: #0a0a0a !important;
+  }
+
+  /* ETKİ: Yükleme/giriş ekranı değişkenleri + yükleme çubuğu turuncu.
+     KANCA: ORTA [id*=startup] + değişkenler.
+     KIRILIRSA: — */
+  /* Yükleme ekranı + "sohbet seçilmedi" giriş paneli */
+  :root, :root * {
+    --startup-background: #000000 !important;
+    --startup-background-rgb: 0, 0, 0 !important;
+    --startup-icon: #333333 !important;
+    --progress-primary: #ff3c05 !important;
+    --progress-background: #1a1a1a !important;
+    --intro-background: #000000 !important;
+    --intro-border: #1a1a1a !important;
+  }
+  #initial_startup, #startup, #wa_web_initial_startup,
+  [id*="startup" i], [class*="startup" i], .landing-wrapper, .landing-window,
+  #app:empty, body > div:not([id]):only-child {
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+  progress { background: #1a1a1a !important; accent-color: #ff3c05 !important; }
+  progress::-moz-progress-bar { background: #ff3c05 !important; }
+
+  /* ETKİ: Yükleme ekranında logo/yazı gizli, sadece siyah + çubuk.
+     KANCA: KALICI #app, #side, canvas (QR), button varlığı.
+     KIRILIRSA: Uyarı ekranı da gizlenirse: o ekranda button yok demektir → başka bir ayırt edici ekle. */
+  /* Yükleme ekranı = #app içinde henüz sohbet listesi (#side), QR (canvas) ya da
+     buton yokken. O sırada her şey gizli, sadece siyah zemin + turuncu çubuk. */
+  html:has(#app:not(:has(#side, canvas, button))),
+  html:has(#app:not(:has(#side, canvas, button))) body,
+  #app:not(:has(#side, canvas, button)),
+  #app:not(:has(#side, canvas, button)) * {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+    animation: none !important;
+  }
+  #app:not(:has(#side, canvas, button)) * {
+    visibility: hidden !important;
+  }
+  #app:not(:has(#side, canvas, button)) :is(progress, [role="progressbar"]),
+  #app:not(:has(#side, canvas, button)) :is(progress, [role="progressbar"]) * {
+    visibility: visible !important;
+    background-color: #1a1a1a !important;
+  }
+  #app:not(:has(#side, canvas, button)) [role="progressbar"] > * {
+    background-color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Sohbet seçili değilken sağ panel siyah; kısayol kutuları çerçeveli.
+     KANCA: KALICI data-testid=intro-panel / intro_panel_v2_title_card / intro-panel-empty-state-action-tile-group.
+     KIRILIRSA: Panel griyse data-testid'leri İncele ile kontrol et. */
+  /* Sağ giriş paneli ("sohbet seçilmedi") — data-testid'ler kullanıcının DOM'undan */
+  :has(> section[data-testid="intro-panel"]),
+  section[data-testid="intro-panel"],
+  [data-testid="intro_panel_v2_title_card"] {
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+  [data-testid="intro-panel-empty-state-action-tile-group"] button > div > div:first-child {
+    background: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+  }
+  /* hover: çerçeve/zemin değişmez, sadece ikon + yazı turuncu */
+  [data-testid="intro-panel-empty-state-action-tile-group"] button:hover > div > div:first-child {
+    background: #0a0a0a !important;
+    border-color: #333333 !important;
+  }
+  [data-testid="intro-panel-empty-state-action-tile-group"] button:hover * {
+    color: #ff3c05 !important;
+  }
+  [data-testid="intro-panel-empty-state-action-tile-group"] button,
+  [data-testid="intro-panel-empty-state-action-tile-group"] button:is(:hover, :focus-visible) {
+    outline: none !important;
+    background: transparent !important;
+  }
+
+  /* ETKİ: Mesaj yazma kutusu #0a0a0a + #333, odakta turuncu.
+     KANCA: KALICI data-testid=compose-box + yapı (> span > div > div > div[tabindex=-1]).
+     KIRILIRSA: Kutu bozulursa compose-box'tan aşağı inip gri hapı tam kaplayan katmanı bul, yapı yolunu güncelle. */
+  /* Yazma kutusu — kullanıcının DOM'undan: footer > .copyable-area >
+     [data-testid="compose-box"] > span > div > div > div[tabindex="-1"] (gri hap) */
+  footer .copyable-area, [data-testid="compose-box"] {
+    background-color: #000000 !important;
+  }
+  [data-testid="compose-box"] > span > div > div > div[tabindex="-1"] {
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    box-shadow: none !important;
+  }
+  [data-testid="compose-box"] > span > div > div > div[tabindex="-1"]:focus-within {
+    border-color: #ff3c05 !important;
+  }
+  [data-testid="compose-box"] > span > div > div > div[tabindex="-1"] * {
+    background-color: transparent !important;
+  }
+  [data-testid="conversation-compose-box-input"] { caret-color: #ff3c05 !important; }
+  [data-testid="compose-box"] button:hover svg { color: #ff3c05 !important; }
+
+  /* ETKİ: Sohbet listesinde seçili sohbet satırı: #161616 zemin + #333 çerçeve
+           (common.css role=row'u hariç tuttuğu için burada ayrıca).
+     KANCA: KALICI #pane-side + aria-selected=true (satır ya da hücre üzerinde).
+     KIRILIRSA: Seçili sohbeti İncele: aria-selected hangi öğede? O öğeyi buraya ekle. */
+  /* ETKİ: Fotoğrafsız avatarlar (baş harf "ÜB", grup ikonu) KARE: yuvarlaklık SVG içi
+           <mask><circle> ile yapılıyor → mask kapalı, dış çizgi dairesi gizli.
+     KANCA: KALICI SVG yapısı: svg:has(> mask) > g[mask] + stroke'lu <g><circle>
+            (kullanıcının DOM'undan). CSS mask:none SVG mask attribute'unu ezer.
+     KIRILIRSA: Daire geri gelirse avatarı İncele: kırpma hâlâ <mask> mı, yoksa clip-path mi? */
+  svg:has(> mask) g[mask] {
+    mask: none !important;
+  }
+  svg:has(> mask) > g[mask] > g[stroke]:has(> circle) {
+    display: none !important;
+  }
+  /* avatarlara içten %12 beyaz ince çerçeve (YouTube/Google küçük resimleriyle aynı):
+     fotoğraflı (pps / cdn t61.24694 profil URL'si) + fotoğrafsız (maskeli SVG) */
+  img[src*="pps.whatsapp.net"], img[src*="cdn.whatsapp.net/v/t61.24694"], svg:has(> mask):has(g[mask]) {
+    outline: 1px solid rgba(255, 255, 255, 0.12) !important;
+    outline-offset: -1px !important;
+  }
+
+  /* ETKİ: Sohbet listesi başlığı (⋮ Menu, + New chat): ikon butonları zeminsiz, hover'da ikon turuncu.
+     KANCA: KALICI data-testid=chatlist-header + aria-label (kullanıcının DOM'undan).
+     KIRILIRSA: + yine turuncu blok olursa butonun aria-label'ını kontrol et. */
+  html body [data-testid="chatlist-header"]:not(#_) button,
+  html body [data-testid="chatlist-header"]:not(#_) button * {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    color: #f1f1ef !important;
+  }
+  html body [data-testid="chatlist-header"]:not(#_) button:hover * { color: #ff3c05 !important; }
+
+  /* ETKİ: Sohbet arama kutusu: #0a0a0a + #333 çerçeve, odakta turuncu, imleç turuncu.
+     KANCA: KALICI data-testid=chat-list-search-container + input[role=textbox] (yapı:
+            input'u içeren ilk flex satırı = görünen kutu).
+     KIRILIRSA: Çerçeve yazıya yapışırsa kutu bir üst katmandadır → :has(> div > input) seviyesini ayarla. */
+  [data-testid="chat-list-search-container"],
+  [data-testid="chat-list-search-container"] *:not(:has(> div > input[role="textbox"])) {
+    background-color: transparent !important;
+  }
+  html body [data-testid="chat-list-search-container"]:not(#_) :has(> div > input[role="textbox"]) {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    outline: 1px solid #333333 !important;
+    outline-offset: -1px !important;
+  }
+  html body [data-testid="chat-list-search-container"]:not(#_) :has(> div > input[role="textbox"]):focus-within {
+    outline-color: #ff3c05 !important;
+  }
+  [data-testid="chat-list-search-container"] input[role="textbox"] {
+    background: transparent !important;
+    caret-color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Filtre chip'leri (All/Unread/Favorites/Groups/+): seçili değilken #0a0a0a + #333,
+           hover'da çerçeve + yazı turuncu; seçili turuncu zemin + siyah yazı (aşağıdaki
+           #side kuralı).
+     KANCA: KALICI role=tablist[aria-label=chat-list-filters] + data-testid=filter-button +
+            aria-selected (kullanıcının DOM'undan).
+     KIRILIRSA: Chip'ler değişirse tablist'in aria-label'ını kontrol et. */
+  html body [aria-label="chat-list-filters"]:not(#_) button[role="tab"]:not([aria-selected="true"]) {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    outline: none !important;
+  }
+  html body [aria-label="chat-list-filters"]:not(#_) button[role="tab"]:not([aria-selected="true"]):hover {
+    border-color: #ff3c05 !important;
+  }
+  html body [aria-label="chat-list-filters"]:not(#_) button[role="tab"]:not([aria-selected="true"]):hover * {
+    color: #ff3c05 !important;
+  }
+  html body [aria-label="chat-list-filters"]:not(#_) button[role="tab"][aria-selected="true"],
+  html body [aria-label="chat-list-filters"]:not(#_) button[role="tab"][aria-selected="true"]:is(:hover, :focus-visible) {
+    border: 1px solid #ff3c05 !important;
+    outline: none !important;
+    background-color: #ff3c05 !important;
+  }
+  html body [aria-label="chat-list-filters"]:not(#_) button[role="tab"][aria-selected="true"]:hover * {
+    color: #000000 !important;
+  }
+
+  /* ETKİ: Fotoğraf albümleri (çoklu resim): yeşil/gri zemin (resim aralarındaki boşluk
+           dahil) → giden: siyah + turuncu çerçeve, gelen: #0a0a0a + #202020; kuyruk gizli.
+     KANCA: KALICI data-testid=image-album + role=group (balon) + aria-label "You…"/"Siz…"
+            ile gideni ayırma (kullanıcının DOM'undan). msg-container kullanılmıyor.
+     KIRILIRSA: Albüm yine yeşilse albüm balonunu İncele: zemin role=group'un hangi
+                çocuğunda? Dil değiştiyse aria-label başlangıcını güncelle. */
+  [data-testid="image-album"] > [role="group"],
+  [data-testid="image-album"] > [role="group"] > div:not([data-icon]) {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+  }
+  [data-testid="image-album"] > [role="group"] > div:not([data-icon]):first-of-type {
+    border: 1px solid #202020 !important;
+  }
+  [data-testid="image-album"]:is([aria-label^="You" i], [aria-label^="Siz" i]) > [role="group"],
+  [data-testid="image-album"]:is([aria-label^="You" i], [aria-label^="Siz" i]) > [role="group"] > div:not([data-icon]) {
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+  [data-testid="image-album"]:is([aria-label^="You" i], [aria-label^="Siz" i]) > [role="group"] > div:not([data-icon]):first-of-type {
+    border-color: #ff3c05 !important;
+  }
+  [data-testid="image-album"] [data-icon^="tail"] { display: none !important; }
+  /* +3 sayacının yeşil/gri kaplaması */
+  [data-testid="media-album-overflow-count-container"] {
+    background: rgba(0, 0, 0, 0.6) !important;
+  }
+
+  /* ETKİ: Sticker/medya mesajlarında saat+tik etiketinin yeşil arka planı → siyah.
+     KANCA: KALICI [data-testid=msg-meta]'nın kapsayıcısı (kullanıcının DOM'undan).
+     KIRILIRSA: Yeşil dönerse saat etiketini İncele; zemin msg-meta'nın kendisinde mi üstünde mi? */
+  /* sadece medya/sticker mesajlarında (metin balonunda saatin arkası balon renginde kalsın) */
+  [data-testid="msg-container"]:has([data-testid="sticker-container"], img:not([src*="pps.whatsapp"]), video) :has(> [data-testid="msg-meta"]),
+  [data-testid="msg-container"]:has([data-testid="sticker-container"], img:not([src*="pps.whatsapp"]), video) [data-testid="msg-meta"] {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    background-image: none !important;
+  }
+
+  /* ETKİ: Sohbet listesi: seçili sohbet kutusu #161616 + #333 çerçeve; hover'da #333 çerçeve.
+     KANCA: KALICI [aria-selected=true] > [data-testid=cell-frame-container] (görünen gri
+            kutu; kullanıcının DOM'undan). Dış role=row/gridcell kapları daha büyük → onlara verme.
+     KIRILIRSA: Çerçeve yanlış yerde çıkarsa gri kutuyu İncele: cell-frame-container hâlâ o mu? */
+  [aria-selected="true"] > [data-testid="cell-frame-container"] {
+    background-color: #161616 !important;
+    outline: 1px solid #333333 !important;
+    outline-offset: -1px !important;
+  }
+  [data-testid="cell-frame-container"]:hover {
+    outline: 1px solid #333333 !important;
+    outline-offset: -1px !important;
+  }
+
+  /* ETKİ: Sohbet listesindeki yeşil "Call back / Geri ara" butonu turuncu + siyah yazı.
+     KANCA: KALICI aria-label ("Call back"/"Geri ara") + data-icon *call*.
+     KIRILIRSA: Buton yeşil kalırsa butonu İncele, aria-label ya da data-icon'unu ekle. */
+  :is(#pane-side, #side) :is(button[aria-label*="call back" i], button[aria-label*="geri ara" i],
+    button:has([data-icon*="call" i]):not(:has(img))) {
+    background: #ff3c05 !important;
+    background-color: #ff3c05 !important;
+    color: #000000 !important;
+    border: none !important;
+  }
+  :is(#pane-side, #side) :is(button[aria-label*="call back" i], button[aria-label*="geri ara" i],
+    button:has([data-icon*="call" i]):not(:has(img))) * {
+    color: #000000 !important;
+    background: transparent !important;
+  }
+
+  /* ETKİ: Uygulama, sohbet listesi, sohbet alanı zemini doğrudan siyah.
+     KANCA: KALICI #app #main #side #pane-side.
+     KIRILIRSA: — */
+  /* Arka plan: doğrudan siyah */
+  html, body, #app, #app > div, #main, #main > div, #side, #pane-side,
+  #main header, #main footer, #side header {
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+
+  /* ETKİ: Gönderdiğin mesaj balonu: siyah + turuncu çerçeve, kuyruk gizli, açık yazı, okundu tiki turuncu.
+     KANCA: KALICI data-testid=msg-container + span[aria-label='You:'/'Siz:'] + msg-meta svg.
+     KIRILIRSA: Balonlar karıştıysa: dil değişti mi ('You:' etiketi)? msg-container içindeki ilk div hâlâ balon mu? */
+  /* Giden balon — kullanıcının DOM'undan: msg-container > div (balon); gideni
+     "You:"/"Siz:" etiketi ya da msg-meta içindeki tik ikonu (svg) ayırt eder */
+  /* sadece balonun kendisi (ilk div); diğer kardeş div'ler hover aksiyon
+     kutusu (tepki/emoji) → şeffaf kalmalı */
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)),
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div:first-of-type {
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div:first-of-type {
+    border: 1px solid #ff3c05 !important;
+  }
+  /* kuyruk kenarlığı takip edemez → gizli */
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) [data-icon="tail-out"] { display: none !important; }
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div:not(:first-of-type),
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div:not(:first-of-type) * {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+  /* balon içindeki yeşil gradyanlar (menü oku arkası vb.) kapalı; foto/önizleme hariç */
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div:first-of-type *:not(img, video, canvas, [style*="background-image"]) {
+    background-image: none !important;
+  }
+  /* menü oku (˅) arkası: yazının üstüne turuncu soluklaşma */
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) :is(button[aria-label*="menu" i], [role="button"][aria-label*="menu" i]),
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) :has(> :is(button[aria-label*="menu" i], [role="button"][aria-label*="menu" i])) {
+    background: linear-gradient(to right, transparent, #000000 45%) !important;
+  }
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div *:not([data-icon^="tail"], [data-icon^="tail"] *) {
+    color: #f1f1ef !important;
+  }
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div [data-testid="msg-meta"] * {
+    color: #6a6a68 !important;
+  }
+  /* okundu tiki turuncu */
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div [data-testid="msg-meta"] [aria-label*="Read" i] *,
+  [data-testid="msg-container"]:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg)) > div [data-testid="msg-meta"] [aria-label*="Okundu" i] * {
+    color: #ff3c05 !important;
+  }
+  [data-testid="msg-container"] [data-icon="tail-out"] { color: #ff3c05 !important; }
+
+  /* ETKİ: Gelen mesaj balonu: #0a0a0a + #202020 çerçeve, kuyruk gizli, iç kutular şeffaf.
+     KANCA: KALICI data-testid=msg-container (giden olmayanlar).
+     KIRILIRSA: Saatin yanında yıldız vb. ikon olan gelen mesaj giden sanılabilir — bilinen sınır. */
+  /* Gelen balon: #0a0a0a + #202020 kenarlık; kuyruk gizli, iç kutular şeffaf,
+     hover aksiyon kutusu şeffaf */
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))),
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) > div:first-of-type {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+  }
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) { background: transparent !important; background-color: transparent !important; }
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) > div:first-of-type {
+    border: 1px solid #202020 !important;
+  }
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) > div:first-of-type *:not(img, video, canvas, [style*="background-image"]) {
+    background-color: transparent !important;
+    background-image: none !important;
+  }
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) > div:not(:first-of-type),
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) > div:not(:first-of-type) * {
+    background: transparent !important;
+    background-color: transparent !important;
+  }
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) [data-icon="tail-in"] { display: none !important; }
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) :is(button[aria-label*="menu" i], [role="button"][aria-label*="menu" i]),
+  [data-testid="msg-container"]:not(:is(:has(span[aria-label="You:"]), :has(span[aria-label="Siz:"]), :has([data-testid="msg-meta"] svg))) :has(> :is(button[aria-label*="menu" i], [role="button"][aria-label*="menu" i])) {
+    background: linear-gradient(to right, transparent, #0a0a0a 45%) !important;
+  }
+  :root * {
+    --incoming-background: #0a0a0a !important;
+    --incoming-background-deeper: #0a0a0a !important;
+    --WDS-bubble-surface-incoming: #0a0a0a !important;
+  }
+
+  /* ETKİ: Eski .message-out yapısı için yedek değişkenler.
+     KANCA: ORTA .message-out (eski WhatsApp).
+     KIRILIRSA: Yeni yapıda etkisiz; zarar vermez. */
+  /* Giden mesaj balonu: düz turuncu, siyah yazı */
+  .message-out, .message-out * {
+    --message-primary: #f1f1ef !important;
+    --bubble-meta: #6a6a68 !important;
+    --bubble-meta-icon: #6a6a68 !important;
+    --icon-ack: #ff3c05 !important;
+    --WDS-content-default: #f1f1ef !important;
+    --WDS-content-deemphasized: #6a6a68 !important;
+  }
+  .message-out [data-pre-plain-text], .message-out .copyable-text,
+  .message-out .selectable-text {
+    color: #f1f1ef !important;
+  }
+  .message-out a { color: #ff3c05 !important; }
+  [data-icon^="tail-out"] { color: #ff3c05 !important; }
+  .message-out ::selection { background: #ff3c05; color: #000000; }
+
+  /* ETKİ: Sohbet arka plan deseni kapalı.
+     KANCA: KALICI [data-asset-chat-background-*].
+     KIRILIRSA: — */
+  /* Sohbet duvar kağıdı deseni kapalı */
+  [data-asset-chat-background-dark],
+  [data-asset-chat-background-light] {
+    opacity: 0 !important;
+  }
+
+  ::selection { background: #ff3c05; color: #000000; }
+
+  /* ETKİ: Tüm köşeler 0 (spinner hariç), pseudo'lar dahil.
+     KANCA: GENEL.
+     KIRILIRSA: — */
+  /* Keskin köşeler — profil fotoğrafları yuvarlak kalır */
+  /* yükleme spinner'ları hariç */
+  *:not([class*="spinner" i], [class*="spinner" i] *, [class*="loader" i], [class*="loader" i] *, [role="progressbar"] *, circle), *:not([class*="spinner" i], [class*="spinner" i] *, [class*="loader" i], [class*="loader" i] *, [role="progressbar"] *, circle)::before, *:not([class*="spinner" i], [class*="spinner" i] *, [class*="loader" i], [class*="loader" i] *, [role="progressbar"] *, circle)::after { border-radius: 0 !important; }
+
+  /* ETKİ: Sohbet filtreleri (All/Unread/…): hover turuncu çerçeve, seçili turuncu zemin.
+     KANCA: KALICI #side + role=tab / aria-selected / aria-pressed.
+     KIRILIRSA: Seçili filtre turuncu değilse filtre butonunun seçili işaretini İncele ile bul. */
+  /* Filtre chip'leri (All / Unread / Favorites…): hover = turuncu kenarlık, yuvarlak
+     hover katmanı yok */
+  #side :is([role="tab"], [role="tablist"] button, button[aria-pressed], button[aria-selected]):hover {
+    border-color: #ff3c05 !important;
+    background-color: transparent !important;
+    color: #f1f1ef !important;
+  }
+  #side :is([role="tab"], [role="tablist"] button, button[aria-pressed], button[aria-selected])::before,
+  #side :is([role="tab"], [role="tablist"] button, button[aria-pressed], button[aria-selected])::after,
+  #side :is([role="tab"], [role="tablist"] button, button[aria-pressed], button[aria-selected]):hover > * {
+    background-color: transparent !important;
+  }
+  /* Seçili chip: düz turuncu, siyah yazı */
+  #side :is([role="tab"][aria-selected="true"], button[aria-pressed="true"], button[aria-selected="true"]),
+  #side :is([role="tab"][aria-selected="true"], button[aria-pressed="true"], button[aria-selected="true"]):hover {
+    background-color: #ff3c05 !important;
+    border-color: #ff3c05 !important;
+    color: #000000 !important;
+  }
+  #side :is([role="tab"][aria-selected="true"], button[aria-pressed="true"], button[aria-selected="true"]) * {
+    color: #000000 !important;
+  }
+  /* ETKİ: Avatarlar dahil her şey kare; maskeler kapalı.
+     KANCA: KALICI pps.whatsapp.net img + data-icon=default-*.
+     KIRILIRSA: Baş harf avatarı yuvarlaksa daire SVG içinde çiziliyordur. */
+  /* avatarlar dahil her şey kare (varsayılan/grup/baş harf avatarları da) */
+  [data-icon^="default-"], [data-icon^="default-"] *,
+  img[src*="pps.whatsapp.net"], [aria-label*="avatar" i], [class*="avatar" i] {
+    clip-path: none !important;
+    mask: none !important;
+  }
+}

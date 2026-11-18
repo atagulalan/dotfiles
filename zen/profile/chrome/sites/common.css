@@ -1,0 +1,83 @@
+/* Bakım: etiketlerin anlamı ve bozulunca izlenecek yol → sites/BAKIM.md */
+/* Obel — ortak etkileşim kuralı: liste öğeleri ve butonlar hover / seçili / odak
+   durumunda düz gri dolgu yerine kenarlıkla gösterilir. Kenarlık "outline" ile
+   (yer kaplamaz → layout kaymaz). Video oynatıcı ve mesaj satırları hariç. */
+
+/* ETKİ: hover/odakta butonlar ve liste öğeleri #333 outline (yer kaplamaz); menü/liste hover zemini #0a0a0a.
+   KANCA: GENEL rol tabanlı (button, role=menuitem/option/tab/listitem, nav a) + :not() hariç listesi.
+   KIRILIRSA: Bir yerde istenmeyen çerçeve → o öğenin kalıcı kancasını ilk bloktaki :not() listesine ekle
+              (örn. [data-…], sınıf). Büyük kapsayıcılar :has(button…) ile, avatar butonları
+              (#avatar-btn, içinde avatar img olanlar) ile zaten hariç. */
+@-moz-document domain("chatgpt.com"), domain("web.whatsapp.com"), domain("youtube.com") {
+
+  :is(button, [role="button"], [role="menuitem"], [role="menuitemradio"], [role="menuitemcheckbox"],
+      [role="option"], [role="tab"], [role="listitem"], [role="treeitem"], nav a, li > a,
+      tp-yt-paper-item, ytd-guide-entry-renderer a, [data-sidebar-item]):is(:hover, :focus-visible):not(.html5-video-player *, ytd-video-preview *, #mouseover-overlay *, [class*="VideoPreview"] *, [class*="InlinePlayer"] *, [role="row"] *, [role="slider"], #hdtb-sc *,
+      [id*="sidebar" i], [id*="sidebar" i] > *, :has(button, a, [role="button"], [role="menuitem"]),
+      [data-app-navigation-rail] > button, button[class~="inset-0"],
+      [data-interactive-row-link], .sidebar-item *, [role="listitem"]:has(.sidebar-item),
+      [data-app-action-sidebar-section-toggle],
+      #avatar-btn, :has(> img), :has(> yt-img-shadow), :has(img[src*="ggpht"]), :has(img[src*="googleusercontent"]),
+      :has(img[class*="avatar" i]), [aria-label*="avatar" i],
+      [aria-label="chat-list-filters"] *, [data-testid="intro-panel-empty-state-action-tile-group"] *,
+      .yt-spec-button-shape-next--icon-button, .yt-spec-button-shape-next--icon-only-default,
+      [class*="ShapeNextIconButton"], [class*="ShapeNextIconOnly"], yt-icon-button, yt-icon-button *) {
+    outline: 1px solid #333333 !important;
+    outline-offset: -1px !important;
+  }
+
+  /* klavye odağı turuncu */
+  :is(button, [role="button"], [role="menuitem"], [role="option"], [role="tab"], a):focus-visible:not(.html5-video-player *) {
+    outline-color: #ff3c05 !important;
+  }
+
+  /* hover dolgusu: gri yerine bizim yüzey */
+  :is([role="menuitem"], [role="option"], [role="listitem"], [role="treeitem"], nav a, li > a,
+      tp-yt-paper-item, ytd-guide-entry-renderer a, [data-sidebar-item]):hover:not(.html5-video-player *, [data-interactive-row-link], .sidebar-item *, [role="listitem"]:has(.sidebar-item)) {
+    background-color: #0a0a0a !important;
+  }
+}
+
+/* ETKİ: seçili/aktif öğeler (aria-current, aria-selected, data-active) kalıcı #333 outline.
+   KANCA: KALICI aria-* / data-active.
+   KIRILIRSA: İç içe çift çerçeve → içteki öğeyi :not() listesine ekle (örn. [data-interactive-row-link]). */
+/* Seçili / açık / aktif durum: kalıcı kenarlık (Google hariç — orada aktif sekme
+   turuncu yazı + alt çizgiyle gösteriliyor) */
+@-moz-document domain("chatgpt.com"), domain("web.whatsapp.com"), domain("youtube.com") {
+  /* aria-expanded / data-state=open YOK: bölüm başlıkları (Projects, Recents) ve
+     sidebar toggle hep "açık" durumda → kalıcı çerçeve almasınlar */
+  :is([aria-current="page"], [aria-current="true"], [aria-selected="true"], [data-active],
+      tp-yt-paper-item[active], ytd-guide-entry-renderer[active] tp-yt-paper-item):not(.html5-video-player *, [role="row"], [role="row"] *, [role="tab"],
+      [class*="chip" i], [class*="chip" i] *, #side button,
+      [data-interactive-row-link], .sidebar-item *) {
+    outline: 1px solid #333333 !important;
+    outline-offset: -1px !important;
+  }
+
+  /* ETKİ: tooltip'ler #0a0a0a + #333 tek çerçeve.
+     KANCA: KALICI role=tooltip + YouTube tp-yt-paper-tooltip #tooltip.
+     KIRILIRSA: Çift çerçeve → dış kap da role=tooltip taşıyordur; çerçeve sadece görünen
+                (içteki) kutuda olmalı, dış kap şeffaf. */
+  :is([role="tooltip"]:not(:has(#tooltip, [role="tooltip"])), tp-yt-paper-tooltip #tooltip) {
+    background: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    color: #f1f1ef !important;
+  }
+  [role="tooltip"]:has(#tooltip, [role="tooltip"]) {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+}
+
+/* ETKİ: Google'da sadece button / menuitem / option hover çerçevesi.
+   KANCA: GENEL rol tabanlı; sekmeler, listitem, arama kutusu, #hdtb-sc hariç.
+   KIRILIRSA: Sekmede çerçeve çıkarsa sekmenin rolünü hariç listesine ekle. */
+/* Google: sadece gerçek butonlar / menü öğeleri — sekmeler (Tümü, Görseller…),
+   liste öğeleri ve linkler HARİÇ (onlar turuncu yazı/alt çizgiyle gösteriliyor) */
+@-moz-document regexp("https://www\\.google\\.com(\\.tr)?/(search|webhp)?([?#].*)?") {
+  :is(button, [role="menuitem"], [role="option"]):is(:hover, :focus-visible):not(#hdtb-sc *, [role="navigation"] *, [role="tab"], [role="listitem"] *, #searchform *, form[role="search"] *) {
+    outline: 1px solid #333333 !important;
+    outline-offset: -1px !important;
+  }
+}

@@ -1,3 +1,15 @@
+/* Obel site temaları — palet (ghostty + userChrome ile aynı):
+   bg #000 · surface1 #0a0a0a · surface2 #161616 · border #1a1a1a · hover #111
+   text #f1f1ef · text2 #bdbdbb · muted #6a6a68 · accent #ff3c05 · radius 0
+   Değişiklikler Zen yeniden başlatılınca uygulanır.
+   Dark Reader bu sitelerde KAPALI olmalı (site listesine ekle). */
+@import url("sites/youtube.css");
+@import url("sites/whatsapp.css");
+@import url("sites/chatgpt.css");
+@import url("sites/google.css");
+@import url("sites/font.css");
+@import url("sites/common.css");
+
 /* Zen new tab / home — pure black */
 @-moz-document url("about:newtab"),
   url("about:home"),

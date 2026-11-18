@@ -1,0 +1,510 @@
+/* Bakım: etiketlerin anlamı ve bozulunca izlenecek yol → sites/BAKIM.md */
+/* Obel — YouTube (YouTube'da koyu tema açık olmalı) */
+@-moz-document domain("youtube.com") {
+  /* ETKİ: YouTube renk değişkenleri (zemin, yüzey, yazı, marka kırmızısı → turuncu).
+     KANCA: KALICI-ORTA --yt-spec-* değişken adları; [dark] her öğede ezilir.
+     KIRILIRSA: Bir renk eskiye döndüyse DevTools > Computed'da o rengi veren --yt-spec-* değişkenini bul, listeye ekle. */
+  /* YouTube değişkenleri alt öğelerde ([dark] attr'lı masthead vb.) yeniden tanımlıyor,
+     o yüzden [dark] her yerde ezilmeli */
+  html, html[dark], html[darker-dark-theme], [dark], [darker-dark-theme] {
+    --yt-spec-base-background: #000000 !important;
+    --yt-spec-general-background-a: #000000 !important;
+    --yt-spec-general-background-b: #000000 !important;
+    --yt-spec-general-background-c: #0a0a0a !important;
+    --yt-spec-raised-background: #0a0a0a !important;
+    --yt-spec-menu-background: #0a0a0a !important;
+    --yt-spec-inverted-background: #f1f1ef !important;
+    --yt-spec-additive-background: #161616 !important;
+    --yt-spec-badge-chip-background: #161616 !important;
+    --yt-spec-10-percent-layer: #1a1a1a !important;
+    --yt-spec-outline: #1a1a1a !important;
+    --yt-spec-text-primary: #f1f1ef !important;
+    --yt-spec-text-secondary: #bdbdbb !important;
+    --yt-spec-text-disabled: #6a6a68 !important;
+    --yt-spec-icon-inactive: #bdbdbb !important;
+    --yt-spec-call-to-action: #ff3c05 !important;
+    --yt-spec-themed-blue: #ff3c05 !important;
+    --yt-spec-suggested-action: color-mix(in srgb, #ff3c05 25%, #161616) !important;
+    --yt-spec-static-brand-red: #ff3c05 !important;
+    --yt-spec-brand-button-background: #ff3c05 !important;
+    --yt-spec-brand-icon-active: #ff3c05 !important;
+    --yt-spec-brand-background-solid: #000000 !important;
+    --yt-spec-brand-background-primary: #000000 !important;
+    --yt-spec-brand-background-secondary: #0a0a0a !important;
+    --yt-brand-youtube-red: #ff3c05 !important;
+    --yt-spec-red-indicator: #ff3c05 !important;
+    background: #000000 !important;
+  }
+
+  /* ETKİ: Sayfa/üst bar/yan menü/chip bar zemini doğrudan siyah.
+     KANCA: KALICI özel elementler (ytd-app, ytd-masthead…) + id'ler.
+     KIRILIRSA: Gri bir bant kalırsa İncele → özel element adını listeye ekle. */
+  /* Arka plan — değişken tutmazsa diye doğrudan */
+  ytd-app, ytd-page-manager, ytd-browse, ytd-search, ytd-watch-flexy,
+  #masthead-container, ytd-masthead, #background.ytd-masthead, #frosted-glass,
+  #guide-content, tp-yt-app-drawer #contentContainer, ytd-mini-guide-renderer,
+  #header.ytd-rich-grid-renderer, #chips-wrapper, ytd-feed-filter-chip-bar-renderer {
+    background: #000000 !important;
+    background-color: #000000 !important;
+  }
+
+  /* ETKİ: Arama kutusu + ara butonu + öneri listesi koyu, odakta turuncu.
+     KANCA: ORTA .ytSearchbox* (yeni) ve ytd-searchbox #container (eski).
+     KIRILIRSA: Kutu griyse İncele: yeni sınıf önekini (ytSearchbox…) kontrol et. */
+  /* Arama kutusu (yeni yt-searchbox + eski ytd-searchbox) */
+  .ytSearchboxComponentInputBox,
+  ytd-searchbox #container.ytd-searchbox {
+    background: #0a0a0a !important;
+    border: 1px solid #1a1a1a !important;
+    box-shadow: none !important;
+  }
+  .ytSearchboxComponentInputBoxHasFocus,
+  .ytSearchboxComponentInputBox:focus-within,
+  ytd-searchbox[has-focus] #container.ytd-searchbox {
+    border-color: #ff3c05 !important;
+  }
+  .ytSearchboxComponentInput,
+  ytd-searchbox input#search {
+    color: #f1f1ef !important;
+    caret-color: #ff3c05 !important;
+    background: transparent !important;
+  }
+  .ytSearchboxComponentSearchButton,
+  #search-icon-legacy.ytd-searchbox {
+    background: #161616 !important;
+    border: 1px solid #1a1a1a !important;
+    border-left: none !important;
+  }
+  .ytSearchboxComponentSearchButton:hover,
+  #search-icon-legacy.ytd-searchbox:hover {
+    background: #0a0a0a !important;
+  }
+  .ytSearchboxComponentSuggestionsContainer,
+  .sbdd_b, .gstl_50.sbdd_a {
+    background: #0a0a0a !important;
+    border: 1px solid #1a1a1a !important;
+  }
+
+  /* ETKİ: Video küçük resimlerine içten %12 beyaz çerçeve (::after katmanı).
+     KANCA: KALICI ytd-thumbnail / yt-thumbnail-view-model / ytd-playlist-thumbnail.
+     KIRILIRSA: Çerçeve çıkmazsa küçük resmin dış özel elementini İncele ile bul. */
+  /* Thumbnail'lere içten, düşük opaklıkta beyaz kenarlık (görselin üstünde
+     ::after katmanı; tıklamayı engellemez) */
+  ytd-thumbnail, yt-thumbnail-view-model, ytd-playlist-thumbnail {
+    position: relative !important;
+  }
+  ytd-thumbnail::after, yt-thumbnail-view-model::after, ytd-playlist-thumbnail::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    pointer-events: none !important;
+    z-index: 3 !important;
+  }
+
+  /* ETKİ: Video oynatıcı kontrol haplarına hafif beyaz çerçeve (oynat, ses, süre, bölüm, sağ grup, tam ekran aksiyonları).
+     KANCA: ORTA .ytp-* sınıfları (yıllardır sabit) + [class*=quick-actions].
+     KIRILIRSA: Bir hapta çerçeve yoksa/büyükse: görünen hapı tam kaplayan .ytp-* öğesini bul (dış kap değil). */
+  /* Oynatıcı kontrol "hap"ları: YouTube'un kendi yarı saydam zemini kalır,
+     sadece hafif kenarlık (oynat, ses, süre, bölüm, sağ grup, tam ekran aksiyonları) */
+  .ytp-chrome-bottom :is(.ytp-play-button, .ytp-volume-area, .ytp-time-wrapper,
+    .ytp-right-controls),
+  .html5-video-player :is([class*="quick-actions" i], [class*="QuickActions"]) {
+    border: 1px solid rgba(255, 255, 255, 0.12) !important;
+    box-sizing: border-box !important;
+  }
+  /* iç içe gelirse çift kenarlık olmasın */
+  .ytp-chrome-bottom :is(.ytp-time-wrapper, .ytp-volume-area, .ytp-right-controls) :is(.ytp-time-display, .ytp-button),
+  .html5-video-player :is([class*="quick-actions" i], [class*="QuickActions"]) * {
+    border-color: transparent !important;
+  }
+  /* bölüm kutusunun dış kabı pill'den büyük → kenarlık sadece iç butonda (.ytp-chapter-title) */
+  .ytp-chrome-bottom .ytp-chapter-container { border: none !important; }
+  /* hover'da çerçeve rengi değişmez (dış kap pill'den büyük olduğu için turuncu kutu
+     yanlış yerde çıkıyordu); sadece ikon/yazı turuncu */
+  .ytp-chrome-bottom :is(.ytp-play-button, .ytp-volume-area, .ytp-chapter-title):hover * {
+    color: #ff3c05 !important;
+    fill: #ff3c05 !important;
+  }
+  /* bölüm "Intro" pill'i: çerçeve yok (YouTube'un kendi yarı saydam pill'i yeterli),
+     pill'in yuvarlaklığı pseudo-element'te → köşe 0 */
+  .ytp-chrome-bottom :is(.ytp-chapter-title, .ytp-chapter-container) {
+    border: none !important;
+  }
+  .ytp-chrome-bottom :is(.ytp-chapter-container, .ytp-chapter-title, .ytp-chapter-title *)::before,
+  .ytp-chrome-bottom :is(.ytp-chapter-container, .ytp-chapter-title, .ytp-chapter-title *)::after,
+  .ytp-chrome-bottom :is(.ytp-left-controls, .ytp-right-controls) *::before,
+  .ytp-chrome-bottom :is(.ytp-left-controls, .ytp-right-controls) *::after {
+    border-radius: 0 !important;
+  }
+
+  /* ETKİ: Küçük resim üstünde oynayan önizleme: köşe kırpması yok, kart hover'da kaymıyor.
+     KANCA: KALICI ytd-video-preview/#inline-preview-player + ORTA [class*=VideoPreview].
+     KIRILIRSA: Köşe yine yuvarlaksa clip-path/mask hangi katmanda bak, listeye ekle. */
+  /* Hover önizleme oynatıcısı (inline preview): köşe kırpması (clip-path/mask/
+     radius) kapalı + büyüme/kayma animasyonu kapalı → kare ve sabit */
+  :is(ytd-video-preview, #video-preview, #inline-preview-player, #inline-player,
+      .ytp-inline-preview-mode, [class*="InlinePlayer"], [class*="inline-player" i], [class*="VideoPreview"],
+      yt-lockup-view-model, ytd-rich-item-renderer, ytd-thumbnail, yt-thumbnail-view-model),
+  :is(ytd-video-preview, #video-preview, #inline-preview-player, #inline-player,
+      .ytp-inline-preview-mode, [class*="InlinePlayer"], [class*="inline-player" i], [class*="VideoPreview"]) * {
+    clip-path: none !important;
+    mask: none !important;
+    -webkit-mask: none !important;
+    border-radius: 0 !important;
+    transition: none !important;
+  }
+  /* önizleme kutusu konumunu transform ile aldığı için ona dokunmuyorum;
+     sadece kartların hover'da büyüme/kayma efekti kapalı */
+  :is(yt-lockup-view-model, ytd-rich-item-renderer, ytd-rich-grid-media):hover,
+  :is(yt-lockup-view-model, ytd-rich-item-renderer, ytd-rich-grid-media):hover > * {
+    transform: none !important;
+  }
+
+  /* ETKİ: Önizleme üstündeki sessiz/altyazı butonları: yarı saydam siyah, çerçevesiz.
+     KANCA: KALICI ytd-video-preview + #mouseover-overlay.
+     KIRILIRSA: Çift çerçeve dönerse bu blok ile common.css'teki hariç listesini kontrol et. */
+  /* Önizleme üstündeki sessiz/altyazı butonları: YouTube'un yarı saydam kutusu kalsın,
+     bizim kenarlık + hover çerçevesi binmesin */
+  html body :is(ytd-video-preview, #video-preview, #inline-preview-player, #mouseover-overlay,
+      [class*="InlinePlayer"], [class*="VideoPreview"], [class*="inline-player" i]):not(#_)
+    :is(button, [role="button"], .yt-spec-button-shape-next, [class*="ShapeNext"]) {
+    border: none !important;
+    outline: none !important;
+    background: rgba(0, 0, 0, 0.6) !important;
+    background-color: rgba(0, 0, 0, 0.6) !important;
+  }
+  html body :is(ytd-video-preview, #video-preview, #inline-preview-player, #mouseover-overlay,
+      [class*="InlinePlayer"], [class*="VideoPreview"], [class*="inline-player" i]):not(#_)
+    :is(button, [role="button"], .yt-spec-button-shape-next, [class*="ShapeNext"]):hover {
+    background: rgba(0, 0, 0, 0.8) !important;
+  }
+  html body :is(ytd-video-preview, #video-preview, #inline-preview-player, #mouseover-overlay,
+      [class*="InlinePlayer"], [class*="VideoPreview"], [class*="inline-player" i]):not(#_)
+    :is(button, [role="button"]) * {
+    background: transparent !important;
+    border: none !important;
+  }
+
+  /* ETKİ: İlerleme çubuğu ve 'izlendi' çubuğu turuncu.
+     KANCA: ORTA .ytp-play-progress .ytp-swatch-background-color + yeni .ytProgressBar*.
+     KIRILIRSA: Çubuk kırmızıysa İncele ile oynatılan kısmın sınıfını ekle. */
+  /* Oynatıcı ilerleme çubuğu */
+  .ytp-play-progress,
+  .ytp-swatch-background-color,
+  .ytp-scrubber-button,
+  .ytChapteredProgressBarChapteredPlayerBarFill,
+  .ytProgressBarLineProgressBarPlayed,
+  #progress.ytd-thumbnail-overlay-resume-playback-renderer {
+    background: #ff3c05 !important;
+  }
+
+  /* ETKİ: Kategori chip'leri (Tümü, Müzik…) #333 çerçeve, hover/seçili turuncu.
+     KANCA: KALICI yt-chip-cloud-chip-renderer + ORTA .ytChipShape*.
+     KIRILIRSA: Chip çerçevesizse yeni chip sınıfını bul. */
+  /* Chip'lere ince kenarlık (eski yt-chip-cloud + yeni chip-shape) */
+  yt-chip-cloud-chip-renderer #chip-container,
+  yt-chip-cloud-chip-renderer .ytChipShapeChip,
+  .ytChipShapeChip {
+    border: 1px solid #333333 !important;
+    box-sizing: border-box !important;
+  }
+  yt-chip-cloud-chip-renderer:hover #chip-container,
+  .ytChipShapeChip:hover {
+    border-color: #ff3c05 !important;
+  }
+  yt-chip-cloud-chip-renderer[selected] #chip-container,
+  .ytChipShapeActive {
+    border-color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Gri (tonal) ve çerçeveli butonlar: #0a0a0a + #333, hover turuncu (eski sınıf adları).
+     KANCA: ORTA .yt-spec-button-shape-next--tonal/--outline.
+     KIRILIRSA: Aşağıdaki camelCase bloğu yeni adları kapsıyor; ikisi de çalışmıyorsa butonun sınıfına bak. */
+  /* Tonal / outline butonlar (Oluştur, Paylaş, Kaydet vb.) */
+  .yt-spec-button-shape-next--tonal,
+  .yt-spec-button-shape-next--outline {
+    border: 1px solid #333333 !important;
+    box-sizing: border-box !important;
+  }
+  .yt-spec-button-shape-next--tonal:hover,
+  .yt-spec-button-shape-next--outline:hover {
+    border-color: #ff3c05 !important;
+  }
+  .yt-spec-button-shape-next--tonal {
+    background: #0a0a0a !important;
+  }
+  .yt-spec-button-shape-next--tonal:hover {
+    background: #0a0a0a !important;
+  }
+  .yt-spec-button-shape-next--tonal:hover yt-icon,
+  .yt-spec-button-shape-next--tonal:hover .yt-spec-button-shape-next__icon {
+    color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Buton/link gradyan, gölge, bulanıklık kapalı (video oynatıcı hariç — 4K rozeti ::after resmi).
+     KANCA: GENEL button/a/[role=button] + ORTA buton sınıfları.
+     KIRILIRSA: Bir rozet/ikon kaybolursa background-image kullanıyordur → hariç tut. */
+  /* Gradyan / parlama katmanlarını kapat — düz renk */
+  /* oynatıcı (.html5-video-player) hariç: 4K/HD rozeti ::after background-image ile çiziliyor */
+  :is(button, a, [role="button"], yt-button-shape, button-view-model, .yt-spec-button-shape-next, [class*="ytSpecButton"]):not(.html5-video-player *),
+  :is(button, a, [role="button"], yt-button-shape, button-view-model, .yt-spec-button-shape-next, [class*="ytSpecButton"]):not(.html5-video-player *) *,
+  :is(button, [role="button"], .yt-spec-button-shape-next):not(.html5-video-player *)::before,
+  :is(button, [role="button"], .yt-spec-button-shape-next):not(.html5-video-player *)::after {
+    background-image: none !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+    filter: none !important;
+    backdrop-filter: none !important;
+  }
+  /* ETKİ: Butonların iç pseudo katmanlarındaki parlama şeffaf; dokunma geri bildirimi gizli.
+     KANCA: GENEL pseudo + ORTA TouchFeedbackShape.
+     KIRILIRSA: — */
+  /* Butonlarda üstten düşen parlama: içteki öğelerin pseudo katmanları ve
+     butonun kendi ::before'u → tamamen şeffaf (segmented ayraç ::after hariç) */
+  :is(button, [role="button"], yt-button-shape, button-view-model, like-button-view-model, dislike-button-view-model, .yt-spec-button-shape-next, [class*="ytSpecButton"]):not(.html5-video-player *) *::before,
+  :is(button, [role="button"], yt-button-shape, button-view-model, like-button-view-model, dislike-button-view-model, .yt-spec-button-shape-next, [class*="ytSpecButton"]):not(.html5-video-player *) *::after,
+  :is(button, [role="button"], .yt-spec-button-shape-next, [class*="ytSpecButton"]):not(.html5-video-player *)::before {
+    background: transparent !important;
+    background-image: none !important;
+    box-shadow: none !important;
+  }
+  /* ETKİ: Beğen/beğenme vb. butonlarda üstten düşen ışık katmanı gizli.
+     KANCA: KALICI yt-light-shape + ORTA [class*=contribYtLightShape].
+     KIRILIRSA: Parlama dönerse İncele: yeni ışık katmanı elementini bul. */
+  /* Üstten düşen "rim light" parlaması — kullanıcının DOM'undan: yt-light-shape
+     (contribYtLightShapeStaticRimLight / WashLight) */
+  yt-light-shape, [class*="contribYtLightShape"] {
+    display: none !important;
+  }
+  :is(yt-touch-feedback-shape, .yt-spec-touch-feedback-shape, [class*="TouchFeedbackShape"]) {
+    display: none !important;
+  }
+
+  /* Basınca/üzerine gelince çıkan dalga katmanı: düz, çok hafif */
+  .yt-spec-touch-feedback-shape__fill, .yt-spec-touch-feedback-shape__stroke,
+  [class*="TouchFeedbackShapeFill"], [class*="TouchFeedbackShapeStroke"] {
+    background: transparent !important;
+    border-color: transparent !important;
+  }
+
+  /* ETKİ: Beğen/beğenme tek kutu, ortada ayraç; basılıyken turuncu.
+     KANCA: ORTA --segmented-start/-end + aria-pressed.
+     KIRILIRSA: — */
+  /* Beğen / beğenme ikilisi: tek kutu gibi, ortada ayraç */
+  .yt-spec-button-shape-next--segmented-start {
+    border-right: none !important;
+  }
+  .yt-spec-button-shape-next--segmented-end {
+    border-left: none !important;
+  }
+  .yt-spec-button-shape-next--segmented-start::after {
+    background: #333333 !important;
+  }
+  /* Basılı (beğenildi) durum */
+  .yt-spec-button-shape-next--tonal[aria-pressed="true"],
+  .yt-spec-button-shape-next--tonal[aria-pressed="true"] yt-icon {
+    color: #ff3c05 !important;
+  }
+
+  /* ETKİ: RYD eklentisinin oran çubuğu: beğeni turuncu, kalan gri.
+     KANCA: KALICI #ryd-bar / #return-youtube-dislike-bar (eklentinin id'leri).
+     KIRILIRSA: Eklenti güncellenip id değişirse İncele ile yenisini yaz. */
+  /* Return YouTube Dislike oran çubuğu */
+  #return-youtube-dislike-bar-container, #ryd-bar-container {
+    background: #333333 !important;
+  }
+  #return-youtube-dislike-bar, #ryd-bar {
+    background: #ff3c05 !important;
+  }
+
+  /* ETKİ: Yeni buton sınıfları + üst bar butonları (Oluştur, zil) aynı stil.
+     KANCA: ORTA [class*=ShapeNextTonal/Outline] + KALICI ytd-masthead #buttons.
+     KIRILIRSA: Oluştur gri kalırsa butonun yeni sınıf önekini bak. */
+  /* Tonal/outline butonların yeni (camelCase) sınıf adları + üst bar butonları
+     (Oluştur vb.) — eski --tonal kuralıyla aynı görünüm */
+  :is([class*="ShapeNextTonal"], [class*="ShapeNextOutline"]):not(.html5-video-player *),
+  ytd-masthead #buttons :is(button, a[role="button"]):not(:has(img)):has([class*="text-content" i], [class*="TextContent"]) {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    box-sizing: border-box !important;
+  }
+  :is([class*="ShapeNextTonal"], [class*="ShapeNextOutline"]):not(.html5-video-player *):hover,
+  ytd-masthead #buttons :is(button, a[role="button"]):not(:has(img)):has([class*="text-content" i], [class*="TextContent"]):hover {
+    border-color: #ff3c05 !important;
+    background: #0a0a0a !important;
+  }
+
+  /* ETKİ: Dolu butonlar (Abone ol) turuncu zemin + siyah yazı.
+     KANCA: ORTA --filled / [class*=ShapeNextFilled].
+     KIRILIRSA: Abone ol görünmez olursa yazı/zemin renk çakışması → bu blok. */
+  /* Dolu (filled) butonlar — Abone ol vb.: birincil aksiyon = turuncu zemin, siyah yazı.
+     İçteki animasyon/dolgu katmanları şeffaf. */
+  :is(.yt-spec-button-shape-next--filled, [class*="ShapeNextFilled"]):not(.html5-video-player *) {
+    background: #ff3c05 !important;
+    background-color: #ff3c05 !important;
+    color: #000000 !important;
+    border: none !important;
+  }
+  :is(.yt-spec-button-shape-next--filled, [class*="ShapeNextFilled"]):not(.html5-video-player *) * {
+    background: transparent !important;
+    background-color: transparent !important;
+    color: #000000 !important;
+  }
+  :is(.yt-spec-button-shape-next--filled, [class*="ShapeNextFilled"]):not(.html5-video-player *):hover {
+    background-color: #ff6a3d !important;
+  }
+
+  /* ETKİ: Seçili chip turuncu zemin + siyah yazı; seçim rengi.
+     KANCA: KALICI [selected]/[aria-selected] + ORTA .ytChipShapeActive.
+     KIRILIRSA: — */
+  /* Seçili chip / sekme */
+  yt-chip-cloud-chip-renderer[selected] #chip-container,
+  yt-chip-cloud-chip-renderer[aria-selected="true"],
+  .ytChipShapeActive {
+    background: #ff3c05 !important;
+    color: #000000 !important;
+  }
+
+  ::selection { background: #ff3c05; color: #000000; }
+
+  /* ETKİ: Sadece ikonlu butonlar (⋮ menü, kapat, ileri/geri vb.): zemin/çerçeve yok,
+           hover'da sadece ikon turuncu.
+     KANCA: ORTA --icon-button / --icon-only-default / [class*=IconButton/IconOnly]
+            + KALICI yt-icon-button, ytd-menu-renderer içindeki ikon butonları.
+     KIRILIRSA: ⋮ hover'ında zemin dönerse butonu İncele, ikon-buton sınıfını listeye ekle. */
+  html body :is(.yt-spec-button-shape-next--icon-button, .yt-spec-button-shape-next--icon-only-default,
+      [class*="ShapeNextIconButton"], [class*="ShapeNextIconOnly"], yt-icon-button, yt-icon-button > button,
+      ytd-menu-renderer yt-icon-button button, ytd-menu-renderer #button):not(.html5-video-player *):not(#_) {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  html body :is(.yt-spec-button-shape-next--icon-button, .yt-spec-button-shape-next--icon-only-default,
+      [class*="ShapeNextIconButton"], [class*="ShapeNextIconOnly"], yt-icon-button, yt-icon-button > button,
+      ytd-menu-renderer yt-icon-button button, ytd-menu-renderer #button):not(.html5-video-player *):not(#_):hover,
+  html body :is(.yt-spec-button-shape-next--icon-button, .yt-spec-button-shape-next--icon-only-default,
+      [class*="ShapeNextIconButton"], [class*="ShapeNextIconOnly"], yt-icon-button, yt-icon-button > button,
+      ytd-menu-renderer yt-icon-button button, ytd-menu-renderer #button):not(.html5-video-player *):not(#_):hover * {
+    color: #ff3c05 !important;
+    fill: #ff3c05 !important;
+    background: transparent !important;
+  }
+
+  /* ETKİ: Beğen/beğenme ikilisi tek kutu: çerçeve dış sarmalayıcıda (#333, hover turuncu),
+           butonların kendi çerçevesi yok, ortada sabit #333 ayraç (hover'da renk değişmez).
+     KANCA: ORTA .ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper +
+            [class*=SegmentedStart/SegmentedEnd] (kullanıcının DOM'undan).
+     KIRILIRSA: Ortadaki çizgi hover'da renklenirse ayraç butonun kendi border'ındadır →
+                SegmentedStart sınıfını kontrol et. */
+  html body :is(.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, segmented-like-dislike-button-view-model #segmented-buttons-wrapper):not(#_) {
+    border: 1px solid #333333 !important;
+    background: #0a0a0a !important;
+    display: flex !important;
+  }
+  html body :is(.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, segmented-like-dislike-button-view-model #segmented-buttons-wrapper):not(#_):hover {
+    border-color: #ff3c05 !important;
+  }
+  html body :is(.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, segmented-like-dislike-button-view-model):not(#_)
+    :is([class*="SegmentedStart"], [class*="SegmentedEnd"], [class*="segmented-start"], [class*="segmented-end"]),
+  html body :is(.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, segmented-like-dislike-button-view-model):not(#_)
+    :is([class*="SegmentedStart"], [class*="SegmentedEnd"], [class*="segmented-start"], [class*="segmented-end"]):hover {
+    border: none !important;
+    outline: none !important;
+    background: transparent !important;
+  }
+  html body :is(.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, segmented-like-dislike-button-view-model):not(#_)
+    :is([class*="SegmentedStart"], [class*="segmented-start"]),
+  html body :is(.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, segmented-like-dislike-button-view-model):not(#_)
+    :is([class*="SegmentedStart"], [class*="segmented-start"]):hover {
+    border-right: 1px solid #333333 !important;
+  }
+  html body :is(.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, segmented-like-dislike-button-view-model):not(#_)
+    :is([class*="SegmentedStart"], [class*="segmented-start"])::after {
+    display: none !important;
+  }
+  html body :is(.ytSegmentedLikeDislikeButtonViewModelSegmentedButtonsWrapper, segmented-like-dislike-button-view-model):not(#_)
+    :is([class*="SegmentedStart"], [class*="SegmentedEnd"], [class*="segmented-start"], [class*="segmented-end"]):hover * {
+    color: #ff3c05 !important;
+  }
+
+  /* ETKİ: Üst bardaki ikon butonları (bildirim zili vb.): zemin/çerçeve yok, hover'da ikon turuncu.
+     KANCA: KALICI ytd-masthead #buttons + ytd-notification-topbar-button-renderer;
+            yazılı butonlar (Oluştur) hariç — yazı içeriği sınıfıyla ayrılıyor.
+     KIRILIRSA: Zil hover'ında gri kutu dönerse zilin butonunu İncele, sınıfını listeye ekle. */
+  html body :is(ytd-notification-topbar-button-renderer, ytd-notification-topbar-button-shape-renderer,
+      ytd-masthead #buttons :is(button, a[role="button"]):not(:has(img)):not(:has([class*="text-content" i], [class*="TextContent"]))):not(#_),
+  html body :is(ytd-notification-topbar-button-renderer, ytd-notification-topbar-button-shape-renderer):not(#_) :is(button, yt-icon-button, *):not([class*="badge" i], [class*="badge" i] *) {
+    background: transparent !important;
+    background-color: transparent !important;
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+  html body :is(ytd-notification-topbar-button-renderer, ytd-notification-topbar-button-shape-renderer,
+      ytd-masthead #buttons :is(button, a[role="button"]):not(:has(img)):not(:has([class*="text-content" i], [class*="TextContent"]))):not(#_):hover * {
+    color: #ff3c05 !important;
+    fill: #ff3c05 !important;
+  }
+
+  /* ETKİ: Açılır menüler (video ⋮ menüsü, ayarlar, hesap menüsü, paylaş vb.):
+           #0a0a0a zemin + #333 çerçeve; satır hover'ında zemin/çerçeve YOK,
+           sadece ikon ve yazı turuncu.
+     KANCA: KALICI özel elementler (ytd-menu-popup-renderer, tp-yt-iron-dropdown,
+            yt-sheet-view-model, ytd-multi-page-menu-renderer) + role=menu/menuitem/listbox
+            + ORTA yt-list-item-view-model.
+     KIRILIRSA: Menü griyse menü kutusunu İncele → en dış özel elementi listeye ekle.
+                Satır içinde kutu çıkarsa o iç öğe satır listesinde değil demektir → ekle. */
+  /* çerçeve SADECE en dış menü kutusunda (iç içe kutular çift çerçeve yapıyordu) */
+  :is(ytd-menu-popup-renderer, tp-yt-iron-dropdown #contentWrapper > *, yt-sheet-view-model,
+      yt-contextual-sheet-layout, ytd-multi-page-menu-renderer, ytd-popup-container [role="menu"],
+      [role="menu"], [role="listbox"]):not(.html5-video-player *):not(:is(ytd-menu-popup-renderer, yt-sheet-view-model,
+      yt-contextual-sheet-layout, ytd-multi-page-menu-renderer, [role="menu"], [role="listbox"], tp-yt-iron-dropdown #contentWrapper > *) *) {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: 1px solid #333333 !important;
+    box-shadow: none !important;
+  }
+  :is(ytd-menu-popup-renderer, yt-sheet-view-model, yt-contextual-sheet-layout, ytd-multi-page-menu-renderer,
+      [role="menu"], [role="listbox"]):not(.html5-video-player *) * {
+    background: transparent !important;
+    background-color: transparent !important;
+    outline: none !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+  html body :is(ytd-menu-popup-renderer, yt-sheet-view-model, yt-contextual-sheet-layout, ytd-multi-page-menu-renderer,
+      [role="menu"], [role="listbox"]):not(#_)
+    :is(ytd-menu-service-item-renderer, ytd-menu-navigation-item-renderer, ytd-compact-link-renderer,
+        yt-list-item-view-model, tp-yt-paper-item, [role="menuitem"], [role="option"]):is(:hover, :focus-visible) {
+    background-color: transparent !important;   /* hover'da zemin/çerçeve yok, sadece renk */
+    outline: none !important;
+  }
+  html body :is(ytd-menu-popup-renderer, yt-sheet-view-model, yt-contextual-sheet-layout, ytd-multi-page-menu-renderer,
+      [role="menu"], [role="listbox"]):not(#_)
+    :is(ytd-menu-service-item-renderer, ytd-menu-navigation-item-renderer, ytd-compact-link-renderer,
+        yt-list-item-view-model, tp-yt-paper-item, [role="menuitem"], [role="option"]):hover
+    :is(tp-yt-paper-item, [role="menuitem"], [role="option"], yt-list-item-view-model, *) {
+    outline: none !important;
+    background-color: transparent !important;
+    color: #ff3c05 !important;   /* hover'da ikon + yazı turuncu */
+    fill: #ff3c05 !important;
+  }
+
+  /* ETKİ: Tüm köşeler 0 (spinner/loader hariç); sadece avatar GÖRSELLERİ yuvarlak (yorum zinciri çizgileri düz).
+     KANCA: GENEL * + KALICI yt3.ggpht.com avatar URL'si, #author-thumbnail.
+     KIRILIRSA: Avatar kare olursa img src kalıbına bak; düz olması gereken bir şey yuvarlandıysa avatar seçicisi fazla geniştir. */
+  /* Keskin köşeler — avatarlar yuvarlak kalır */
+  /* yükleme spinner'ları (daire border+radius ile çiziliyor) hariç */
+  *:not([class*="spinner" i], [class*="spinner" i] *, [class*="loader" i], [class*="loader" i] *, [role="progressbar"] *, circle) { border-radius: 0 !important; }
+  /* sadece avatar görselleri yuvarlak — kapsayıcıların içindeki her şey değil
+     (yorum zinciri bağlantı çizgileri avatar kabının içinde, onlar düz kalmalı) */
+  :is([class*="avatar" i], [id*="avatar" i], #author-thumbnail) :is(img, yt-img-shadow, [class*="ImageShape" i], [class*="avatar-shape" i]),
+  :is(img, yt-img-shadow)[class*="avatar" i], img#img.yt-img-shadow[src*="yt3.ggpht"], img[src*="yt3.ggpht.com"],
+  .ytp-scrubber-button {
+    border-radius: 50% !important;
+  }
+}

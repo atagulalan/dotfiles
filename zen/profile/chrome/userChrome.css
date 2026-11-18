@@ -136,6 +136,14 @@ zen-folder > .tab-group-label-container:hover::before {
   outline-offset: -1px !important;
 }
 
+/* Space (workspace) header hover border */
+.zen-current-workspace-indicator:is(:hover, [open="true"])::before {
+  border: 1px solid #202020 !important;
+  box-shadow: inset 0 0 0 1px #202020 !important;
+  outline: 1px solid #202020 !important;
+  outline-offset: -1px !important;
+}
+
 /* Active tab — soft white ring */
 #tabbrowser-tabs .tabbrowser-tab:is([selected="true"], [visuallyselected="true"], [selected], [visuallyselected]) > .tab-stack > .tab-background {
   border: 1px solid rgba(255, 255, 255, 0.08) !important;

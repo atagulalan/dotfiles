@@ -1,0 +1,25 @@
+/* Bakım: etiketlerin anlamı ve bozulunca izlenecek yol → sites/BAKIM.md */
+/* Obel — 4 sitede Space Grotesk (yerel kurulu, ~/.local/share/fonts).
+   Kod blokları monospace kalır; ikon fontları (Material/Google Symbols vb.)
+   bozulmasın diye ikon sınıfları hariç. */
+/* ETKİ: 4 sitede tüm metin Space Grotesk; kod blokları ve ikon fontları hariç.
+   KANCA: GENEL * + ikon sınıf kalıpları (icon/material/symbol/glyph, data-icon).
+   KIRILIRSA: Bir ikonun yerine kelime çıkarsa (ligature ikon) o ikonun sınıfını :not() listesine ekle. */
+@-moz-document domain("youtube.com"), domain("web.whatsapp.com"), domain("chatgpt.com"),
+  regexp("https://www\\.google\\.com(\\.tr)?/(search|webhp)?([?#].*)?") {
+  :root, body,
+  *:not(pre, code, kbd, samp, pre *, code *, i, .ytp-time-display,
+        [class*="icon" i], [class*="material" i], [class*="symbol" i],
+        [class*="glyph" i], [data-icon]) {
+    font-family: "Space Grotesk", sans-serif !important;
+  }
+
+  /* ETKİ: SVG ikonlarda fill="none" olan görünmez boyut kareleri/kenar çizgileri hiçbir
+           "ikonu boya" kuralıyla boyanmaz (yoksa ikon dolu kareye dönüşüyor).
+     KANCA: GENEL — SVG attribute'u fill="none"; çok yüksek özgüllük (#_ x2).
+     KIRILIRSA: Bir ikon yine kare görünürse içinde fill="none" olmayan saydam bir şekil
+                vardır (opacity/fill-opacity) → onu da buraya ekle. */
+  html body svg:not(#_):not(#_) [fill="none"] {
+    fill: none !important;
+  }
+}

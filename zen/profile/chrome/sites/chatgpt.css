@@ -1,0 +1,317 @@
+/* Bakım: etiketlerin anlamı ve bozulunca izlenecek yol → sites/BAKIM.md */
+/* Obel — ChatGPT (ChatGPT'de koyu tema açık olmalı) */
+@-moz-document domain("chatgpt.com") {
+  /* ETKİ: ChatGPT renk değişkenleri (yüzeyler, kenarlık, yazı, vurgu) palete eşlenir.
+     KANCA: KALICI-ORTA --main-surface-*, --sidebar-*, --text-*, --border-* değişkenleri.
+     KIRILIRSA: Bir renk dönerse Computed'dan değişken adını bul, ekle. */
+  :root, :root.dark, :root .dark, :root .light {
+    --main-surface-background: #000000 !important;
+    --main-surface-primary: #000000 !important;
+    --main-surface-primary-inverse: #f1f1ef !important;
+    --main-surface-secondary: #0a0a0a !important;
+    --main-surface-tertiary: #161616 !important;
+    --sidebar-surface: #0a0a0a !important;
+    --sidebar-surface-primary: #0a0a0a !important;
+    --sidebar-surface-secondary: #161616 !important;
+    --sidebar-surface-tertiary: #1a1a1a !important;
+    --sidebar-surface-floating-lightness: 4% !important;
+    --message-surface: #161616 !important;
+    --composer-surface: #0a0a0a !important;
+    --composer-surface-primary: #0a0a0a !important;
+    --composer-blue-bg: color-mix(in srgb, #ff3c05 25%, #161616) !important;
+    --composer-blue-text: #ff3c05 !important;
+    --bg-primary: #000000 !important;
+    --bg-secondary: #0a0a0a !important;
+    --bg-tertiary: #161616 !important;
+    --bg-elevated-primary: #0a0a0a !important;
+    --bg-elevated-secondary: #0a0a0a !important;
+    --bg-scrim: rgba(0, 0, 0, 0.8) !important;
+    --border-xlight: #111111 !important;
+    --border-light: #1a1a1a !important;
+    --border-medium: #262626 !important;
+    --border-heavy: #333333 !important;
+    --border-default: #1a1a1a !important;
+    --text-primary: #f1f1ef !important;
+    --text-secondary: #bdbdbb !important;
+    --text-tertiary: #6a6a68 !important;
+    --text-quaternary: #4d4d4d !important;
+    --text-accent: #ff3c05 !important;
+    --link: #ff3c05 !important;
+    --link-hover: #ff6a3d !important;
+    --interactive-bg-accent-default: #ff3c05 !important;
+    --interactive-bg-accent-hover: #ff6a3d !important;
+    --interactive-label-accent-default: #000000 !important;
+    --interactive-border-focus: #ff3c05 !important;
+    --theme-user-msg-bg: #000000 !important;
+    --theme-submit-btn-bg: #ff3c05 !important;
+    --theme-submit-btn-text: #000000 !important;
+    --theme-entity-accent: #ff3c05 !important;
+  }
+
+  html, body { background: #000000 !important; }
+
+  /* ETKİ: Gönder butonu (eski id/testid).
+     KANCA: KALICI #composer-submit-button / data-testid=send-button.
+     KIRILIRSA: Aşağıdaki aria-label=Send bloğu asıl iş görüyor. */
+  /* Gönder butonu */
+  #composer-submit-button:not(:disabled),
+  [data-testid="send-button"]:not(:disabled) {
+    background: #ff3c05 !important;
+    color: #000000 !important;
+  }
+
+  /* ETKİ: ChatGPT'nin 'accent color' ayarı değişkenleri (balon, gönder butonu) her öğede ezilir.
+     KANCA: KALICI --theme-* değişkenleri.
+     KIRILIRSA: — */
+  /* Vurgu rengi (ChatGPT ayarındaki "accent color") alt öğelerde
+     data-chat-theme vb. ile yeniden tanımlanıyor → her öğede ez */
+  :root *, :root {
+    --theme-user-msg-bg: #000000 !important;
+    --theme-user-msg-text: #f1f1ef !important;
+    --theme-submit-btn-bg: #ff3c05 !important;
+    --theme-submit-btn-text: #000000 !important;
+    --theme-entity-accent: #ff3c05 !important;
+    --theme-secondary: #ff3c05 !important;
+    --theme-attribution-highlight-bg: color-mix(in srgb, #ff3c05 25%, #161616) !important;
+  }
+
+  /* ETKİ: Senin mesaj balonun: siyah + turuncu çerçeve, açık yazı.
+     KANCA: KALICI [data-user-message-bubble=true].
+     KIRILIRSA: Balon renklenmezse balonu İncele, data-user-message-bubble hâlâ var mı bak. */
+  /* Kullanıcı mesaj balonu — kullanıcının DOM'undan: [data-user-message-bubble="true"]
+     (.bg-user-message). Siyah zemin + turuncu kenarlık, açık yazı. */
+  html body [data-user-message-bubble="true"]:not(#_) {
+    background: #000000 !important;
+    background-color: #000000 !important;
+    border: 1px solid #ff3c05 !important;
+    color: #f1f1ef !important;
+  }
+  html body [data-user-message-bubble="true"]:not(#_) *:not(pre, pre *, code, code *, img) {
+    background-color: transparent !important;
+    color: #f1f1ef !important;
+  }
+  [data-user-message-bubble="true"] ::selection { background: #ff3c05; color: #000000; }
+
+  /* ETKİ: Yanıt sırasında durdur butonundaki kare siyah.
+     KANCA: KALICI data-testid=stop-button.
+     KIRILIRSA: — */
+  /* Durdur butonundaki kare: siyah (içi div ya da svg olabilir) */
+  :root:root:root:root:is(*) [data-testid="stop-button"] * {
+    color: #000000 !important;
+    fill: #000000 !important;
+  }
+  :root:root:root:root:is(*) [data-testid="stop-button"] :not(svg, svg *) {
+    background-color: #000000 !important;
+  }
+
+  /* ETKİ: Yazı kutusu #0a0a0a + turuncu çerçeve, köşe 0, içte zemin yok.
+     KANCA: KALICI [data-composer-body].
+     KIRILIRSA: Çerçeve kaybolursa kutuyu İncele: data-composer-body hâlâ görünen kutuda mı? */
+  /* Yazı kutusu — kullanıcının DOM'undan: [data-composer-body] görünen kutu
+     (inline border-radius:26px; user-sheet !important onu ezer). Turuncu kenarlık. */
+  html body [data-composer-body]:not(#_) {
+    background-color: #0a0a0a !important;
+    border: 1px solid #ff3c05 !important;
+    box-shadow: none !important;
+    border-radius: 0 !important;
+  }
+  html body [data-composer-body]:not(#_) *:not(.bg-composer-primary, .bg-composer-primary *) {
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+  html body [data-composer-body]:not(#_) button:not(.bg-composer-primary):hover {
+    background-color: #161616 !important;
+  }
+  [data-composer-body] .ProseMirror { caret-color: #ff3c05 !important; }
+  /* ETKİ: Yazı kutusunun dış sarmalayıcılarında gölge/zemin yok.
+     KANCA: KALICI [data-chatgpt-composer] + ORTA [class*=ComposerLayoutRoot/ComposerModeSurface].
+     KIRILIRSA: — */
+  /* kutunun dış sarmalayıcılarında gölge/zemin yok */
+  :is([data-chatgpt-composer], [class*="ComposerLayoutRoot"], [class*="ComposerModeSurface"]) {
+    background: transparent !important;
+    box-shadow: none !important;
+  }
+
+  /* ETKİ: Gönder / ses birincil butonu turuncu zemin + siyah ikon.
+     KANCA: KALICI aria-label=Send/Gönder + ORTA .bg-composer-primary.
+     KIRILIRSA: Mavi dönerse butonun sınıfında bg-composer-primary var mı bak. */
+  /* Gönder butonu — kullanıcının DOM'undan: button[aria-label="Send"].bg-composer-primary,
+     svg.text-composer-primary. :not(#_) composer içi şeffaflaştırmayı yenmek için. */
+  html body :is(button[aria-label="Send"], button[aria-label="Gönder"], button.bg-composer-primary):not(#_) {
+    background: #ff3c05 !important;
+    background-color: #ff3c05 !important;
+    color: #000000 !important;
+  }
+  html body :is(button[aria-label="Send"], button[aria-label="Gönder"], button.bg-composer-primary):not(#_):hover {
+    background-color: #ff6a3d !important;
+  }
+  html body :is(button[aria-label="Send"], button[aria-label="Gönder"], button.bg-composer-primary):not(#_) :is(svg, svg *) {
+    color: #000000 !important;
+    background: transparent !important;
+  }
+  :root * { --composer-primary: #ff3c05 !important; --text-composer-primary: #000000 !important; }
+
+  /* ETKİ: Sol menü kapsayıcılarının sağ çizgisi/gölgesi yok (ilk deneme).
+     KANCA: KALICI id*=sidebar, nav, aside.
+     KIRILIRSA: — */
+  /* Sol menünün sağ kenar çizgisi yok (kapsayıcı, nav ve pseudo ayraçlar) */
+  :is(#stage-slideover-sidebar, [id*="sidebar" i], [class*="sidebar" i], nav, aside),
+  :is(#stage-slideover-sidebar, [id*="sidebar" i], [class*="sidebar" i], nav, aside)::before,
+  :is(#stage-slideover-sidebar, [id*="sidebar" i], [class*="sidebar" i], nav, aside)::after,
+  :is(#stage-slideover-sidebar, [id*="sidebar" i]) > * {
+    border-right: none !important;
+    border-inline-end: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ETKİ: Sol panel ile ana alan arası dikey ayraç kapalı (border, pseudo, resize tutamağı).
+     KANCA: ORTA aside.app-shell-left-panel, [class*=LeftPanel], nav[data-app-navigation-rail].
+     KIRILIRSA: Çizgi dönerse çizginin TAM ÜSTÜNE sağ tık → İncele; seçilen öğeyi bu bloğa ekle. */
+  /* Sol panelin dikey ayracı — kullanıcının DOM'undan: aside.app-shell-left-panel,
+     nav[data-app-navigation-rail]. Ayraç panelde, ana alanın sol kenarında ya da
+     bir resize/separator öğesinde olabilir → hepsi kapalı. */
+  aside.app-shell-left-panel, aside.app-shell-left-panel *,
+  aside.app-shell-left-panel::before, aside.app-shell-left-panel::after,
+  aside.app-shell-left-panel *::before, aside.app-shell-left-panel *::after,
+  [data-app-navigation-rail], #app-shell-sidebar {
+    border-right: none !important;
+    border-inline-end: none !important;
+    box-shadow: none !important;
+  }
+  aside.app-shell-left-panel ~ *, aside.app-shell-left-panel ~ *::before, aside.app-shell-left-panel ~ *::after {
+    border-left: none !important;
+    border-inline-start: none !important;
+    box-shadow: none !important;
+  }
+  /* çizgi border değil: panelin pseudo-element'i ya da yanındaki resize/divider
+     öğesinin zemini olabilir → pseudo'lar kapalı, tutamak görünmez (işlevi kalır) */
+  aside.app-shell-left-panel::before, aside.app-shell-left-panel::after,
+  :is([class*="LeftPanel"], [class*="ResponsiveLeftPanel"])::before,
+  :is([class*="LeftPanel"], [class*="ResponsiveLeftPanel"])::after {
+    display: none !important;
+  }
+  aside.app-shell-left-panel, [class*="LeftPanel"] { outline: none !important; }
+  aside.app-shell-left-panel ~ :is([role="separator"], [class*="resize" i], [class*="Resize"],
+    [class*="divider" i], [class*="Divider"], [class*="separator" i], [data-panel-resize-handle-id]),
+  aside.app-shell-left-panel ~ :is([role="separator"], [class*="resize" i], [class*="Resize"], [class*="divider" i], [class*="Divider"]) *,
+  aside.app-shell-left-panel [role="separator"] {
+    background: transparent !important;
+    border: none !important;
+    box-shadow: none !important;
+    opacity: 0 !important;
+  }
+
+  /* ETKİ: Kenar çubuğu satırları (New chat, sohbetler): tek kutu, hover/aktif #0a0a0a + #333; içte çerçeve yok.
+     KANCA: ORTA .sidebar-item + KALICI aria-current, data-app-action-sidebar-thread-selected.
+     KIRILIRSA: İç içe çerçeve dönerse common.css hariç listesine iç öğeyi ekle. */
+  /* Kenar çubuğu satırları (.sidebar-item: New chat, Recents sohbetleri …):
+     tek kutu — hover/seçili = #0a0a0a + #333 çizgi; içteki link/butonlarda çizgi yok */
+  .sidebar-item { background-color: transparent !important; }
+  .sidebar-item:is(:hover, [aria-current="page"], [data-app-action-sidebar-thread-selected="true"], :has([aria-expanded="true"])) {
+    background-color: #0a0a0a !important;
+    outline: 1px solid #333333 !important;
+    outline-offset: -1px !important;
+  }
+  .sidebar-item *, .sidebar-item *::before {
+    background-color: transparent !important;
+    outline: none !important;
+  }
+  .sidebar-item button:hover svg { color: #ff3c05 !important; }
+
+  /* ETKİ: Upgrade butonu çerçevesiz (genel tahmin seçiciler).
+     KANCA: KALICI href/aria-label/testid tahminleri.
+     KIRILIRSA: Aşağıdaki border-button-outline bloğu asıl iş görüyor. */
+  /* Upgrade butonu: çerçevesiz (kendi border'ı + hover outline'ı kapalı) */
+  html body :is([data-testid*="upgrade" i], [data-testid*="plan" i], a[href*="upgrade" i], a[href*="pricing" i], a[href*="#plans" i],
+    button[aria-label*="upgrade" i], a[aria-label*="upgrade" i], [class*="upgrade" i]):not(#_),
+  html body :is([data-testid*="upgrade" i], a[href*="upgrade" i], a[href*="pricing" i], a[href*="#plans" i], button[aria-label*="upgrade" i], [class*="upgrade" i]):not(#_):is(:hover, :focus-visible),
+  html body :is([data-testid*="upgrade" i], a[href*="upgrade" i], a[href*="pricing" i], a[href*="#plans" i], button[aria-label*="upgrade" i], [class*="upgrade" i]):not(#_) * {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+  }
+
+  /* ETKİ: Upgrade butonu çerçevesiz, turuncu yazı.
+     KANCA: ORTA button.border-button-outline (Tailwind sınıfı).
+     KIRILIRSA: Çerçeve dönerse butonun sınıflarına bak. */
+  /* Upgrade butonu — kullanıcının DOM'undan: profil satırında
+     button.border-button-outline (border + bg-surface-card). Çerçevesiz, turuncu yazı. */
+  html body button[class~="border-button-outline"]:not(#_) {
+    border: none !important;
+    outline: none !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+    color: #ff3c05 !important;
+  }
+  html body button[class~="border-button-outline"]:not(#_):hover {
+    background-color: #161616 !important;
+  }
+
+  /* ETKİ: Kod blokları #0a0a0a; markdown linkleri turuncu.
+     KANCA: GENEL pre/code + ORTA .markdown.
+     KIRILIRSA: — */
+  /* Kod blokları */
+  pre, pre > div, .markdown pre code { background: #0a0a0a !important; }
+  .markdown a { color: #ff3c05 !important; }
+
+  /* ETKİ: Eski yazı kutusu tahmin kuralları (data-composer-surface / grid-template-areas).
+     KANCA: KALICI/ORTA tahminler.
+     KIRILIRSA: [data-composer-body] bloğu asıl iş görüyor; bu yedek. */
+  /* Composer — tek dış çerçeve (her zaman turuncu), içte çerçeve/zemin yok.
+     Hedef: ChatGPT'nin yazı kutusu yüzeyi (data-composer-surface). Geniş
+     sarmalayıcıları (form, *composer* sınıfları) yakalamasın diye sadece bu. */
+  :is([data-composer-surface="true"], [class*="grid-template-areas"]:has(#prompt-textarea)) {
+    background: #0a0a0a !important;
+    background-color: #0a0a0a !important;
+    border: 1px solid #ff3c05 !important;
+    box-shadow: none !important;
+  }
+  :is([data-composer-surface="true"], [class*="grid-template-areas"]:has(#prompt-textarea)) * {
+    outline: none !important;
+    box-shadow: none !important;
+    border-color: transparent !important;
+    background-color: transparent !important;
+  }
+  :is([data-composer-surface="true"], [class*="grid-template-areas"]:has(#prompt-textarea)) button:hover { background-color: #161616 !important; }
+  #prompt-textarea, [contenteditable="true"] { caret-color: #ff3c05 !important; }
+
+  /* ETKİ: Yazı kutusu renk değişkenleri her öğede.
+     KANCA: GENEL :root *.
+     KIRILIRSA: — */
+  /* Composer renk değişkenleri alt öğelerde yeniden tanımlanıyor olabilir */
+  :root * {
+    --composer-surface: #0a0a0a !important;
+    --composer-surface-primary: #0a0a0a !important;
+  }
+
+  /* ETKİ: Gönder/ses/durdur butonları turuncu (yüksek özgüllükle).
+     KANCA: KALICI testid/aria-label.
+     KIRILIRSA: — */
+  /* Gönder + sesli mod butonu: turuncu blok (form'dan bağımsız) */
+  /* :root zinciri = composer içi "transparent" sıfırlamasını yenecek özgüllük */
+  :root:root:root:root:is(*) :is(#composer-submit-button:not(:disabled),
+  [data-testid="send-button"]:not(:disabled),
+  [data-testid*="speech" i], [data-testid*="voice" i], [data-testid="stop-button"],
+  #composer-submit-button,
+  button[aria-label*="voice" i], button[aria-label*="ses" i],
+  button[aria-label*="stop" i], button[aria-label*="durdur" i]) {
+    background: #ff3c05 !important;
+    background-color: #ff3c05 !important;
+    color: #000000 !important;
+  }
+  :is([data-testid*="speech" i], [data-testid*="voice" i], button[aria-label*="voice" i], button[aria-label*="ses" i], #composer-submit-button, [data-testid="send-button"]) * {
+    color: #000000 !important;
+    background-color: transparent !important;
+  }
+
+  ::selection { background: #ff3c05; color: #000000; }
+
+  /* ETKİ: Tüm köşeler 0 (spinner hariç), profil resmi yuvarlak.
+     KANCA: GENEL *.
+     KIRILIRSA: — */
+  /* Keskin köşeler */
+  /* yükleme spinner'ları (daire border+radius ile çiziliyor) hariç */
+  *:not([class*="spinner" i], [class*="spinner" i] *, [class*="loader" i], [class*="loader" i] *, [role="progressbar"] *, circle) { border-radius: 0 !important; }
+  /* sadece profil avatarı yuvarlak (alt*="User" yüklenen resimleri de yakalıyordu → kaldırıldı) */
+  img[src*="/avatars/"], img[src*="auth0.com"], img[src*="gravatar"], img[alt*="profile" i] { border-radius: 50% !important; }
+}
