@@ -1537,7 +1537,8 @@ StScrollBar {
   font-weight: bold;
   spacing: 12px;
   padding: 12px 18px;
-  margin-bottom: 4em; }
+  margin-bottom: 4em;
+  border-radius: 0; }
   .osd-window > * {
     spacing: 8px; }
   .osd-window StIcon {
@@ -4706,4 +4707,44 @@ StEntry {
   background-color: #3a3a38 !important;
   background: #3a3a38 !important;
   width: 1px !important;
+}
+
+/* === Obel: screen share / record indicators — no fill, 1px bottom edge like other panel buttons === */
+#panel .panel-button.screen-sharing-indicator,
+#panel .panel-button.screen-sharing-indicator:hover,
+#panel .panel-button.screen-sharing-indicator:focus,
+#panel .panel-button.screen-sharing-indicator:active,
+#panel .panel-button.screen-sharing-indicator:checked,
+.dashtopanelMainPanel .panel-button.screen-sharing-indicator,
+.dashtopanelMainPanel .panel-button.screen-sharing-indicator:hover,
+.dashtopanelMainPanel .panel-button.screen-sharing-indicator:focus,
+.dashtopanelMainPanel .panel-button.screen-sharing-indicator:active,
+.dashtopanelMainPanel .panel-button.screen-sharing-indicator:checked {
+  background: none !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 -1px 0 0 #ff3c05 !important;
+}
+
+#panel .panel-button.screen-recording-indicator,
+#panel .panel-button.screen-recording-indicator:hover,
+#panel .panel-button.screen-recording-indicator:focus,
+#panel .panel-button.screen-recording-indicator:active,
+#panel .panel-button.screen-recording-indicator:checked,
+.dashtopanelMainPanel .panel-button.screen-recording-indicator,
+.dashtopanelMainPanel .panel-button.screen-recording-indicator:hover,
+.dashtopanelMainPanel .panel-button.screen-recording-indicator:focus,
+.dashtopanelMainPanel .panel-button.screen-recording-indicator:active,
+.dashtopanelMainPanel .panel-button.screen-recording-indicator:checked {
+  background: none !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
+  box-shadow: inset 0 -1px 0 0 #c01c28 !important;
+}
+
+#panel .panel-button.screen-sharing-indicator StIcon,
+#panel .panel-button.screen-recording-indicator StIcon,
+.dashtopanelMainPanel .panel-button.screen-sharing-indicator StIcon,
+.dashtopanelMainPanel .panel-button.screen-recording-indicator StIcon {
+  color: #ffffff !important;
 }
