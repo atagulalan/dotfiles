@@ -54,7 +54,7 @@ export class WindowPicker {
                 this.#sendPickedWindow('window-not-found');
                 return;
             }
-            this.#sendPickedWindow(actor.metaWindow.get_wm_class_instance() ?? 'window-not-found');
+            this.#sendPickedWindow((actor.metaWindow.get_wm_class_instance() ?? actor.metaWindow.get_wm_class()) ?? 'window-not-found');
         });
         inspector.connect('closed', () => {
             lookingGlass.close();

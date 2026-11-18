@@ -28,7 +28,7 @@ export function enableEffect() {
         const actor = win.get_compositor_private();
         // If wm_class_instance of Meta.Window is null, wait for it to be
         // set before applying the effect.
-        if (win?.get_wm_class_instance() == null) {
+        if ((win?.get_wm_class_instance() ?? win?.get_wm_class()) == null) {
             const notifyId = win.connect('notify::wm-class', () => {
                 applyEffectTo(actor);
                 win.disconnect(notifyId);

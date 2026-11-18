@@ -50,7 +50,7 @@ export function clearMutterSettingsCache() {
 export function getRoundedCornersCfg(win) {
     const globalCfg = getPref('global-rounded-corner-settings');
     const customCfgList = getPref('custom-rounded-corner-settings');
-    const wmClass = win.get_wm_class_instance();
+    const wmClass = (win.get_wm_class_instance() ?? win.get_wm_class());
     if (wmClass == null ||
         !customCfgList[wmClass] ||
         !customCfgList[wmClass].enabled) {
@@ -98,7 +98,7 @@ export function computeBounds(actor, [x, y, width, height]) {
     // Kitty draws its window decoration by itself, so we need to manually
     // clip its shadow and recompute the outer bounds for it.
     if (getPref('tweak-kitty-terminal') &&
-        actor.metaWindow.get_wm_class_instance() === 'kitty') {
+        (actor.metaWindow.get_wm_class_instance() ?? actor.metaWindow.get_wm_class()) === 'kitty') {
         const [x1, y1, x2, y2] = APP_SHADOWS.kitty;
         const scale = windowScaleFactor(actor.metaWindow);
         bounds.x1 += x1 * scale;
@@ -197,7 +197,7 @@ export function shouldEnableEffect(win) {
         return false;
     }
     // Skip blacklisted applications.
-    const wmClass = win.get_wm_class_instance();
+    const wmClass = (win.get_wm_class_instance() ?? win.get_wm_class());
     if (wmClass == null) {
         logDebug(`Warning: wm_class_instance of ${win}: ${win.title} is null`);
         return false;
