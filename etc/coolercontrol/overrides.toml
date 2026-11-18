@@ -1,0 +1,18 @@
+# CoolerControl display-name overrides.
+# Managed by coolercontrold: comments are not preserved on rewrite.
+# Hand edits are applied at the next daemon startup.
+
+[devices.00a4da18625f56275c89e2fcd25a83c08c5ad3326452fa7e252fcc8a89c92493]
+
+[devices.00a4da18625f56275c89e2fcd25a83c08c5ad3326452fa7e252fcc8a89c92493.channels]
+fan1 = { label = "???" }
+fan2 = { label = "CPU BIG" }
+fan3 = { label = "EXHAUST" }
+fan4 = { label = "INTAKE" }
+fan7 = { label = "FULLTHROTTLE ???" }
+
+[devices.73de30d3f364fc060129d9ec43f234f51205675f625b4418237e59ebeae5b9f2]
+
+[devices.73de30d3f364fc060129d9ec43f234f51205675f625b4418237e59ebeae5b9f2.channels]
+fan1 = { label = "GPU Back" }
+fan2 = { label = "GPU ALL" }

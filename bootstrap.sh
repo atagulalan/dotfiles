@@ -32,6 +32,11 @@ else
 fi
 cd "$DIR"
 
+# .gitattributes'taki filtreler (token ayiklama) .git/config'te tanimli olmali;
+# clone bunu tasimaz, burada kaydedelim.
+git config filter.coolercontrol.clean "bash git-filters/coolercontrol-clean.sh"
+git config filter.coolercontrol.smudge cat
+
 echo
 echo "==> Installing packages"
 read -rp "Paketler: [A] hepsini kur / [i] interaktif seç / [s] atla: " mode

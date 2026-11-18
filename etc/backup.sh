@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # /etc ve /opt altindaki uygulama konfiglerini yedekler
 # (coolercontrol, ollama servis override'i, zapret).
-# Gizli dosyalar (.passwd, *.key, *.crt) bilerek alinmaz.
+# Gizli dosyalar (.passwd, .tokens, *.key, *.crt) bilerek alinmaz.
 # Kullanim: ./backup.sh [--no-push]
 set -euo pipefail
 
 SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
 
-CC_FILES=(config.toml config-ui.json modes.json alerts.json calibrations.json)
+CC_FILES=(config.toml config-ui.json modes.json alerts.json calibrations.json overrides.toml)
 if [[ -d /etc/coolercontrol ]]; then
     mkdir -p "$SCRIPT_DIR/coolercontrol"
     for f in "${CC_FILES[@]}"; do
