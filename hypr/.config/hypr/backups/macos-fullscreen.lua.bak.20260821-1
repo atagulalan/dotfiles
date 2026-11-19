@@ -1,0 +1,56 @@
+-- macOS-like fullscreen workspaces
+local fullscreen_origins = {}
+local fullscreen_counter = 0
+
+hl.on("window.fullscreen", function(window)
+  if not window then
+    return
+  end
+
+  -- Hyprland:
+  -- 0 = normal
+  -- 1 = maximized
+  -- 2 = real fullscreen
+  local state = window.fullscreen
+
+  -- Entering real fullscreen
+  if state == 2 and not fullscreen_origins[window] then
+    local workspace = window.workspace
+
+    if not workspace then
+      return
+    end
+
+    fullscreen_counter = fullscreen_counter + 1
+
+    local fullscreen_ws =
+      "name:fullscreen-" .. tostring(fullscreen_counter)
+
+    fullscreen_origins[window] = {
+      workspace = workspace.id,
+      fullscreen_workspace = fullscreen_ws,
+    }
+
+    hl.dispatch(
+      hl.dsp.window.move({
+        window = window,
+        workspace = fullscreen_ws,
+        follow = true,
+      })
+    )
+
+  -- Leaving fullscreen
+  elseif state == 0 and fullscreen_origins[window] then
+    local origin = fullscreen_origins[window]
+
+    fullscreen_origins[window] = nil
+
+    hl.dispatch(
+      hl.dsp.window.move({
+        window = window,
+        workspace = origin.workspace,
+        follow = true,
+      })
+    )
+  end
+end)

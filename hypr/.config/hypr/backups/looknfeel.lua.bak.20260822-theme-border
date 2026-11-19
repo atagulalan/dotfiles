@@ -1,0 +1,19 @@
+hl.config({
+  general = {
+    resize_on_border = true,
+    col = {
+      active_border = "#FF8C00",
+    },
+  },
+  group = {
+    col = {
+      border_active = "#FF8C00",
+    },
+  },
+  decoration = {
+    rounding = 16,
+  },
+  cursor = {
+    no_warps = true,
+  },
+})

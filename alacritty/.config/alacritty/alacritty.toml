@@ -49,7 +49,7 @@ cyan = "0x79FFFC"
 white = "0xC2C2C2"
 
 [font]
-size = 16
+size = 9
 
 [font.normal]
 family = "Victor Mono"
@@ -57,7 +57,7 @@ style = "Bold"
 
 [font.bold]
 family = "Victor Mono"
-style = "Heavy"
+style = "Bold"
 
 [font.italic]
 family = "Victor Mono"
@@ -65,7 +65,7 @@ style = "Italic"
 
 [font.bold_italic]
 family = "Victor Mono"
-style = "Heavy Italic"
+style = "Bold Italic"
 
 [selection]
 semantic_escape_chars = ",│`|:\"' ()[]{}<>\t"

@@ -1,0 +1,15 @@
+hl.config({
+  general = {
+    resize_on_border = true,
+  },
+  decoration = {
+    rounding = 26,
+    screen_shader = "/home/xava/.config/hypr/screen-rounded-corners.frag",
+  },
+  cursor = {
+    no_warps = true,
+  },
+})
+
+-- Animate horizontal workspace changes (Omarchy disables this by default).
+hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "easeOutQuint", style = "slide" })

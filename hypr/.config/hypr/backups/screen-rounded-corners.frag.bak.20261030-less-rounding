@@ -1,0 +1,37 @@
+#version 300 es
+precision highp float;
+
+in vec2 v_texcoord;
+layout(location = 0) out vec4 fragColor;
+uniform sampler2D tex;
+
+void main() {
+    vec4 pixel = texture(tex, v_texcoord);
+    vec2 size = vec2(textureSize(tex, 0));
+    vec2 p = v_texcoord * size;
+
+    // Physical-pixel radius; increase this for rounder screen corners.
+    float radius = min(36.0, min(size.x, size.y) * 0.25);
+    float feather = 1.5;
+    float distanceFromCorner = 0.0;
+    bool inCorner = false;
+
+    if (p.x < radius && p.y < radius) {
+        distanceFromCorner = distance(p, vec2(radius));
+        inCorner = true;
+    } else if (p.x > size.x - radius && p.y < radius) {
+        distanceFromCorner = distance(p, vec2(size.x - radius, radius));
+        inCorner = true;
+    } else if (p.x < radius && p.y > size.y - radius) {
+        distanceFromCorner = distance(p, vec2(radius, size.y - radius));
+        inCorner = true;
+    } else if (p.x > size.x - radius && p.y > size.y - radius) {
+        distanceFromCorner = distance(p, size - vec2(radius));
+        inCorner = true;
+    }
+
+    float keepPixel = inCorner
+        ? 1.0 - smoothstep(radius - feather, radius + feather, distanceFromCorner)
+        : 1.0;
+    fragColor = mix(vec4(0.0, 0.0, 0.0, 1.0), pixel, keepPixel);
+}

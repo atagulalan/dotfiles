@@ -1,0 +1,29 @@
+[Desktop Entry]
+Name=Steam
+Comment=Application for managing and playing games on Steam
+Exec=/home/xava/.local/bin/steam-small %U
+Icon=steam
+Terminal=false
+Type=Application
+Categories=Game;
+MimeType=x-scheme-handler/steam;x-scheme-handler/steamlink;
+StartupWMClass=Steam
+StartupNotify=true
+PrefersNonDefaultGPU=true
+Actions=Store;Library;Settings;BigPicture;
+
+[Desktop Action Store]
+Name=Store
+Exec=/home/xava/.local/bin/steam-small steam://store
+
+[Desktop Action Library]
+Name=Library
+Exec=/home/xava/.local/bin/steam-small steam://open/games
+
+[Desktop Action Settings]
+Name=Settings
+Exec=/home/xava/.local/bin/steam-small steam://open/settings
+
+[Desktop Action BigPicture]
+Name=Big Picture
+Exec=/home/xava/.local/bin/steam-small steam://open/bigpicture

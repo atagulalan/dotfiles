@@ -1,0 +1,2 @@
+#!/bin/sh
+exec env GDK_SCALE=1 GDK_DPI_SCALE=1 QT_SCALE_FACTOR=1 STEAM_FORCE_DESKTOPUI_SCALING=1.0 /usr/bin/steam -forcedesktopscaling 1.0 "$@"

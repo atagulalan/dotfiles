@@ -1,0 +1,132 @@
+local DESKTOP = "name:Desktop"
+
+-- Aynı uygulamadan birden fazla fullscreen pencere olursa
+-- workspace isimleri çakışmasın diye sayaç tutuyoruz.
+local app_counters = {}
+
+-- Window -> fullscreen workspace
+local fullscreen_windows = {}
+
+local function sanitize(value)
+  if not value or value == "" then
+    return "App"
+  end
+
+  value = value
+    :gsub("^%s+", "")
+    :gsub("%s+$", "")
+    :gsub("[^%w%-_]", "-")
+    :gsub("%-+", "-")
+    :gsub("^%-+", "")
+    :gsub("%-+$", "")
+
+  if value == "" then
+    return "App"
+  end
+
+  return value
+end
+
+local function window_key(window)
+  -- Wrapper objesinin kendisini table key olarak kullanmıyoruz.
+  -- tostring() ile stabil bir pencere kimliği elde etmeye çalışıyoruz.
+  return tostring(window)
+end
+
+local function app_name(window)
+  local name = window.class
+
+  if not name or name == "" then
+    name = window.initialClass
+  end
+
+  if not name or name == "" then
+    name = window.title
+  end
+
+  -- Wayland uygulamaları class olarak sıkça ters-domain kimliği kullanır:
+  --   com.mitchellh.ghostty -> ghostty
+  -- Workspace etiketinde paket kimliği yerine uygulama adını gösteriyoruz.
+  if name and name:find("%.") then
+    name = name:match("([^.]+)$") or name
+  end
+
+  name = sanitize(name)
+
+  -- zen -> Zen, steam -> Steam, ghostty -> Ghostty
+  return name:gsub("^%l", string.upper)
+end
+
+local function create_workspace_name(window)
+  local app = app_name(window)
+
+  app_counters[app] = (app_counters[app] or 0) + 1
+
+  local index = app_counters[app]
+
+  -- İlk pencere:
+  --   Zen
+  --
+  -- İkinci fullscreen Zen:
+  --   Zen-2
+  if index == 1 then
+    return "name:" .. app
+  end
+
+  return "name:" .. app .. "-" .. tostring(index)
+end
+
+local function enter_fullscreen(window)
+  local key = window_key(window)
+
+  -- Zaten taşıdıysak tekrar işlem yapma.
+  if fullscreen_windows[key] then
+    return
+  end
+
+  local workspace = create_workspace_name(window)
+
+  fullscreen_windows[key] = workspace
+
+  hl.dispatch(
+    hl.dsp.window.move({
+      window = window,
+      workspace = workspace,
+      follow = true,
+    })
+  )
+end
+
+local function leave_fullscreen(window)
+  local key = window_key(window)
+
+  if not fullscreen_windows[key] then
+    return
+  end
+
+  fullscreen_windows[key] = nil
+
+  hl.dispatch(
+    hl.dsp.window.move({
+      window = window,
+      workspace = DESKTOP,
+      follow = true,
+    })
+  )
+end
+
+hl.on("window.fullscreen", function(window)
+  if not window then
+    return
+  end
+
+  local state = window.fullscreen
+
+  -- Fullscreen state API sürüme göre biraz değişebildiği için
+  -- hem boolean hem numeric durumları tolere ediyoruz.
+  if state == true or state == 1 or state == 2 then
+    enter_fullscreen(window)
+  else
+    leave_fullscreen(window)
+  end
+end)

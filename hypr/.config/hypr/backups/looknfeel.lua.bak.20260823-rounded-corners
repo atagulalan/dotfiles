@@ -1,0 +1,14 @@
+hl.config({
+  general = {
+    resize_on_border = true,
+  },
+  decoration = {
+    rounding = 16,
+  },
+  cursor = {
+    no_warps = true,
+  },
+})
+
+-- Animate horizontal workspace changes (Omarchy disables this by default).
+hl.animation({ leaf = "workspaces", enabled = true, speed = 4, bezier = "easeOutQuint", style = "slide" })

@@ -1,0 +1,29 @@
+-- Personal Omarchy / Hyprland overrides.
+-- Omarchy supplies the base configuration; this file is intentionally kept
+-- small so it remains compatible with Omarchy updates.
+
+dofile((os.getenv("OMARCHY_PATH") or "/usr/share/omarchy") .. "/default/hypr/bootstrap.lua")
+require("default.hypr.omarchy")
+
+require("hypr.monitors")
+require("hypr.input")
+require("hypr.bindings")
+require("hypr.looknfeel")
+require("hypr.autostart")
+require("default.hypr.toggles")
+
+-- Keep windows fully opaque.
+o.window(".*", { opacity = "1 1" })
+hl.window_rule({
+  name = "apply-something",
+  float = 1,
+})
+
+hl.config({
+    plugin = {
+        hyprbars = {
+            bar_height = 0,
+            bar_text_align = left
+        }
+    }
+})
