@@ -1,3 +1,7 @@
 
 # monochi Vitals icons are generated into the private monochi repo (symlink)
 gnome/extensions/*/icons/monochi
+
+# Sifreli secrets arsivi asla repoya girmez
+secrets-*.tar.gpg
+*.tar.gpg

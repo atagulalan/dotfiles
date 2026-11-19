@@ -29,6 +29,8 @@ oturumu kapatmayı teklif eder.
 | `zen/restore.sh` | Zen profilini yeni makineye kurar (Zen kapalıyken) |
 | `etc/backup.sh` | /etc ve /opt konfigleri: coolercontrol, ollama override'ı, zapret config |
 | `etc/restore.sh` | Yukarıdakileri geri yükler (sudo; ollama'da kullanıcı adı/home uyarlanır) |
+| `secrets/backup.sh` | Repoya girmeyenleri (`secrets/paths.txt`: ssh/gpg, token'lar, Zen şifre/çerez/geçmiş, wifi) şifreli `~/secrets-<tarih>.tar.gpg` yapar |
+| `secrets/restore.sh` | Arşivi açıp yerine koyar (`--list` sadece içeriği gösterir); `bootstrap.sh` yolunu sorar |
 
 ## Yapı
 
@@ -61,5 +63,8 @@ oturumu kapatmayı teklif eder.
   açık tabler/space'ler ve ziyaret edilen alan adlarını içeren dosyalar
   (`content-prefs.sqlite`, `permissions.sqlite`) **hariçtir**.
 - Ayar değiştirdikçe ana makinede `./backup.sh` çalıştırmak yeterli.
+- Gizli dosyalar `./secrets/backup.sh` ile **ayrı**, gpg (AES256) şifreli bir
+  arşive alınır; arşiv repo dışında (USB / bulut) durur, `*.tar.gpg` gitignore'da.
+  Şifre unutulursa kurtarma yolu yok.
 - Fork eklenti güncelleme akışı: fork'u build edip lokale kur →
   `./gnome/sync-extensions.sh --commit`.

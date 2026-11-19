@@ -74,6 +74,17 @@ echo
 echo "==> Running extras (bin scripts, desktop entries, mimeapps)"
 ./install.sh
 
+# Sifreli secrets arsivi (ssh/gpg anahtarlari, tokenlar, Zen sifreleri...).
+# monochi (private) gh/ssh kimligi istedigi icin ondan once.
+echo
+echo "==> Secrets arsivi (repoda olmayan gizli dosyalar)"
+found=$(ls -t "$HOME"/secrets-*.tar.gpg /run/media/"$USER"/*/secrets-*.tar.gpg 2>/dev/null | head -1 || true)
+read -rp "Arsiv yolu${found:+ [$found]} (bos = ${found:+bulunani kullan, '-' = }atla): " sec
+[[ -z $sec ]] && sec=$found
+if [[ -n $sec && $sec != - ]]; then
+    ./secrets/restore.sh "$sec" || echo "Secrets yuklenemedi; sonra tekrar: ./secrets/restore.sh <arsiv>"
+fi
+
 echo
 echo "==> monochi ikon temasi (private submodule)"
 # Erisim yoksa (gh auth login yapilmamis vb.) atlanir; tema monoc/Adwaita'ya duser.
