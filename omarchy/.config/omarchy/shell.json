@@ -1,0 +1,143 @@
+{
+  "version": 1,
+  "idle": {
+    "screensaver": 60,
+    "lock": 300000
+  },
+  "bar": {
+    "position": "bottom",
+    "transparent": true,
+    "centerAnchor": "atagulalan.omapanel",
+    "layout": {
+      "left": [
+        {
+          "id": "xava.gnome-workspaces"
+        }
+      ],
+      "center": [
+        {
+          "id": "atagulalan.omapanel",
+          "activeBackgroundColor": "#ffffff20",
+          "activeColor": "#ffffff",
+          "activeFontWeight": 600,
+          "activeIndicator": "None",
+          "barBackgroundColor": "#000000",
+          "barCornerRadius": "16",
+          "barHeight": "32",
+          "barHorizontalPadding": 0,
+          "barTopPadding": 0,
+          "excludedClasses": "",
+          "fixedItemWidth": 160,
+          "fontSize": "13",
+          "groupRunningByWorkspace": true,
+          "hoverBackgroundColor": "#ffffff10",
+          "hoverColor": "#ffffffff",
+          "hoverFontWeight": 600,
+          "hoverOpacity": 85,
+          "hoverOverridesActive": false,
+          "iconLabelSpacing": 8,
+          "iconOnlyWhenClosed": true,
+          "iconSize": 16,
+          "indicatorColor": "",
+          "indicatorLength": 0,
+          "indicatorMargin": 2,
+          "indicatorSize": 4,
+          "indicatorThickness": 2,
+          "invertIconColors": false,
+          "itemCornerRadius": "32",
+          "itemHorizontalPadding": 12,
+          "itemSpacing": 16,
+          "itemVerticalPadding": 9,
+          "labelFormat": "[APP_NAME] - [WINDOW_TITLE]",
+          "leadingSeparator": false,
+          "maxAdaptiveWidth": 220,
+          "maxLabelLength": 21,
+          "maxRunningWindows": 8,
+          "middleClickAction": "New Window",
+          "normalBackgroundColor": "",
+          "normalColor": "#ffffffff",
+          "normalFontWeight": 600,
+          "normalOpacity": 50,
+          "pinnedApps": "[{\"label\":\"Zen Browser\",\"match\":\"^zen$\",\"launch\":\"uwsm-app -- gtk-launch 'zen.desktop'\",\"icon\":\"zen-browser\",\"desktopId\":\"zen\"},{\"label\":\"Files\",\"match\":\"^org\\\\.gnome\\\\.Nautilus$\",\"launch\":\"uwsm-app -- gtk-launch 'org.gnome.Nautilus.desktop'\",\"icon\":\"org.gnome.Nautilus\",\"desktopId\":\"org.gnome.Nautilus\"},{\"label\":\"Cursor\",\"match\":\"^cursor$\",\"launch\":\"uwsm-app -- gtk-launch 'cursor.desktop'\",\"icon\":\"co.anysphere.cursor\",\"desktopId\":\"cursor\"},{\"label\":\"Ghostty\",\"match\":\"^com\\\\.mitchellh\\\\.ghostty$\",\"launch\":\"uwsm-app -- gtk-launch 'com.mitchellh.ghostty.desktop'\",\"icon\":\"com.mitchellh.ghostty\",\"desktopId\":\"com.mitchellh.ghostty\"},{\"label\":\"Discord\",\"match\":\"^discord$\",\"launch\":\"uwsm-app -- gtk-launch 'discord.desktop'\",\"icon\":\"discord\",\"desktopId\":\"discord\"}]",
+          "previewAutoHeight": true,
+          "previewDelay": 0,
+          "previewQuality": 100,
+          "sectionSeparator": true,
+          "showIcons": true,
+          "showLabels": true,
+          "showRunning": true,
+          "showWindowPreviews": true,
+          "trimEdgeItemGaps": true,
+          "widthMode": "Adaptive"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray",
+          "pinned": [],
+          "hidden": []
+        },
+        {
+          "id": "crmne.hyprmoncfg"
+        },
+        {
+          "id": "stappmus.activity-monitor",
+          "samplingSpeed": "Fast"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.power"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.clock",
+          "format": "HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "HH\n—\nmm"
+        }
+      ]
+    },
+    "id": "io.github.amitcpatel.omabar-drawer",
+    "drawerAlwaysVisible": [
+      "omarchy.audio",
+      "omarchy.clock"
+    ]
+  },
+  "plugins": [
+    {
+      "id": "io.github.pablo-merino.altswitch"
+    },
+    {
+      "id": "xava.idle"
+    },
+    {
+      "id": "io.github.atagulalan.window-controls"
+    }
+  ],
+  "disabledPlugins": [
+    "omarchy.battery",
+    "omarchy.idle"
+  ],
+  "cloneSourceRestores": [
+    "xava.idle"
+  ]
+}

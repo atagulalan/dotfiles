@@ -1,0 +1,123 @@
+{
+  "version": 1,
+  "idle": {
+    "screensaver": 150,
+    "lock": 300
+  },
+  "bar": {
+    "position": "bottom",
+    "transparent": false,
+    "centerAnchor": "omarchy.clock",
+    "layout": {
+      "left": [
+        {
+          "id": "omalogo"
+        },
+        {
+          "id": "omarchy.indicators"
+        }
+      ],
+      "center": [
+        {
+          "id": "atagulalan.omapanel",
+          "activeBackgroundColor": "",
+          "activeColor": "",
+          "activeFontWeight": 600,
+          "activeIndicator": "Underline",
+          "excludedClasses": "",
+          "fixedItemWidth": 160,
+          "fontSize": "",
+          "groupRunningByWorkspace": true,
+          "hoverBackgroundColor": "",
+          "hoverColor": "",
+          "hoverFontWeight": 500,
+          "iconLabelSpacing": 8,
+          "iconOnlyWhenClosed": true,
+          "iconSize": 18,
+          "indicatorColor": "",
+          "indicatorLength": 0,
+          "indicatorMargin": 2,
+          "indicatorSize": 4,
+          "indicatorThickness": 2,
+          "itemHorizontalPadding": 8,
+          "itemSpacing": 4,
+          "itemVerticalPadding": 12,
+          "labelFormat": "[APP_NAME] - [WINDOW_TITLE]",
+          "leadingSeparator": false,
+          "maxAdaptiveWidth": 280,
+          "maxLabelLength": 14,
+          "maxRunningWindows": 12,
+          "normalBackgroundColor": "",
+          "normalColor": "",
+          "normalFontWeight": 400,
+          "pinnedApps": "[{\"label\":\"Zen\",\"match\":\"^zen$\",\"launch\":\"omarchy-launch-browser\",\"icon\":\"zen-browser\",\"desktopId\":\"zen\"},{\"label\":\"Cursor\",\"match\":\"^cursor$\",\"launch\":\"uwsm-app -- cursor\",\"icon\":\"co.anysphere.cursor\",\"desktopId\":\"cursor\"},{\"label\":\"Files\",\"match\":\"^org\\\\.gnome\\\\.Nautilus$\",\"launch\":\"uwsm-app -- gtk-launch 'org.gnome.Nautilus.desktop'\",\"icon\":\"org.gnome.Nautilus\",\"desktopId\":\"org.gnome.Nautilus\"},{\"label\":\"Ghostty\",\"match\":\"^com\\\\.mitchellh\\\\.ghostty$\",\"launch\":\"uwsm-app -- gtk-launch 'com.mitchellh.ghostty.desktop'\",\"icon\":\"com.mitchellh.ghostty\",\"desktopId\":\"com.mitchellh.ghostty\"}]",
+          "sectionSeparator": true,
+          "showIcons": true,
+          "showLabels": true,
+          "showRunning": true,
+          "widthMode": "Adaptive"
+        },
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.system-update"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray",
+          "pinned": [],
+          "hidden": []
+        },
+        {
+          "id": "crmne.hyprmoncfg"
+        },
+        {
+          "id": "stappmus.activity-monitor",
+          "samplingSpeed": "Fast"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.power"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.microphone"
+        },
+        {
+          "id": "omarchy.clock",
+          "format": "HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "HH\n—\nmm"
+        }
+      ]
+    },
+    "id": "io.github.amitcpatel.omabar-drawer",
+    "drawerAlwaysVisible": [
+      "omarchy.audio",
+      "omarchy.clock"
+    ]
+  },
+  "plugins": [
+    {
+      "id": "io.github.pablo-merino.altswitch"
+    }
+  ],
+  "disabledPlugins": [
+    "omarchy.battery"
+  ]
+}

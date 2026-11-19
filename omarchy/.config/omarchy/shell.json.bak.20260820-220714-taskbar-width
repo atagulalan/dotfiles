@@ -1,0 +1,120 @@
+{
+  "version": 1,
+  "idle": {
+    "screensaver": 150,
+    "lock": 300
+  },
+  "bar": {
+    "position": "bottom",
+    "transparent": true,
+    "centerAnchor": "omarchy.clock",
+    "layout": {
+      "left": [
+        {
+          "id": "omarchy.menu"
+        },
+        {
+          "id": "omarchy.workspaces"
+        },
+        {
+          "id": "xava.app-taskbar",
+          "activeIndicator": "Underline",
+          "activeColor": "",
+          "activeFontWeight": 600,
+          "excludedClasses": "",
+          "fontSize": 14,
+          "iconLabelSpacing": 6,
+          "iconOnlyWhenClosed": true,
+          "iconSize": 16,
+          "indicatorColor": "",
+          "indicatorLength": 0,
+          "indicatorMargin": 2,
+          "indicatorSize": 4,
+          "indicatorThickness": 2,
+          "itemHorizontalPadding": 7,
+          "itemSpacing": 2,
+          "itemVerticalPadding": 8,
+          "labelFormat": "[APP_NAME] - [WINDOW_TITLE]",
+          "leadingSeparator": true,
+          "maxLabelLength": 32,
+          "maxRunningWindows": 12,
+          "normalColor": "",
+          "normalFontWeight": 400,
+          "pinnedApps": "[{\"label\":\"Zen\",\"match\":\"^zen$\",\"launch\":\"omarchy-launch-browser\",\"icon\":\"zen-browser\",\"desktopId\":\"zen\"},{\"label\":\"Cursor\",\"match\":\"^cursor$\",\"launch\":\"uwsm-app -- gtk-launch 'cursor.desktop'\",\"icon\":\"co.anysphere.cursor\",\"desktopId\":\"cursor\"}]",
+          "sectionSeparator": true,
+          "showIcons": true,
+          "showLabels": true,
+          "showRunning": true
+        }
+      ],
+      "center": [
+        {
+          "id": "omarchy.keyboard-layout"
+        },
+        {
+          "id": "omarchy.system-update"
+        },
+        {
+          "id": "omarchy.indicators"
+        },
+        {
+          "id": "omarchy.weather"
+        },
+        {
+          "id": "omarchy.active-window"
+        }
+      ],
+      "right": [
+        {
+          "id": "omarchy.tray",
+          "pinned": [
+            "discord_status_icon_1"
+          ],
+          "hidden": []
+        },
+        {
+          "id": "stappmus.activity-monitor",
+          "samplingSpeed": "Fast"
+        },
+        {
+          "id": "akitaonrails.ai-usagebar"
+        },
+        {
+          "id": "crmne.hyprmoncfg"
+        },
+        {
+          "id": "omarchy.agents"
+        },
+        {
+          "id": "omarchy.microphone"
+        },
+        {
+          "id": "omarchy.bluetooth"
+        },
+        {
+          "id": "omarchy.network"
+        },
+        {
+          "id": "omarchy.audio"
+        },
+        {
+          "id": "omarchy.power"
+        },
+        {
+          "id": "omarchy.monitor"
+        },
+        {
+          "id": "omarchy.clock",
+          "format": "HH:mm",
+          "formatAlt": "d MMMM 'W'ww yyyy",
+          "verticalFormat": "HH\n—\nmm"
+        }
+      ]
+    }
+  },
+  "plugins": [
+    {
+      "id": "io.github.pablo-merino.altswitch"
+    }
+  ]
+}

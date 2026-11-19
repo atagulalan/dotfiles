@@ -1,0 +1,22 @@
+{
+  "schemaVersion": 1,
+  "id": "xava.gnome-workspaces",
+  "name": "GNOME Workspaces",
+  "version": "1.0.0",
+  "author": "xava",
+  "license": "MIT",
+  "description": "GNOME-style workspace pills for the Omarchy bar",
+  "kinds": [
+    "bar-widget"
+  ],
+  "entryPoints": {
+    "barWidget": "BarWidget.qml"
+  },
+  "barWidget": {
+    "displayName": "GNOME Workspaces",
+    "description": "Active workspace pill with dots for the other workspaces",
+    "category": "Compositor",
+    "allowMultiple": false,
+    "defaultSection": "left"
+  }
+}

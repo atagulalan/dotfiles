@@ -1,0 +1,6 @@
+[font]
+base-size = 12
+
+[bar]
+size-horizontal = 52
+scale-with-font = false
