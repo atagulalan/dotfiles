@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Nuxy
+Comment=Nuxy autostart (hidden; showOnStartup=false)
+Exec=sh -c "exec ~/Documents/nuxy/nuxy.sh"
+Icon=utilities-terminal
+Terminal=false
+StartupNotify=false
+X-GNOME-Autostart-enabled=true
