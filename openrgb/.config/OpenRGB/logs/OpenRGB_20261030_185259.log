@@ -1,0 +1,41 @@
+    OpenRGB v1.1
+    Commit:  from 
+    Launched: 20261030_185259
+====================================================================================================
+
+[9         ][Info   ][ProfileManager] Found file: Black.json attempting to validate header
+[9         ][Info   ][ProfileManager] Found file: White.json attempting to validate header
+[24        ][Info   ][ProfileManager] Found file: Black.json attempting to validate header
+[24        ][Info   ][ProfileManager] Found file: White.json attempting to validate header
+[34        ][Info   ][NetworkServer] Network connection thread started on port 6742
+[35        ][Info   ]------------------------------------------------------
+[35        ][Info   ]|               Start device detection               |
+[35        ][Info   ]------------------------------------------------------
+[43        ][Info   ]------------------------------------------------------
+[44        ][Info   ]|             Detecting I2C interfaces               |
+[44        ][Info   ]------------------------------------------------------
+[44        ][Info   ][DetectionManager] Registering I2C interface: SMBus I801 adapter at 0000:00:1f.3 (/dev/i2c-0) Device 8086:2930 Subsystem: 1AF4:1100
+[44        ][Info   ]------------------------------------------------------
+[44        ][Info   ]|               Detecting I2C devices                |
+[44        ][Info   ]------------------------------------------------------
+[44        ][Info   ]------------------------------------------------------
+[44        ][Info   ]|            Detecting I2C DRAM modules              |
+[44        ][Info   ]------------------------------------------------------
+[44        ][Info   ]------------------------------------------------------
+[44        ][Info   ]|               Detecting I2C PCI devices            |
+[44        ][Info   ]------------------------------------------------------
+[45        ][Info   ]------------------------------------------------------
+[45        ][Info   ]|               Detecting HID devices                |
+[45        ][Info   ]------------------------------------------------------
+[45        ][Info   ]------------------------------------------------------
+[45        ][Info   ]|            Detecting libusb HID devices            |
+[45        ][Info   ]------------------------------------------------------
+[48        ][Info   ]------------------------------------------------------
+[48        ][Info   ]|              Detecting other devices               |
+[48        ][Info   ]------------------------------------------------------
+[96        ][Info   ]------------------------------------------------------
+[96        ][Info   ]|                Detection completed                 |
+[96        ][Info   ]------------------------------------------------------
+[20732711  ][Info   ][NetworkServer] Connection thread closed
+[20732722  ][Info   ][ResourceManager] Service shutting down
+[20732754  ][Info   ][DetectionManager] Cleaning up detected devices

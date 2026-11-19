@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-# Fresh-machine bootstrap for a new CachyOS install.
+# Fresh-machine bootstrap for an Omarchy (Hyprland) install.
 # Clones the repo, installs packages interactively, stows configs, runs extras.
 #
 # One-liner (fish/bash uyumlu):
@@ -43,16 +43,17 @@ esac
 
 echo
 echo "==> Stowing configs"
-# A stow package = top-level dir with a dot-prefixed entry at its root.
-# mimeapps is excluded: install.sh copies it instead of symlinking.
-packages=()
-for d in */; do
-    d=${d%/}
-    [[ $d == mimeapps ]] && continue
-    if find "$d" -maxdepth 1 -name ".*" -print -quit | grep -q .; then
-        packages+=("$d")
-    fi
+# Keep the install list explicit. The old GNOME-only packages (dconf, Shell
+# extensions, monitors.xml, PaperWM, Tiling Assistant and libinput gestures)
+# must never be linked into an Omarchy session. Omarchy owns its GTK theme,
+# so gtk/themes/icons are intentionally omitted too.
+packages=(alacritty bash coolercontrol fish fonts ghostty git gsnap hypr micro mpv omarchy omf openrgb qbittorrent sunshine syncplay systemd yay)
+# mimeapps is copied by install.sh because applications rewrite it.
+available_packages=()
+for package in "${packages[@]}"; do
+    [[ -d $package ]] && available_packages+=("$package")
 done
+packages=("${available_packages[@]}")
 echo "Packages: ${packages[*]}"
 read -rp "Existing configs will be REPLACED by repo versions. Continue? [Y/n] " ok
 if [[ ! $ok =~ ^[nN] ]]; then
@@ -91,15 +92,6 @@ if [[ ! -d $HOME/.local/share/omf ]] && command -v fish &>/dev/null; then
     git -C "$DIR" checkout -- fish/.config/fish/conf.d/omf.fish 2>/dev/null || true
 fi
 
-if [[ ${XDG_CURRENT_DESKTOP:-} == *GNOME* ]] && command -v dconf &>/dev/null; then
-    echo
-    read -rp "GNOME kurulumu: eklentiler + dconf ayarları + arkaplan? [Y/n] " g
-    if [[ ! $g =~ ^[nN] ]]; then
-        ./gnome/install-extensions.sh
-        ./gnome/restore.sh
-    fi
-fi
-
 if [[ -d etc/coolercontrol || -d etc/ollama || -d etc/zapret ]]; then
     echo
     read -rp "/etc konfigleri yüklensin mi (coolercontrol, ollama, zapret; sudo ister)? [Y/n] " e
@@ -118,9 +110,5 @@ echo
 echo "==> Bootstrap tamamlandı."
 read -rp "Değişikliklerin aktifleşmesi için oturum kapatılsın mı? [Y/n] " lo
 if [[ ! $lo =~ ^[nN] ]]; then
-    if command -v gnome-session-quit &>/dev/null; then
-        gnome-session-quit --logout --no-prompt
-    else
-        loginctl terminate-session "${XDG_SESSION_ID:-}"
-    fi
+    loginctl terminate-session "${XDG_SESSION_ID:-}"
 fi

@@ -30,9 +30,6 @@ docker
 docker-buildx
 docker-compose
 meld
-ghex
-d-spy
-gnome-builder
 
 [Terminals]
 ghostty
@@ -47,14 +44,11 @@ syncplay
 
 [Media]
 haruna
-showtime
-decibels
 vlc-plugins-all
 calibre
 spotify-launcher
 obs-studio-browser
 obs-vkcapture
-obs-gnome-screencast
 
 [Gaming]
 steam
@@ -68,20 +62,13 @@ sunshine
 openrgb
 coolercontrol
 keyd
-via-bin
 evtest
 
 [AI & Editors]
 obsidian
 cursor-bin
-llmfit-bin
 
 [Desktop extras]
-angrysearch
-nautilus-open-any-terminal
-gnome-tweaks
-dconf-editor
-gnome-boxes
 
 [Network & VPN]
 dnscrypt-proxy

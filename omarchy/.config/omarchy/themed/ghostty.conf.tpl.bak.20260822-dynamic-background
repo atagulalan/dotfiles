@@ -1,7 +1,9 @@
-# xavaTheme
-
-foreground = #FAFAFA
+# xavaTheme — persistent Ghostty palette, independent of the active Omarchy theme.
 background = #141414
+foreground = #FAFAFA
+cursor-color = #FAFAFA
+selection-background = #2D3136
+selection-foreground = #FAFAFA
 
 palette = 0=#141414
 palette = 1=#ff6b80
@@ -19,14 +21,3 @@ palette = 12=#4782c8
 palette = 13=#b2b9f9
 palette = 14=#79FFFC
 palette = 15=#E0E0E0
-
-# font size
-font-size = 16
-
-# title bar shadow kapatma (window shadow)
-window-padding-x = 12
-window-padding-y = 10
-gtk-toolbar-style=flat
-font-family=Victor Mono
-font-style=Bold
-font-feature=+liga, +calt, +dlig

@@ -1,0 +1,10 @@
+-- Keep personal bindings independent of optional Omarchy plugins.
+o.bind("SUPER + M", "Minimize window", hl.dsp.window.move({
+  workspace = "special:omarchy-minimized",
+  follow = false,
+}))
+
+-- Left SUPER alone: open the same menu as SUPER + SPACE.
+-- This release bind is shadowed when another SUPER combination is used.
+hl.unbind("SUPER + SUPER_L") -- Was: Gloview on a quick double press.
+o.bind("SUPER + SUPER_L", "Omarchy menu", "omarchy-menu toggle", { release = true })

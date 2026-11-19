@@ -1,0 +1,10 @@
+-- Match the former desktop's flat mouse acceleration setting.
+hl.config({
+  input = {
+    accel_profile = "flat",
+    -- GNOME pointer speed was -0.229508...; Hyprland uses the same -1..1 range.
+    sensitivity = -0.23,
+    -- Keep cursor focus separate; a click moves keyboard focus to that window.
+    follow_mouse = 2,
+  },
+})

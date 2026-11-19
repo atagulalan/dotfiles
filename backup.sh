@@ -1,11 +1,11 @@
 #!/usr/bin/env bash
-# Tum yedekleri alir (GNOME + Zen + etc + paket listesi) ve tek commit ile pushlar.
+# Tum yedekleri alir (Hyprland + Zen + etc + paket listesi) ve tek commit ile pushlar.
 # Kullanim: ./backup.sh [--no-push]
 set -euo pipefail
 
 cd "$(dirname "$0")"
 
-./gnome/backup.sh --no-push
+./scripts/hypr-backup.sh
 echo
 if [[ -f $HOME/.config/zen/profiles.ini ]]; then
     ./zen/backup.sh --no-push

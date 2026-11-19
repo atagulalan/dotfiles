@@ -1,0 +1,40 @@
+    OpenRGB v0.9+ (1.0rc3)
+    Commit:  from 
+    Launched: 20261030_150552
+====================================================================================================
+
+0     |Info:    [ProfileManager] Found file: Black.orp attempting to validate header
+2     |Info:    [ProfileManager] Valid v5 profile found for Black
+2     |Info:    [ProfileManager] Found file: White.orp attempting to validate header
+3     |Info:    [ProfileManager] Valid v5 profile found for White
+57    |Info:    [NetworkServer] Network connection thread started on port 6742
+58    |Info:    [ResourceManager] Initializing HID interfaces: Success
+58    |Info:    ------------------------------------------------------
+58    |Info:    |               Start device detection               |
+58    |Info:    ------------------------------------------------------
+59    |Info:    ------------------------------------------------------
+59    |Info:    |             Detecting I2C interfaces               |
+59    |Info:    ------------------------------------------------------
+59    |Info:    [ResourceManager] Registering I2C interface: SMBus I801 adapter at 0000:00:1f.3 (/dev/i2c-0) Device 8086:2930 Subsystem: 1AF4:1100
+59    |Info:    ------------------------------------------------------
+59    |Info:    |               Detecting I2C devices                |
+59    |Info:    ------------------------------------------------------
+59    |Info:    ------------------------------------------------------
+59    |Info:    |            Detecting I2C DIMM modules              |
+59    |Info:    ------------------------------------------------------
+59    |Info:    ------------------------------------------------------
+59    |Info:    |               Detecting I2C PCI devices            |
+59    |Info:    ------------------------------------------------------
+60    |Info:    ------------------------------------------------------
+60    |Info:    |               Detecting HID devices                |
+60    |Info:    ------------------------------------------------------
+60    |Info:    ------------------------------------------------------
+60    |Info:    |            Detecting libusb HID devices            |
+60    |Info:    ------------------------------------------------------
+72    |Info:    ------------------------------------------------------
+72    |Info:    |              Detecting other devices               |
+72    |Info:    ------------------------------------------------------
+108   |Info:    [ResourceManager] Calling Post-detection callbacks
+108   |Info:    ------------------------------------------------------
+108   |Info:    |                Detection completed                 |
+108   |Info:    ------------------------------------------------------

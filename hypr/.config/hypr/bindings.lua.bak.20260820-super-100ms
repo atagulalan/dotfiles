@@ -1,0 +1,24 @@
+-- Keep personal bindings independent of optional Omarchy plugins.
+o.bind("SUPER + M", "Minimize window", hl.dsp.window.move({
+  workspace = "special:omarchy-minimized",
+  follow = false,
+}))
+
+-- Left SUPER alone: one tap opens the Omarchy menu; two quick taps toggle Gloview.
+-- The release bind is shadowed when another SUPER combination is used.
+local super_tap_timer
+
+hl.unbind("SUPER + SUPER_L")
+o.bind("SUPER + SUPER_L", "Omarchy menu (double tap: Gloview)", function()
+  if super_tap_timer and super_tap_timer:is_enabled() then
+    super_tap_timer:set_enabled(false)
+    super_tap_timer = nil
+    hl.plugin.gloview.toggle()
+    return
+  end
+
+  super_tap_timer = hl.timer(function()
+    super_tap_timer = nil
+    hl.exec_cmd("omarchy-menu toggle")
+  end, { timeout = 100, type = "oneshot" })
+end, { release = true })

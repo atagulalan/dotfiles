@@ -1,0 +1,67 @@
+    OpenRGB v0.9+ (1.0rc3)
+    Commit:  from 
+    Launched: 20260825_192323
+====================================================================================================
+
+0     |Info:    [ProfileManager] Found file: Black.orp attempting to validate header
+2     |Info:    [ProfileManager] Valid v5 profile found for Black
+2     |Info:    [ProfileManager] Found file: White.orp attempting to validate header
+3     |Info:    [ProfileManager] Valid v5 profile found for White
+57    |Info:    [NetworkServer] Network connection thread started on port 6742
+58    |Info:    [ResourceManager] Initializing HID interfaces: Success
+58    |Info:    ------------------------------------------------------
+58    |Info:    |               Start device detection               |
+58    |Info:    ------------------------------------------------------
+63    |Info:    ------------------------------------------------------
+63    |Info:    |             Detecting I2C interfaces               |
+63    |Info:    ------------------------------------------------------
+63    |Info:    [ResourceManager] Registering I2C interface: NVIDIA i2c adapter 3 at 1:00.0
+ (/dev/i2c-3) Device 10DE:2782 Subsystem: 10DE:16E1
+63    |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-10) Device 1022:790B Subsystem: 1043:8877
+64    |Info:    [ResourceManager] Registering I2C interface: NVIDIA i2c adapter 1 at 1:00.0
+ (/dev/i2c-1) Device 10DE:2782 Subsystem: 10DE:16E1
+64    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 1 (/dev/i2c-8) Device 1002:164E Subsystem: 1043:8877
+64    |Info:    [ResourceManager] Registering I2C interface: NVIDIA i2c adapter 6 at 1:00.0
+ (/dev/i2c-6) Device 10DE:2782 Subsystem: 10DE:16E1
+64    |Info:    [ResourceManager] Registering I2C interface: NVIDIA i2c adapter 4 at 1:00.0
+ (/dev/i2c-4) Device 10DE:2782 Subsystem: 10DE:16E1
+64    |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 2 at 0b00 (/dev/i2c-11) Device 1022:790B Subsystem: 1043:8877
+64    |Info:    [ResourceManager] Registering I2C interface: NVIDIA i2c adapter 2 at 1:00.0
+ (/dev/i2c-2) Device 10DE:2782 Subsystem: 10DE:16E1
+64    |Info:    [ResourceManager] Registering I2C interface: Synopsys DesignWare I2C adapter (/dev/i2c-0) Device 0000:0000 Subsystem: 0000:0000
+64    |Info:    [i2c_smbus_linux] Failed to read i2c device PCI device ID
+64    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM aux hw bus 1 (/dev/i2c-9) Device 0000:0000 Subsystem: 0000:0000
+64    |Info:    [ResourceManager] Registering I2C interface: AMDGPU DM i2c hw bus 0 (/dev/i2c-7) Device 1002:164E Subsystem: 1043:8877
+64    |Info:    [ResourceManager] Registering I2C interface: NVIDIA i2c adapter 5 at 1:00.0
+ (/dev/i2c-5) Device 10DE:2782 Subsystem: 10DE:16E1
+64    |Info:    [ResourceManager] Registering I2C interface: SMBus PIIX4 adapter port 1 at 0b20 (/dev/i2c-12) Device 1022:790B Subsystem: 1043:8877
+64    |Info:    ------------------------------------------------------
+64    |Info:    |               Detecting I2C devices                |
+64    |Info:    ------------------------------------------------------
+249   |Info:    [ENE DRAM] Registering RGB controller
+437   |Info:    [ENE DRAM] Registering RGB controller
+1122  |Info:    ------------------------------------------------------
+1122  |Info:    |            Detecting I2C DIMM modules              |
+1122  |Info:    ------------------------------------------------------
+1883  |Info:    [ResourceManager] Detected occupied slot 2, bus 1, type DDR5
+2660  |Info:    [ResourceManager] Detected occupied slot 4, bus 1, type DDR5
+2795  |Info:    ------------------------------------------------------
+2795  |Info:    |               Detecting I2C PCI devices            |
+2795  |Info:    ------------------------------------------------------
+2796  |Info:    ------------------------------------------------------
+2796  |Info:    |               Detecting HID devices                |
+2796  |Info:    ------------------------------------------------------
+2884  |Info:    [ASUS TUF GAMING B650M-PLUS WIFI] Registering RGB controller
+2884  |Info:    ------------------------------------------------------
+2884  |Info:    |            Detecting libusb HID devices            |
+2884  |Info:    ------------------------------------------------------
+2919  |Info:    ------------------------------------------------------
+2919  |Info:    |              Detecting other devices               |
+2919  |Info:    ------------------------------------------------------
+2935  |Info:    [ResourceManager] Calling Post-detection callbacks
+2935  |Info:    ------------------------------------------------------
+2935  |Info:    |                Detection completed                 |
+2935  |Info:    ------------------------------------------------------
+2935  |Info:    [ProfileManager] Profile loading: Succeeded for ENE DRAM @ I2C: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-10), address 0x71
+2935  |Info:    [ProfileManager] Profile loading: Succeeded for ENE DRAM @ I2C: SMBus PIIX4 adapter port 0 at 0b00 (/dev/i2c-10), address 0x73
+2935  |Info:    [ProfileManager] Profile loading: Succeeded for ASUS TUF GAMING B650M-PLUS WIFI @ HID: /dev/hidraw0

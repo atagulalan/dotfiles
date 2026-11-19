@@ -1,0 +1,21 @@
+-- Keep personal bindings independent of optional Omarchy plugins.
+o.bind("SUPER + M", "Minimize window", hl.dsp.window.move({
+  workspace = "special:omarchy-minimized",
+  follow = false,
+}))
+
+-- Workspace overview (Gloview): toggle on two quick presses of the left SUPER key.
+local super_tap_timer
+
+hl.bind("SUPER + SUPER_L", function()
+  if super_tap_timer and super_tap_timer:is_enabled() then
+    super_tap_timer:set_enabled(false)
+    super_tap_timer = nil
+    hl.plugin.gloview.toggle()
+    return
+  end
+
+  super_tap_timer = hl.timer(function()
+    super_tap_timer = nil
+  end, { timeout = 300, type = "oneshot" })
+end, { release = true })

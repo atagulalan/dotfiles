@@ -1,0 +1,2 @@
+-- Extra autostart processes go here.
+-- Example: o.launch_on_start("openrgb --profile White --server")

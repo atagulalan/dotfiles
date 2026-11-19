@@ -1,0 +1,38 @@
+    OpenRGB v1.1
+    Commit:  from 
+    Launched: 20261119_202108
+====================================================================================================
+
+[32        ][Info   ][ProfileManager] Found file: Black.json attempting to validate header
+[33        ][Info   ][ProfileManager] Found file: White.json attempting to validate header
+[48        ][Info   ][ProfileManager] Found file: Black.json attempting to validate header
+[48        ][Info   ][ProfileManager] Found file: White.json attempting to validate header
+[50        ][Info   ][NetworkServer] Network connection thread started on port 6742
+[52        ][Info   ]------------------------------------------------------
+[52        ][Info   ]|               Start device detection               |
+[52        ][Info   ]------------------------------------------------------
+[59        ][Info   ]------------------------------------------------------
+[59        ][Info   ]|             Detecting I2C interfaces               |
+[59        ][Info   ]------------------------------------------------------
+[60        ][Info   ][DetectionManager] Registering I2C interface: SMBus I801 adapter at 0000:00:1f.3 (/dev/i2c-0) Device 8086:2930 Subsystem: 1AF4:1100
+[60        ][Info   ]------------------------------------------------------
+[60        ][Info   ]|               Detecting I2C devices                |
+[60        ][Info   ]------------------------------------------------------
+[60        ][Info   ]------------------------------------------------------
+[60        ][Info   ]|            Detecting I2C DRAM modules              |
+[60        ][Info   ]------------------------------------------------------
+[60        ][Info   ]------------------------------------------------------
+[60        ][Info   ]|               Detecting I2C PCI devices            |
+[60        ][Info   ]------------------------------------------------------
+[61        ][Info   ]------------------------------------------------------
+[61        ][Info   ]|               Detecting HID devices                |
+[61        ][Info   ]------------------------------------------------------
+[61        ][Info   ]------------------------------------------------------
+[61        ][Info   ]|            Detecting libusb HID devices            |
+[61        ][Info   ]------------------------------------------------------
+[64        ][Info   ]------------------------------------------------------
+[64        ][Info   ]|              Detecting other devices               |
+[64        ][Info   ]------------------------------------------------------
+[93        ][Info   ]------------------------------------------------------
+[93        ][Info   ]|                Detection completed                 |
+[93        ][Info   ]------------------------------------------------------
