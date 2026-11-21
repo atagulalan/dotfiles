@@ -1,0 +1,36 @@
+#!/usr/bin/env -S uv run --script
+# /// script
+# dependencies = ["tapo"]
+# ///
+# Yatak odasi isigi (Tapo S210) — sadece H100 hub uzerinden, yerel ag, cloud yok.
+# Prizlere (P115) hic baglanmaz: sadece hub'a ve hub'in S210 alt cihazina konusur.
+#
+# Kullanim: isik [on|off|toggle|status]
+# Kimlik:   ~/.config/tapo/creds  (1. satir Tapo e-postasi, 2. satir sifre; chmod 600)
+# Hub IP:   TAPO_HUB ortam degiskeni (varsayilan 192.168.1.112)
+import asyncio, os, sys
+from tapo import ApiClient
+
+HUB_IP = os.environ.get("TAPO_HUB", "192.168.1.112")
+CREDS = os.path.expanduser("~/.config/tapo/creds")
+
+
+async def main(cmd):
+    if cmd not in ("on", "off", "toggle", "status"):
+        sys.exit("kullanim: isik [on|off|toggle|status]")
+    u, p = open(CREDS).read().splitlines()[:2]
+    hub = await ApiClient(u, p).h100(HUB_IP)
+    switches = [c for c in await hub.get_child_device_list() if c.model == "S210"]
+    if len(switches) != 1:
+        sys.exit(f"hub'da tek S210 bekleniyordu, {len(switches)} bulundu")
+    sw = await hub.s210(device_id=switches[0].device_id)
+    if cmd == "toggle":
+        cmd = "off" if (await sw.get_device_info()).device_on else "on"
+    if cmd == "on":
+        await sw.on()
+    elif cmd == "off":
+        await sw.off()
+    print("Işık:", "AÇIK" if (await sw.get_device_info()).device_on else "KAPALI")
+
+
+asyncio.run(main(sys.argv[1] if len(sys.argv) > 1 else "status"))
